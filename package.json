@@ -1,0 +1,56 @@
+{
+  "name": "generator-mcfly-ng-2",
+  "version": "0.0.0",
+  "description": "Yeoman generator for scaffolding an app using angular2 and webpack",
+  "homepage": "https://github.com/mcfly-io/generator-mcfly-ng2",
+  "repository": "mcfly-io/generator-mcfly-ng-2",
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "author": {
+    "name": "Avi Haiat",
+    "email": "thaiat@ipelia.fr",
+    "url": "https://github.com/thaiat"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/app/index.js",
+  "preferGlobal": true,
+  "keywords": [
+    "ng2",
+    "webpack",
+    "angular2",
+    "generator",
+    "yeoman",
+    "starter",
+    "boilerplate",
+    "scaffold"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "yeoman-generator": "^0.22.4",
+    "yosay": "^1.1.0"
+  }
+  "devDependencies": {
+    "eslint-config-xo-space": "^0.7.0",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-plumber": "^1.0.0",
+    "yeoman-assert": "^2.1.1",
+    "yeoman-test": "^1.0.0"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  }
+}
