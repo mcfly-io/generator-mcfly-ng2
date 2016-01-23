@@ -1,5 +1,5 @@
 {
-  "name": "generator-mcfly-ng-2",
+  "name": "generator-mcfly-ng2",
   "version": "0.0.1",
   "description": "A yeoman generator for scaffolding an app using angular2 and webpack",
   "homepage": "https://github.com/mcfly-io/generator-mcfly-ng2",
@@ -20,6 +20,7 @@
   "main": "generators/app/index.js",
   "preferGlobal": true,
   "keywords": [
+    "yeoman-generator",
     "ng2",
     "webpack",
     "angular2",
@@ -32,6 +33,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
+    "lodash": "^4.0.0",
     "yeoman-generator": "^0.22.4",
     "yosay": "^1.1.0"
   },
