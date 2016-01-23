@@ -6,7 +6,6 @@
   "repository": "mcfly-io/generator-mcfly-ng2",
   "scripts": {
     "eslint": "eslint .",
-    "nsp": "nsp check",
     "mocha": " istanbul cover --root ./generators  --include-all-sources --dir ./coverage/mocha --report text --report text-summary --report lcov --print none  _mocha -- test/mocha/**/*.spec.js -R spec",
     "test": "npm run eslint && npm run mocha"
   },
@@ -38,11 +37,9 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.6",
-    "eslint-config-xo-space": "^0.8.0",
     "eslint-plugin-nodeca": "^1.0.3",
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
-    "nsp": "^2.2.0",
     "yeoman-assert": "^2.1.1",
     "yeoman-test": "^1.0.0"
   }
