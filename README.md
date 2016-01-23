@@ -33,3 +33,5 @@ MIT
 [daviddm-url]: https://david-dm.org/mcfly-io/generator-mcfly-ng2
 [coveralls-image]: https://coveralls.io/repos/mcfly-io/generator-mcfly-ng2/badge.svg
 [coveralls-url]: https://coveralls.io/r/mcfly-io/generator-mcfly-ng2
+
+[![Coverage Status](https://coveralls.io/repos/github/mcfly-io/generator-mcfly-ng2/badge.svg?branch=master)](https://coveralls.io/github/mcfly-io/generator-mcfly-ng2?branch=master)
