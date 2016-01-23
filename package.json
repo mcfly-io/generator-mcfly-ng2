@@ -1,6 +1,6 @@
 {
   "name": "generator-mcfly-ng-2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Yeoman generator for scaffolding an app using angular2 and webpack",
   "homepage": "https://github.com/mcfly-io/generator-mcfly-ng2",
   "repository": "mcfly-io/generator-mcfly-ng2",
