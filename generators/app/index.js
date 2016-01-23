@@ -34,13 +34,6 @@ module.exports = yeoman.Base.extend({
         );
     },
 
-    anotherOne: function() {
-      if(process.env.TOTO)
-        console.log('this is another function');
-      else 
-        console.log('this is another function 2');
-    },
-
     install: function() {
         this.installDependencies();
     }
