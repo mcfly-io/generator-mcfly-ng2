@@ -9,6 +9,7 @@ describe('generator-mcfly-ng2:app', function() {
             .withOptions({
                 someOption: true
             })
+            .withArguments(['name-x'])
             .withPrompts({
                 someAnswer: true
             })
@@ -17,7 +18,9 @@ describe('generator-mcfly-ng2:app', function() {
 
     it('creates files', function() {
         assert.file([
-            'dummyfile.txt'
+            'package.json'
         ]);
+
     });
+
 });

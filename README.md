@@ -25,6 +25,18 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 
 MIT
 
+## Yeoman stuff
+### create directory
+```js
+var mkdirp = require('mkdirp');
+mkdirp.sync(this.templatePath('xxx'));
+```
+
+### Write file from string
+```js
+this.fs.write(this.destinationPath('xxx'), content);
+```
+
 [npm-image]: https://badge.fury.io/js/generator-mcfly-ng2.svg
 [npm-url]: https://npmjs.org/package/generator-mcfly-ng2
 [travis-image]: https://travis-ci.org/mcfly-io/generator-mcfly-ng2.svg?branch=master

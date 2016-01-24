@@ -2,34 +2,67 @@
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var _ = require('lodash');
+var path = require('path');
+var mixinLodash = require('../../libs/mixinLodash');
+var mixinBeautify = require('../../libs/mixinBeautify');
+var mixinReadfile = require('../../libs/mixinReadfile');
+var mixinNotifier = require('../../libs/mixinNotifier');
 
 module.exports = generators.Base.extend({
     constructor: function() {
         generators.Base.apply(this, arguments);
-        this.log('constructor', this.appname);
+
+        // applying mixins
+        mixinLodash.extend(this);
+        mixinBeautify.extend(this);
+        mixinReadfile.extend(this);
+        mixinNotifier.extend(this);
+
+        // Registering file transforms
+        this.mixins.beautifyJson();
+
+        this.appname = this.appname || path.basename(process.cwd());
+        this.appname = this.mixins.camelize(this.appname);
 
         //******* arguments ***********
         // To access arguments later use this.argumentName
         this.argument('appname', {
+            desc: 'The application name',
             type: String,
-            required: true
+            optional: true,
+            required: false,
+            defaults: this.appname
         });
-        this.appname = _.camelCase(this.appname);
+
+        this.argument('mobile', {
+            desc: 'Indicates that the app is a mobile app',
+            type: Boolean,
+            optional: true,
+            required: false,
+            defaults: false
+        });
+
+        this.appname = this.mixins.camelize(this.appname);
         // ***** arguments ********
 
         // ****** options *********
         // To access options later use this.options.optionName
-        this.option('coffee');
+        this.option('skip-install', {
+            desc: 'Skip the bower and node installations',
+            type: Boolean,
+            defaults: false
+        });
         // ****** options *********
+
     },
 
     initializing: function() {
-        this.log('initializing');
+        this.pkg = this.mixins.readJsonFile('../../package.json', __dirname);
+        this.mixins.notifyUpdate(this.pkg);
     },
 
     configuring: function() {
-        this.log('configuring');
+
     },
 
     prompting: function() {
@@ -37,9 +70,7 @@ module.exports = generators.Base.extend({
         var done = this.async();
 
         // Have Yeoman greet the user.
-        this.log(yosay(
-            'Welcome to the awesome ' + chalk.red('generator-mcfly-ng2') + ' generator!'
-        ));
+        this.log(yosay('Welcome to the awesome ' + chalk.yellow('generator-mcfly-ng2') + ' generator!'));
 
         var prompts = [{
             type: 'input',
@@ -57,10 +88,14 @@ module.exports = generators.Base.extend({
 
     writing: function() {
         this.log('writing', this.answers.name);
-        this.fs.copy(
-            this.templatePath('dummyfile.txt'),
-            this.destinationPath('dummyfile.txt')
+
+        this.fs.copyTpl(
+            this.templatePath('package.json'),
+            this.destinationPath('package.json'), {
+                appname: this.appname
+            }
         );
+
     },
 
     conflicts: function() {
@@ -69,7 +104,9 @@ module.exports = generators.Base.extend({
 
     install: function() {
         this.log('install');
-        this.installDependencies();
+        this.npmInstall(null, {
+            skipInstall: this.options['skip-install']
+        });
     },
 
     end: function() {

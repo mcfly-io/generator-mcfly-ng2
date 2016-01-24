@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "description": "A yeoman generator for scaffolding an app using angular2 and webpack",
   "homepage": "https://github.com/mcfly-io/generator-mcfly-ng2",
-  "repository": "mcfly-io/generator-mcfly-ng2",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mcfly-io/generator-mcfly-ng2"
+  },
   "scripts": {
     "eslint": "eslint .",
-    "mocha": " istanbul cover --root ./generators  --include-all-sources --dir ./coverage/mocha --report text --report text-summary --report lcov --print none  _mocha -- test/mocha/**/*.spec.js -R spec",
-    "test": "npm run eslint && npm run mocha"
+    "mocha": " istanbul cover --root ./generators  --include-all-sources -x **/templates/** --dir ./coverage/mocha --report text --report text-summary --report lcov --print none  _mocha -- test/mocha/**/*.spec.js -R spec",
+    "pretest": "npm run eslint",
+    "test": "npm run mocha"
   },
   "author": {
     "name": "Avi Haiat",
@@ -33,7 +37,12 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
+    "gulp-filter": "^3.0.1",
+    "gulp-js-prettify": "^0.1.0",
     "lodash": "^4.0.0",
+    "npm": "^3.5.3",
+    "strip-json-comments": "^2.0.0",
+    "update-notifier": "^0.6.0",
     "yeoman-generator": "^0.22.4",
     "yosay": "^1.1.0"
   },
