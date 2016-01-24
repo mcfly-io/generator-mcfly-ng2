@@ -5,7 +5,7 @@ var yosay = require('yosay');
 var path = require('path');
 var mixinLodash = require('../../libs/mixinLodash');
 var mixinBeautify = require('../../libs/mixinBeautify');
-var mixinReadfile = require('../../libs/mixinReadfile');
+var mixinReadFile = require('../../libs/mixinReadFile');
 var mixinNotifier = require('../../libs/mixinNotifier');
 
 module.exports = generators.Base.extend({
@@ -15,7 +15,7 @@ module.exports = generators.Base.extend({
         // applying mixins
         mixinLodash.extend(this);
         mixinBeautify.extend(this);
-        mixinReadfile.extend(this);
+        mixinReadFile.extend(this);
         mixinNotifier.extend(this);
 
         // Registering file transforms
