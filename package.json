@@ -9,7 +9,7 @@
   },
   "scripts": {
     "eslint": "eslint .",
-    "mocha": " istanbul cover --root ./generators  --include-all-sources -x **/templates/** --dir ./coverage/mocha --report text --report text-summary --report lcov --print none  _mocha -- test/mocha/**/*.spec.js -R spec",
+    "mocha": " istanbul cover --root ./generators  --include-all-sources -x **/templates/** --dir ./coverage/mocha --report text --report text-summary --report lcov --print none  _mocha -- test/mocha/**/*.spec.js -R spec --timeout 5000",
     "pretest": "npm run eslint",
     "test": "npm run mocha"
   },
