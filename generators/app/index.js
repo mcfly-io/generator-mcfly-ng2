@@ -3,10 +3,9 @@ var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
-var mkdirp = require('mkdirp');
 var mixinLodash = require('../../libs/mixinLodash');
 var mixinBeautify = require('../../libs/mixinBeautify');
-var mixinReadFile = require('../../libs/mixinReadFile');
+var mixinFile = require('../../libs/mixinFile');
 var mixinNotifier = require('../../libs/mixinNotifier');
 var mixinInspector = require('../../libs/mixinInspector');
 
@@ -17,7 +16,7 @@ module.exports = generators.Base.extend({
         // applying mixins
         mixinLodash.extend(this);
         mixinBeautify.extend(this);
-        mixinReadFile.extend(this);
+        mixinFile.extend(this);
         mixinNotifier.extend(this);
         mixinInspector.extend(this);
 
@@ -106,7 +105,7 @@ module.exports = generators.Base.extend({
 
     writing: function() {
 
-        mkdirp.sync(this.destinationPath(this.answers.clientFolder));
+        this.mixins.mkdirp.sync(this.destinationPath(this.answers.clientFolder));
 
         this.fs.copyTpl(
             this.templatePath('.eslintignore'),
@@ -178,6 +177,6 @@ module.exports = generators.Base.extend({
     },
 
     end: function() {
-        this.log('Successfull installation, Woot!!!!');
+        this.log(chalk.green('Woot!!! It appears that everything installed correctly.'));
     }
 });

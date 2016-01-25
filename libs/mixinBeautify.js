@@ -3,7 +3,7 @@
 var filter = require('gulp-filter');
 var prettifyJs = require('gulp-js-prettify');
 var utils = {};
-require('./mixinReadFile').extend(utils);
+require('./mixinFile').extend(utils);
 var beautifConfig = utils.mixins.readJsonFile('../.jsbeautifyrc', __dirname);
 
 /**

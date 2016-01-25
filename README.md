@@ -35,8 +35,10 @@ MIT
 ## Yeoman notes
 ### Create directory
 ```js
-var mkdirp = require('mkdirp');
-mkdirp.sync(this.templatePath('xxx'));
+var mixinFile = require('../../libs/mixinFile');
+var utils = {};
+mixinFile.extend(utils);
+var body = utils.mixins.mkdirp.sync(this.destinationPath('path_to_create'));
 ```
 
 ### Write file from string
@@ -46,9 +48,9 @@ this.fs.write(this.destinationPath('xxx'), content);
 
 ### Read scaffolded file in test
 ```js
-var mixinReadFile = require('../../libs/mixinReadFile');
+var mixinFile = require('../../libs/mixinFile');
 var utils = {};
-mixinReadFile.extend(utils);
+mixinFile.extend(utils);
 var body = utils.mixins.readTextFile('./package.json');
 ```
 

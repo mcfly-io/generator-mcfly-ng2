@@ -1,5 +1,6 @@
 'use strict';
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 var path = require('path');
 var stripJsonComments = require('strip-json-comments');
 
@@ -34,5 +35,6 @@ module.exports = {
         var mixins = generator.mixins = generator.mixins || {};
         mixins.readTextFile = readTextFile.bind(generator);
         mixins.readJsonFile = readJsonFile.bind(generator);
+        mixins.mkdirp = mkdirp;
     }
 };

@@ -3,10 +3,10 @@ var helpers = require('yeoman-test');
 var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
-var mixinReadFile = require('../../libs/mixinReadFile');
+var mixinFile = require('../../libs/mixinFile');
 var mixinInspector = require('../../libs/mixinInspector');
 var utils = {};
-mixinReadFile.extend(utils);
+mixinFile.extend(utils);
 mixinInspector.extend(utils);
 
 /**
