@@ -17,6 +17,13 @@ Then generate your new project:
 yo mcfly-ng2
 ```
 
+## Testing
+```sh
+npm run test # lint + unit tests
+npm run mocha # to run without linting first
+npm run mocha.watch # to run in watch mode
+```
+
 ## Getting To Know Yeoman
 
 Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
