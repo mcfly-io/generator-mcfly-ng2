@@ -25,8 +25,8 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 
 MIT
 
-## Yeoman stuff
-### create directory
+## Yeoman notes
+### Create directory
 ```js
 var mkdirp = require('mkdirp');
 mkdirp.sync(this.templatePath('xxx'));
@@ -35,6 +35,36 @@ mkdirp.sync(this.templatePath('xxx'));
 ### Write file from string
 ```js
 this.fs.write(this.destinationPath('xxx'), content);
+```
+
+### Read scaffolded file in test
+```js
+var mixinReadFile = require('../../libs/mixinReadFile');
+var utils = {};
+mixinReadFile.extend(utils);
+var body = utils.mixins.readTextFile('./package.json');
+```
+
+or we can use the testHelper
+```js
+var testHelper = require('./testHelper');
+var body = testHelper.mixins.readTextFile('./.yo-rc.json');
+```
+
+### Test regex on file content
+```js
+ var expectedContents = [
+  ['package.json', /"name": "name_x"/],
+  ['tsconfig.json', new RegExp('\"' + clientFolder + /\/\*\*\/\*\.ts/.source)]
+];
+ assert.fileContent(expectedContents);        
+```
+
+### Test object on JSON file content
+```js
+assert.JSONFileContent('package.json', {
+  name: 'name-x'
+});
 ```
 
 [npm-image]: https://badge.fury.io/js/generator-mcfly-ng2.svg

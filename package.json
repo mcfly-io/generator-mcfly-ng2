@@ -9,7 +9,8 @@
   },
   "scripts": {
     "eslint": "eslint .",
-    "mocha": " istanbul cover --root ./generators  --include-all-sources -x **/templates/** --dir ./coverage/mocha --report text --report text-summary --report lcov --print none  _mocha -- test/mocha/**/*.spec.js -R spec --timeout 5000",
+    "mocha": "istanbul cover --root ./generators  --include-all-sources -x **/templates/** --dir ./coverage/mocha --report text --report text-summary --report lcov --print none  _mocha -- test/mocha/**/*.spec.js --reporter spec --timeout 10000",
+    "mocha.watch": "mocha test/mocha/**/*.spec.js -R nyan -w --timeout 10000",
     "pretest": "npm run eslint",
     "test": "npm run mocha"
   },
@@ -40,6 +41,7 @@
     "gulp-filter": "^3.0.1",
     "gulp-js-prettify": "^0.1.0",
     "lodash": "^4.0.0",
+    "mkdirp": "^0.5.1",
     "npm": "^3.5.3",
     "strip-json-comments": "^2.0.0",
     "update-notifier": "^0.6.0",

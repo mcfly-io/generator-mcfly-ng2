@@ -1,26 +1,92 @@
 'use strict';
-var path = require('path');
 var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
+var testHelper = require('./testHelper');
 
-describe('generator-mcfly-ng2:app', function() {
-    before(function(done) {
-        helpers.run(path.join(__dirname, '../../generators/app'))
-            .withOptions({
-                someOption: true
-            })
-            .withArguments(['name-x'])
-            .withPrompts({
-                someAnswer: true
-            })
-            .on('end', done);
+var generatorFullname = testHelper.mixins.getGeneratorFullname(); // generator-mcfly-ng2
+var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
+
+describe(generatorShortname + ':app', function() {
+
+    var appname = 'Name x';
+    var clientFolder = 'myclientfolder';
+
+    describe('with option mobile false', function() {
+        before(function(done) {
+            testHelper.runGenerator('app', null, [generatorShortname + ':target'])
+                .withArguments([appname])
+                .withPrompts({
+                    clientFolder: clientFolder
+                })
+                .on('end', done);
+        });
+
+        it('creates expected files', function() {
+            var expectedFiles = [
+                '.eslintignore',
+                '.eslintrc.json',
+                '.gitignore',
+                '.jsbeautifyrc',
+                '.npmrc',
+                '.yo-rc.json',
+                'karma.conf.js',
+                'package.json',
+                'README.md',
+                'spec-bundle.js',
+                'tsconfig.json',
+                'tslint.json',
+                'webpack.config.js',
+                clientFolder
+            ];
+            assert.file(expectedFiles);
+            assert.JSONFileContent('package.json', {
+                name: 'name-x'
+            });
+            assert.JSONFileContent('tsconfig.json', {
+                filesGlob: [
+                    clientFolder + '/**/*.ts',
+                    '!./node_modules/**/*.ts'
+                ]
+            });
+
+            var expectedContents = [
+                ['README.md', /# name-x/]
+            ];
+            assert.fileContent(expectedContents);
+        });
+
+        it('creates a .yo-rc.json file', function() {
+            var content = {};
+            content[generatorFullname] = {
+                appname: appname,
+                clientFolder: clientFolder
+            };
+            assert.JSONFileContent('.yo-rc.json', content);
+
+        });
     });
 
-    it('creates files', function() {
-        assert.file([
-            'package.json'
-        ]);
+    describe('with option mobile true', function() {
 
+    });
+
+    describe('clientFolder', function() {
+        before(function(done) {
+            testHelper.runGenerator('app', null, [generatorShortname + ':target'])
+                .withArguments([appname])
+                .withPrompts({
+                    clientFolder: 'Dummy Folder'
+                })
+                .on('end', done);
+        });
+
+        it('should be transformed to snake case', function() {
+            var content = {};
+            content[generatorFullname] = {
+                appname: appname,
+                clientFolder: 'dummy-folder'
+            };
+            assert.JSONFileContent('.yo-rc.json', content);
+        });
     });
 
 });
