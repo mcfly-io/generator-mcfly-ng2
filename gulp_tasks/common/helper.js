@@ -9,6 +9,8 @@ var chalk = require('chalk');
 var stripJsonComments = require('strip-json-comments');
 var _ = require('lodash');
 var path = require('path');
+var es = require('event-stream');
+var gulp = require('gulp');
 
 /**
  * A generic handler for require('child_process').exec
@@ -65,6 +67,19 @@ var filterFiles = function(files, extension) {
     });
 };
 
+/**
+ * Add new sources in a gulp pipeline
+ * @returns {Stream} A gulp stream
+ * @example
+ * gulp.src('')
+ * .pipe(addSrc('CHANGELOG.md'))
+ * .gulp.dest();
+ */
+var addSrc = function() {
+    var pass = es.through();
+    return es.duplex(pass, es.merge(gulp.src.apply(gulp.src, arguments), pass));
+};
+
 module.exports = {
 
     execHandler: execHandler,
@@ -72,6 +87,7 @@ module.exports = {
     readJsonFile: readJsonFile,
     writeTextFile: writeTextFile,
     writeJsonFile: writeJsonFile,
-    filterFiles: filterFiles
+    filterFiles: filterFiles,
+    addSrc: addSrc
 
 };
