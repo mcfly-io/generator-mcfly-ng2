@@ -2,6 +2,7 @@
 
 var filter = require('gulp-filter');
 var prettifyJs = require('gulp-js-prettify');
+var prettifyHtml = require('gulp-prettify');
 var utils = {};
 require('./mixinFile').extend(utils);
 var beautifConfig = utils.mixins.readJsonFile('../.jsbeautifyrc', __dirname);
@@ -76,7 +77,7 @@ var beautifyHtml = function(globs) {
 
     this.registerTransformStream([
         extensionFilter,
-        prettifyJs(config),
+        prettifyHtml(config),
         extensionFilter.restore
     ]);
 };

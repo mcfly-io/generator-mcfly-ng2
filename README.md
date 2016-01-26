@@ -55,10 +55,8 @@ this.fs.write(this.destinationPath('xxx'), content);
 
 ### Read scaffolded file in test
 ```js
-var mixinFile = require('../../libs/mixinFile');
-var utils = {};
-mixinFile.extend(utils);
-var body = utils.mixins.readTextFile('./package.json');
+var body = testHelper.mixins.readTextFile('./client/index-dashboard.html');
+console.log(body);
 ```
 
 or we can use the testHelper

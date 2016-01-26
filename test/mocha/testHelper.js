@@ -18,7 +18,8 @@ var getYoRc = function(config) {
     config = config || {};
     var result = {};
     _.defaultsDeep(config, {
-        appname: 'dummyappname'
+        appname: 'dummyappname',
+        clientFolder: 'client'
     });
     result[this.mixins.getGeneratorFullname()] = config;
     return result;

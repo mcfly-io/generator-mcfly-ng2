@@ -105,7 +105,7 @@ module.exports = generators.Base.extend({
 
     writing: function() {
 
-        this.mixins.mkdirp.sync(this.destinationPath(this.answers.clientFolder));
+        this.mixins.createDirSync(this.destinationPath(this.answers.clientFolder));
 
         this.fs.copyTpl(
             this.templatePath('.eslintignore'),
