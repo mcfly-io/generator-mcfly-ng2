@@ -11,11 +11,11 @@
     "assert": true,
     "browser": true,
     "expect": true,
-    "by": true,
     "protractor": true,
     "sinon": true,
     "xdescribe": true,
-    "xit": true
+    "xit": true,
+    "by": true
   },
   "plugins": [
     "nodeca"
@@ -31,13 +31,13 @@
     "eol-last": 0,
     "eqeqeq": [2, "smart"],
     "indent": [0, 4, {"SwitchCase": 1}],
-    "nodeca/indent": [2, "spaces", 4 ],
+    "new-cap": 0,
+    "nodeca/indent": [2, "spaces", 4],
     "max-depth": [0, 4],
     "max-len": [0, 80, 4],
     "max-nested-callbacks": [0, 2],
     "max-params": [0, 15],
     "max-statements": [0, 10],
-    "new-cap": [2],
     "new-parens": 2,
     "no-alert": 2,
     "no-array-constructor": 2,

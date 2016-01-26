@@ -5,11 +5,24 @@ node_js:
   - v4
   - '0.12'
 
+env:
+  global:
+    secure: ACshkxhxRWLhktp4pgSkdM3PDh9+/JaMt/Mm8Bf70Nl9WCQLwqS7peuVPn3A3bX52UfaIuvIZ2T9PSIsO59V7nXTSVBZmfBdcK1Sg5IuL4A+FTtWN+G30CS7yPhQHuiyMf7j3rtpcUMCrQZrmSBpVbU1bUvNIyCGPa71PrLOoa9Is64HygIfZtwhfxbCeHGH9c7BshKGXyNaMAPXhcnEZbe6mrDsd44EwyP6Iw42maKfcjKEELug/cXhX8cnsJhNEsvQhmLdP+mqAKQPNsds8Ww+8WUqetQNeczYK/etkMDCVskEzdmh+NQFbwi0XtA8C8aeCithmvM722FdjXRrMhOrBP+AKvHOAW2YEWt9wsO49x3PkobbxGyUD6vsfkwI/mjWxgQBYzGiXzspPAQRrtOw3KH56RVuCoVJD6D1p3g8UKOc3GQUqaALKD7mDeldbAZcFRUMRGn+VUAbIiCg9DvneKPolyapwCaVa2CCUkTRDFgoB/aGV97KAnHVjyZfWdldc5j+yHKYyG4XuzSvxWxQHA9q9dMyg36evQNz5Qtu96+CemT/u/CIYUzity98qWvVfdoRDYp19VZme6ipHwpcS7poM0LeJgKLhdp0W35Y/qBxWqwXRTdlJbERdiU4NSnXYWIW7eLEB5XKFkg9IwNMsai/8Nm78We5aWfbNz8=
+
 cache:
-   directories:
-     - node_modules
-     - bower_components
+  directories:
+  - node_modules
+  - bower_components
 
 after_success:
   - cat ./coverage/mocha/lcov.info | ./node_modules/coveralls/bin/coveralls.js --verbose
 
+deploy:
+  provider: npm
+  email: thaiat@ipelia.com
+  api_key: $NPM_API_KEY
+  on:
+    tags: true
+    all_branches: true
+    node: '0.12'
+    repo: mcfly-io/generator-mcfly-ng2

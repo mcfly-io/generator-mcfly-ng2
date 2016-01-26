@@ -17,6 +17,13 @@ Then generate your new project:
 yo mcfly-ng2
 ```
 
+## Testing
+```sh
+npm run test # lint + unit tests
+npm run mocha # to run without linting first
+npm run mocha.watch # to run in watch mode
+```
+
 ## Getting To Know Yeoman
 
 Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
@@ -25,16 +32,48 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 
 MIT
 
-## Yeoman stuff
-### create directory
+## Yeoman notes
+### Create directory
 ```js
-var mkdirp = require('mkdirp');
-mkdirp.sync(this.templatePath('xxx'));
+var mixinFile = require('../../libs/mixinFile');
+var utils = {};
+mixinFile.extend(utils);
+var body = utils.mixins.mkdirp.sync(this.destinationPath('path_to_create'));
 ```
 
 ### Write file from string
 ```js
 this.fs.write(this.destinationPath('xxx'), content);
+```
+
+### Read scaffolded file in test
+```js
+var mixinFile = require('../../libs/mixinFile');
+var utils = {};
+mixinFile.extend(utils);
+var body = utils.mixins.readTextFile('./package.json');
+```
+
+or we can use the testHelper
+```js
+var testHelper = require('./testHelper');
+var body = testHelper.mixins.readTextFile('./.yo-rc.json');
+```
+
+### Test regex on file content
+```js
+ var expectedContents = [
+  ['package.json', /"name": "name_x"/],
+  ['tsconfig.json', new RegExp('\"' + clientFolder + /\/\*\*\/\*\.ts/.source)]
+];
+ assert.fileContent(expectedContents);        
+```
+
+### Test object on JSON file content
+```js
+assert.JSONFileContent('package.json', {
+  name: 'name-x'
+});
 ```
 
 [npm-image]: https://badge.fury.io/js/generator-mcfly-ng2.svg

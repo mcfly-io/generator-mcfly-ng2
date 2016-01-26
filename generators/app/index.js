@@ -5,8 +5,9 @@ var yosay = require('yosay');
 var path = require('path');
 var mixinLodash = require('../../libs/mixinLodash');
 var mixinBeautify = require('../../libs/mixinBeautify');
-var mixinReadFile = require('../../libs/mixinReadFile');
+var mixinFile = require('../../libs/mixinFile');
 var mixinNotifier = require('../../libs/mixinNotifier');
+var mixinInspector = require('../../libs/mixinInspector');
 
 module.exports = generators.Base.extend({
     constructor: function() {
@@ -15,8 +16,9 @@ module.exports = generators.Base.extend({
         // applying mixins
         mixinLodash.extend(this);
         mixinBeautify.extend(this);
-        mixinReadFile.extend(this);
+        mixinFile.extend(this);
         mixinNotifier.extend(this);
+        mixinInspector.extend(this);
 
         // Registering file transforms
         this.mixins.beautifyJson();
@@ -34,14 +36,6 @@ module.exports = generators.Base.extend({
             defaults: this.appname
         });
 
-        this.argument('mobile', {
-            desc: 'Indicates that the app is a mobile app',
-            type: Boolean,
-            optional: true,
-            required: false,
-            defaults: false
-        });
-
         this.appname = this.mixins.camelize(this.appname);
         // ***** arguments ********
 
@@ -52,6 +46,17 @@ module.exports = generators.Base.extend({
             type: Boolean,
             defaults: false
         });
+        this.option('mobile', {
+            desc: 'Indicates that the app is a mobile app',
+            type: Boolean,
+            defaults: false
+        });
+
+        this.option('target', {
+            desc: 'The name of the default target',
+            type: String,
+            defaults: 'app'
+        });
         // ****** options *********
 
     },
@@ -59,47 +64,109 @@ module.exports = generators.Base.extend({
     initializing: function() {
         this.pkg = this.mixins.readJsonFile('../../package.json', __dirname);
         this.mixins.notifyUpdate(this.pkg);
-    },
 
-    configuring: function() {
-
+        this.composeWith(this.mixins.getGeneratorShortname() + ':target', {
+            args: [this.options.target]
+        });
     },
 
     prompting: function() {
-        this.log('prompting');
-        var done = this.async();
 
         // Have Yeoman greet the user.
-        this.log(yosay('Welcome to the awesome ' + chalk.yellow('generator-mcfly-ng2') + ' generator!'));
+        this.log(yosay('Welcome to the awesome ' + chalk.yellow(this.mixins.getGeneratorFullname()) + ' generator!'));
 
+        var done = this.async();
         var prompts = [{
             type: 'input',
             name: 'name',
-            message: 'Your project name',
+            message: 'What is your project name?',
             default: this.appname
+        }, {
+            type: 'input',
+            name: 'clientFolder',
+            message: 'What is your client folder?',
+            default: 'client'
         }];
-
         this.prompt(prompts, function(answers) {
             this.answers = answers;
-            // To access answers later use this.answers.someOption;
+            // To access answers later use this.answers.someAnswer;
+            this.answers.clientFolder = this.mixins.dasherize(this.answers.clientFolder);
             done();
         }.bind(this));
     },
 
+    configuring: function() {
+        this.config.set('filenameCase', this.filenameCase);
+        this.config.set('filenameSuffix', this.filenameSuffix);
+        this.config.set('appname', this.appname);
+        this.config.set('clientFolder', this.answers.clientFolder);
+
+    },
+
     writing: function() {
-        this.log('writing', this.answers.name);
+
+        this.mixins.mkdirp.sync(this.destinationPath(this.answers.clientFolder));
 
         this.fs.copyTpl(
-            this.templatePath('package.json'),
+            this.templatePath('.eslintignore'),
+            this.destinationPath('.eslintignore')
+        );
+        this.fs.copyTpl(
+            this.templatePath('.eslintrc.json'),
+            this.destinationPath('.eslintrc.json')
+        );
+        this.fs.copyTpl(
+            this.templatePath('.gitignore'),
+            this.destinationPath('.gitignore')
+        );
+        this.fs.copyTpl(
+            this.templatePath('.jsbeautifyrc'),
+            this.destinationPath('.jsbeautifyrc')
+        );
+        this.fs.copyTpl(
+            this.templatePath('.npmrc'),
+            this.destinationPath('.npmrc')
+        );
+        this.fs.copyTpl(
+            this.templatePath('_package.json'),
             this.destinationPath('package.json'), {
-                appname: this.appname
+                appname: this.mixins.dasherize(this.appname),
+                clientFolder: this.answers.clientFolder
             }
+        );
+        this.fs.copyTpl(
+            this.templatePath('_README.md'),
+            this.destinationPath('README.md'), {
+                appname: this.mixins.dasherize(this.appname)
+            }
+        );
+        this.fs.copyTpl(
+            this.templatePath('_spec-bundle.js'),
+            this.destinationPath('spec-bundle.js')
+        );
+        this.fs.copyTpl(
+            this.templatePath('_tsconfig.json'),
+            this.destinationPath('tsconfig.json'), {
+                clientFolder: this.answers.clientFolder
+            }
+        );
+        this.fs.copyTpl(
+            this.templatePath('karma.conf.js'),
+            this.destinationPath('karma.conf.js')
+        );
+        this.fs.copyTpl(
+            this.templatePath('tslint.json'),
+            this.destinationPath('tslint.json')
+        );
+        this.fs.copyTpl(
+            this.templatePath('webpack.config.js'),
+            this.destinationPath('webpack.config.js')
         );
 
     },
 
     conflicts: function() {
-        this.log('conflicts');
+
     },
 
     install: function() {
@@ -110,6 +177,6 @@ module.exports = generators.Base.extend({
     },
 
     end: function() {
-        this.log('end');
+        this.log(chalk.green('Woot!!! It appears that everything installed correctly.'));
     }
 });

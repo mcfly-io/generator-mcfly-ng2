@@ -1,5 +1,6 @@
 'use strict';
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 var path = require('path');
 var stripJsonComments = require('strip-json-comments');
 
@@ -10,8 +11,8 @@ var stripJsonComments = require('strip-json-comments');
  * @returns {String} The file content as a string
  */
 var readTextFile = function(filename, dirname) {
-    if (!path.isAbsolute(filename)) {
-        dirname = dirname || __dirname;
+    // when dirname is null or undefined we read from local path, otherwise we read from absolute path
+    if (dirname && !path.isAbsolute(filename)) {
         filename = path.resolve(path.join(dirname, filename));
     }
     var body = fs.readFileSync(filename, 'utf-8');
@@ -34,5 +35,6 @@ module.exports = {
         var mixins = generator.mixins = generator.mixins || {};
         mixins.readTextFile = readTextFile.bind(generator);
         mixins.readJsonFile = readJsonFile.bind(generator);
+        mixins.mkdirp = mkdirp;
     }
 };

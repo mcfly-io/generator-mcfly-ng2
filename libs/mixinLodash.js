@@ -6,7 +6,7 @@ var _ = require('lodash');
  * @returns {String} - The camelized string
  */
 var camelize = function(str) {
-    return _.camelCase(_.snakeCase(str));
+    return _.camelCase(str);
 };
 
 /**
@@ -15,7 +15,7 @@ var camelize = function(str) {
  * @returns {String} - The dasherized string
  */
 var dasherize = function(str) {
-    return _.snakeCase(camelize(str));
+    return _.kebabCase(str);
 };
 
 /**

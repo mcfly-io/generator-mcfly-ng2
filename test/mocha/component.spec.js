@@ -1,23 +1,18 @@
 'use strict';
-var path = require('path');
 var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
-
-describe('generator-mcfly-ng2:component', function() {
+//var helpers = require('yeoman-test');
+var testHelper = require('./testHelper');
+describe('generator:component', function() {
     before(function(done) {
-        helpers.run(path.join(__dirname, '../../generators/component'))
-            .withOptions({
-                someOption: true
-            })
-            .withPrompts({
-                someAnswer: true
-            })
+        testHelper.runGenerator('component')
             .on('end', done);
     });
 
-    it('creates files', function() {
-        assert.file([
+    it('creates expected files', function() {
+        var expectedFiles = [
             'dummyfile.txt'
-        ]);
+        ];
+        assert.file(expectedFiles);
+
     });
 });
