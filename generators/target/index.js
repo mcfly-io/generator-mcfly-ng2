@@ -2,9 +2,11 @@
 var generators = require('yeoman-generator');
 var path = require('path');
 var _ = require('lodash');
+var chalk = require('chalk');
 var mixinInspector = require('../../libs/mixinInspector');
 var mixinFile = require('../../libs/mixinFile');
 var mixinBeautify = require('../../libs/mixinBeautify');
+var mixinLodash = require('../../libs/mixinLodash');
 
 module.exports = generators.Base.extend({
 
@@ -15,6 +17,7 @@ module.exports = generators.Base.extend({
         mixinInspector.extend(this);
         mixinFile.extend(this);
         mixinBeautify.extend(this);
+        mixinLodash.extend(this);
 
         // Registering file transforms
         this.mixins.beautifyJson();
@@ -49,22 +52,30 @@ module.exports = generators.Base.extend({
             },
             validate: function(value) {
                 if (_.isEmpty(value) || value[0] === '/' || value[0] === '\\') {
-                    return 'Please enter a non empty name';
+                    return chalk.red('Please enter a non empty name');
                 }
                 if (_.contains(self.configOptions.clientTargets, value)) {
-                    return 'The target name ' + value + ' already exists';
+                    return chalk.red('The target name ') + chalk.yellow(value) + chalk.red(' already exists');
                 }
                 return true;
             },
             message: 'What is the name of your target application?'
         }];
         this.prompt(prompts, function(answers) {
-
             this.answers = answers;
-            this.targetname = this.targetname || answers.targetname;
-            this.suffix = this.mixins.targetnameToSuffix(this.targetname);
             done();
         }.bind(this));
+    },
+
+    configuring: function() {
+
+        this.targetname = this.mixins.camelize(this.targetname || this.answers.targetname);
+        this.suffix = this.mixins.targetnameToSuffix(this.targetname);
+
+        if (_.contains(this.configOptions.clientTargets, this.targetname)) {
+            this.log.error(chalk.red('The target name ') + chalk.yellow(this.targetname) + chalk.red(' already exists'));
+            this.env.error();
+        }
     },
 
     writing: function() {
