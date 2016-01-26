@@ -65,15 +65,12 @@ module.exports = generators.Base.extend({
         this.pkg = this.mixins.readJsonFile('../../package.json', __dirname);
         this.mixins.notifyUpdate(this.pkg);
 
-        this.composeWith(this.mixins.getGeneratorShortname() + ':target', {
-            args: [this.options.target]
-        });
     },
 
     prompting: function() {
 
         // Have Yeoman greet the user.
-        this.log(yosay('Welcome to the awesome ' + chalk.yellow(this.mixins.getGeneratorFullname()) + ' generator!'));
+        this.log(yosay('Welcome to the awesome ' + chalk.yellow(this.mixins.getGeneratorShortname()) + ' generator!'));
 
         var done = this.async();
         var prompts = [{
@@ -101,6 +98,12 @@ module.exports = generators.Base.extend({
         this.config.set('appname', this.appname);
         this.config.set('clientFolder', this.answers.clientFolder);
 
+        this.composeWith(this.mixins.getGeneratorShortname() + ':target', {
+            args: [this.options.target],
+            options: {
+                clientFolder: this.config.get('clientFolder') // passing the client folder for first run
+            }
+        });
     },
 
     writing: function() {
@@ -170,7 +173,6 @@ module.exports = generators.Base.extend({
     },
 
     install: function() {
-        this.log('install');
         this.npmInstall(null, {
             skipInstall: this.options['skip-install']
         });

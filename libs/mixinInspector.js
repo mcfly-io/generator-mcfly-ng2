@@ -22,12 +22,20 @@ var getGeneratorShortname = function() {
 
 /**
  * Return the list of client targets
- * @param {String} clientFolder The client folder
+ * @param {String} clientFolder - The client folder
  * @returns {String[]} - An array of client targets
  */
 var getClientTargets = function(clientFolder) {
+    if (!clientFolder) {
+        return [];
+    }
+    var pathdir = this.destinationPath(clientFolder);
+    if (!fs.existsSync(pathdir)) {
+        return [];
+    }
     var re = /^(index-.*\.html|index\.html)$/;
-    var files = fs.readdirSync(this.destinationPath(clientFolder));
+
+    var files = fs.readdirSync(pathdir);
     var result = _(files)
         .filter(function(name) {
             return re.test(name);
@@ -41,6 +49,27 @@ var getClientTargets = function(clientFolder) {
     return result;
 };
 
+/**
+ * Return the list of angularjs client modules
+ * @param {String} clientFolder - The client folder
+ * @param {Boolean} isDirectory - true to retreive directories, false to retreive files
+ * @returns {String[]} - An array of client modules
+ */
+var getClientModules = function(clientFolder) {
+    if (!clientFolder) {
+        return [];
+    }
+    var pathdir = this.destinationPath(path.join(clientFolder, 'scripts'));
+    if (!fs.existsSync(pathdir)) {
+        return [];
+    }
+
+    var result = fs.readdirSync(pathdir)
+        .filter(function(file) {
+            return fs.statSync(path.join(pathdir, file)).isDirectory() === true;
+        });
+    return result;
+};
 /**
  * Converts the target name application to suffix
  * @param {String} targetname - The name of the target application
@@ -63,5 +92,6 @@ module.exports = {
         mixins.getGeneratorShortname = getGeneratorShortname.bind(generator);
         mixins.getClientTargets = getClientTargets.bind(generator);
         mixins.targetnameToSuffix = targetnameToSuffix.bind(generator);
+        mixins.getClientModules = getClientModules.bind(generator);
     }
 };

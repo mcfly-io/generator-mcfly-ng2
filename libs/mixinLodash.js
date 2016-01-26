@@ -1,5 +1,6 @@
 'use strict';
 var _ = require('lodash');
+var _s = require('underscore.string');
 /**
  * Clean & camelize a string
  * @param {String} str - The original string
@@ -7,6 +8,15 @@ var _ = require('lodash');
  */
 var camelize = function(str) {
     return _.camelCase(str);
+};
+
+/**
+ * Clean & pascalize a string
+ * @param {String} str - The original string
+ * @returns {String} - The pascalized string
+ */
+var classify = function(str) {
+    return  _s.classify(str);
 };
 
 /**
@@ -55,6 +65,7 @@ module.exports = {
     extend: function(generator) {
         var mixins = generator.mixins = generator.mixins || {};
         mixins.camelize = camelize.bind(generator);
+        mixins.classify = classify.bind(generator);
         mixins.dasherize = dasherize.bind(generator);
         mixins.casify = casify.bind(generator);
         mixins.suffixify = suffixify.bind(generator);

@@ -33,11 +33,22 @@ module.exports = generators.Base.extend({
             required: false
         });
         // ***** arguments ********
+
+        // // ****** options *********
+        // To access options later use this.options.optionName
+        this.option('clientFolder', {
+            desc: 'The client folder',
+            type: String,
+            hide: true
+        });
+        // ****** options *********
     },
 
     initializing: function() {
         this.configOptions = this.config.getAll();
+        this.configOptions.clientFolder = this.configOptions.clientFolder || this.options.clientFolder;
         this.configOptions.clientTargets = this.mixins.getClientTargets(this.configOptions.clientFolder);
+
     },
 
     prompting: function() {
@@ -76,6 +87,10 @@ module.exports = generators.Base.extend({
             this.log.error(chalk.red('The target name ') + chalk.yellow(this.targetname) + chalk.red(' already exists'));
             this.env.error();
         }
+
+        this.composeWith(this.mixins.getGeneratorShortname() + ':component', {
+            args: [this.targetname, 'main']
+        });
     },
 
     writing: function() {
@@ -83,14 +98,18 @@ module.exports = generators.Base.extend({
         this.mixins.createDirSync(this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts')));
         this.mixins.createDirSync(this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname)));
 
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('index.html'),
             this.destinationPath(path.join(this.configOptions.clientFolder, 'index' + this.suffix + '.html'))
         );
 
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('vendor.ts'),
             this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'vendor.ts'))
+        );
+        this.fs.copyTpl(
+            this.templatePath('bootstrap.ts'),
+            this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'bootstrap.ts'))
         );
     }
 });

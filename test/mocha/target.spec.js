@@ -15,7 +15,7 @@ describe(generatorShortname + ':target', function() {
         var config = testHelper.getYoRc({
             clientFolder: clientFolder
         });
-        testHelper.runGenerator('target', config)
+        testHelper.runGenerator('target', config, [generatorShortname + ':component'])
             .inTmpDir(function(dir) {
                 // setting up expected files
                 fs.writeFileSync('.yo-rc.json', JSON.stringify(config));
@@ -34,7 +34,8 @@ describe(generatorShortname + ':target', function() {
             path.join(clientFolder, 'index-dashboard.html'),
             path.join(clientFolder, 'scripts'),
             path.join(clientFolder, 'scripts', 'dashboard'),
-            path.join(clientFolder, 'scripts', 'dashboard', 'vendor.ts')
+            path.join(clientFolder, 'scripts', 'dashboard', 'vendor.ts'),
+            path.join(clientFolder, 'scripts', 'dashboard', 'bootstrap.ts')
         ];
         assert.file(expectedFiles);
 
