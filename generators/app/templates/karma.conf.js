@@ -1,7 +1,7 @@
 'use strict';
 var path = require('path');
 var webpackConfig = require('./webpack.config');
-
+var clientFolder = require('./.yo-rc.json')['generator-mcfly-ng2'].clientFolder;
 module.exports = function(config) {
     var _config = {
 
@@ -44,7 +44,7 @@ module.exports = function(config) {
                     // instrument only testing sources with Istanbul
                     {
                         test: /\.(js|ts)$/,
-                        include: path.resolve('client'),
+                        include: path.resolve(clientFolder),
                         loader: 'istanbul-instrumenter-loader',
                         exclude: [/\.e2e\.ts$/, /node_modules/, /\.spec\.ts$/]
                     }
