@@ -21,8 +21,41 @@ npm install -g generator-mcfly-ng2
 Then generate your new project:
 
 ```bash
-yo mcfly-ng2
+yo mcfly-ng2 [project-name]
 ```
+
+You then have access to the following sub generators:
+* yo mcfly-ng2:target (Creates a new target - you can think of it as another application)
+* yo mcfly-ng2:service (Creates a service)
+* yo mcfly-ng2:pipe (Creates a pipe)
+* yo mcfly-ng2:component (Creates a component)
+* yo mcfly-ng2:directive (Creates a directive)
+* yo mcfly-ng2:interface (Creates an interface)
+
+
+You also have access, once your project is scaffold to the following npm scripts
+* npm run clean (clean the `dist` folder)
+* npm run build (build the code to the `dist` folder)
+* npm run browsersync (open a live browser, recompiling the code on each change)
+* npm run webpack-server (same as browsersync but uses webpack-dev-server)
+* npm run lint (run eslint and tslint)
+* npm run karma (run unit test)
+
+## Distribution
+Note that the code is distributed to the `dist` folder
+You can pass a different TARGET or MODE using the following command:
+Default TARGET is `app`
+MODE can be either `prod` or `dev`
+```sh
+[TARGET=newtarget MODE=dev] npm run build
+```
+
+`npm run webpack-server`:  compile and open a the webpack reload browser
+You can pass a different TARGET or MODE using the following command:
+```sh
+[TARGET=newtarget MODE=dev] npm run webpack-server
+```
+
 
 ## Testing
 ```sh
@@ -31,55 +64,11 @@ npm run mocha # to run without linting first
 npm run mocha.watch # to run in watch mode
 ```
 
-## Getting To Know Yeoman
-
-Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
-
 ## License
 
 MIT
 
-## Yeoman notes
-### Create directory
-```js
-var mixinFile = require('../../libs/mixinFile');
-var utils = {};
-mixinFile.extend(utils);
-var body = utils.mixins.mkdirp.sync(this.destinationPath('path_to_create'));
-```
 
-### Write file from string
-```js
-this.fs.write(this.destinationPath('xxx'), content);
-```
-
-### Read scaffolded file in test
-```js
-var body = testHelper.mixins.readTextFile('./client/index-dashboard.html');
-console.log(body);
-```
-
-or we can use the testHelper
-```js
-var testHelper = require('./testHelper');
-var body = testHelper.mixins.readTextFile('./.yo-rc.json');
-```
-
-### Test regex on file content
-```js
- var expectedContents = [
-  ['package.json', /"name": "name_x"/],
-  ['tsconfig.json', new RegExp('\"' + clientFolder + /\/\*\*\/\*\.ts/.source)]
-];
- assert.fileContent(expectedContents);        
-```
-
-### Test object on JSON file content
-```js
-assert.JSONFileContent('package.json', {
-  name: 'name-x'
-});
-```
 
 [npm-image]: https://badge.fury.io/js/generator-mcfly-ng2.svg
 [npm-url]: https://npmjs.org/package/generator-mcfly-ng2
