@@ -41,15 +41,15 @@ describe(generatorShortname + ':directive', function() {
         var pathdir = clientFolder + '/scripts/dashboard/directives/';
 
         var expectedFiles = [
-            pathdir + 'myDummy.directive.ts',
-            pathdir + 'myDummy.directive.spec.ts'
+            pathdir + 'my-dummy.directive.ts',
+            pathdir + 'my-dummy.directive.spec.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'myDummy.directive.ts', /export class MyDummy/],
-            [pathdir + 'myDummy.directive.spec.ts', /import {MyDummy} from '\.\/myDummy.directive.ts';/]
+            [pathdir + 'my-dummy.directive.ts', /export class MyDummy/],
+            [pathdir + 'my-dummy.directive.spec.ts', /import {MyDummy} from '\.\/my-dummy.directive.ts';/]
         ];
         assert.fileContent(expectedContents);
 

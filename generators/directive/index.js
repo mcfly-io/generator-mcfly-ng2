@@ -7,6 +7,7 @@ var Generator = module.exports = ComponentGenerator.extend({
         this.basetype = 'directive'; // this will create a property this.directivename
         this.basefolder = 'directives'; // this is the folder for the components
         this.hasOwnFolder = false; // to specify if the component files should be in a subfolder
+        this.isDasherize = true; // to specify that the file name should be dasherized
         ComponentGenerator.apply(this, arguments);
     },
 
@@ -29,7 +30,8 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_directive.ts'),
-            this.destinationPath(path.join(destinationPath, this.directivename + '.directive.ts')), {
+            this.destinationPath(path.join(destinationPath, this.directivenameFile + '.directive.ts')), {
+                directivenameFile: this.directivenameFile,
                 directivename: this.directivename,
                 directivenameClass: this.mixins.classify(this.directivename)
             }
@@ -37,7 +39,8 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_directive.spec.ts'),
-            this.destinationPath(path.join(destinationPath, this.directivename + '.directive.spec.ts')), {
+            this.destinationPath(path.join(destinationPath, this.directivenameFile + '.directive.spec.ts')), {
+                directivenameFile: this.directivenameFile,
                 directivename: this.directivename,
                 directivenameClass: this.mixins.classify(this.directivename)
             }

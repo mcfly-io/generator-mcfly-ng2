@@ -6,10 +6,10 @@ import {
 	//beforeEachProviders,
 	//TestComponentBuilder
 } from 'angular2/testing';
-import {<%=pipenameClass %>Pipe} from './<%=pipename%>.pipe.ts';
+import {<%=pipenameClass %>Pipe} from './<%=pipenameFile%>.pipe.ts';
 /* beautify ignore:end */
 
-describe('Pipe: <%=pipename%>', () => {
+describe('Pipe: <%=pipenameClass%>Pipe', () => {
 	let pipe: <%=pipenameClass %>Pipe;
 
 	beforeEach(() => {

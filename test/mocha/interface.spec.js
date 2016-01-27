@@ -41,13 +41,13 @@ describe(generatorShortname + ':interface', function() {
         var pathdir = clientFolder + '/scripts/dashboard/interfaces/';
 
         var expectedFiles = [
-            pathdir + 'myDummy.interface.ts'
+            pathdir + 'my-dummy.interface.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'myDummy.interface.ts', /export interface MyDummy {/]
+            [pathdir + 'my-dummy.interface.ts', /export interface MyDummy {/]
         ];
         assert.fileContent(expectedContents);
 

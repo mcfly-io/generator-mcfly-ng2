@@ -38,23 +38,23 @@ describe(generatorShortname + ':component', function() {
     });
 
     it('creates expected files', function() {
-        var pathdir = clientFolder + '/scripts/dashboard/components/myDummy/';
+        var pathdir = clientFolder + '/scripts/dashboard/components/my-dummy/';
 
         var expectedFiles = [
-            pathdir + 'myDummy.component.ts',
-            pathdir + 'myDummy.component.html',
-            pathdir + 'myDummy.component.scss',
-            pathdir + 'myDummy.component.spec.ts'
+            pathdir + 'my-dummy.component.ts',
+            pathdir + 'my-dummy.component.html',
+            pathdir + 'my-dummy.component.scss',
+            pathdir + 'my-dummy.component.spec.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'myDummy.component.ts', /export class MyDummyComponent/],
-            [pathdir + 'myDummy.component.ts', /selector: 'myDummy'/],
-            [pathdir + 'myDummy.component.spec.ts', /import {MyDummyComponent} from '\.\/myDummy.component.ts';/],
-            [pathdir + 'myDummy.component.spec.ts', /return tcb.createAsync\(MyDummyComponent\)/],
-            [pathdir + 'myDummy.component.html', /<div>myDummy<\/div>/]
+            [pathdir + 'my-dummy.component.ts', /export class MyDummyComponent/],
+            [pathdir + 'my-dummy.component.ts', /selector: 'my-dummy'/],
+            [pathdir + 'my-dummy.component.spec.ts', /import {MyDummyComponent} from '\.\/my-dummy.component.ts';/],
+            [pathdir + 'my-dummy.component.spec.ts', /return tcb.createAsync\(MyDummyComponent\)/],
+            [pathdir + 'my-dummy.component.html', /<div>myDummy<\/div>/]
 
         ];
         assert.fileContent(expectedContents);

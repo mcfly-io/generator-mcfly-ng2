@@ -7,6 +7,7 @@ var Generator = module.exports = ComponentGenerator.extend({
         this.basetype = 'interface'; // this will create a property this.interfacename
         this.basefolder = 'interfaces'; // this is the folder for the components
         this.hasOwnFolder = false; // to specify if the component files should be in a subfolder
+        this.isDasherize = true; // to specify that the file name should be dasherized
         ComponentGenerator.apply(this, arguments);
     },
 
@@ -29,7 +30,8 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_interface.ts'),
-            this.destinationPath(path.join(destinationPath, this.interfacename + '.interface.ts')), {
+            this.destinationPath(path.join(destinationPath, this.interfacenameFile + '.interface.ts')), {
+                interfacenameFile: this.interfacenameFile,
                 interfacename: this.interfacename,
                 interfacenameClass: this.mixins.classify(this.interfacename)
             }

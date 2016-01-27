@@ -3,9 +3,9 @@ import {Component} from 'angular2/core';
 /* beautify ignore:end */
 
 @Component({
-    selector: '<%=componentname%>',
-    styles: [require('./<%=componentname%>.component.scss').toString()],
-    template: require('./<%=componentname%>.component.html')
+    selector: '<%=componentnameFile%>',
+    styles: [require('./<%=componentnameFile%>.component.scss').toString()],
+    template: require('./<%=componentnameFile%>.component.html')
 })
 export class <%=componentnameClass%>Component {
 

@@ -41,15 +41,15 @@ describe(generatorShortname + ':service', function() {
         var pathdir = clientFolder + '/scripts/dashboard/services/';
 
         var expectedFiles = [
-            pathdir + 'myDummy.service.ts',
-            pathdir + 'myDummy.service.spec.ts'
+            pathdir + 'my-dummy.service.ts',
+            pathdir + 'my-dummy.service.spec.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'myDummy.service.ts', /export class MyDummyService/],
-            [pathdir + 'myDummy.service.spec.ts', /import {MyDummyService} from '\.\/myDummy.service.ts';/]
+            [pathdir + 'my-dummy.service.ts', /export class MyDummyService/],
+            [pathdir + 'my-dummy.service.spec.ts', /import {MyDummyService} from '\.\/my-dummy.service.ts';/]
         ];
         assert.fileContent(expectedContents);
 

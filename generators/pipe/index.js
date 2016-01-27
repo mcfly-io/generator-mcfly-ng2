@@ -7,6 +7,7 @@ var Generator = module.exports = ComponentGenerator.extend({
         this.basetype = 'pipe'; // this will create a property this.pipename
         this.basefolder = 'pipes'; // this is the folder for the components
         this.hasOwnFolder = false; // to specify if the component files should be in a subfolder
+        this.isDasherize = true; // to specify that the file name should be dasherized
         ComponentGenerator.apply(this, arguments);
     },
 
@@ -29,7 +30,8 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_pipe.ts'),
-            this.destinationPath(path.join(destinationPath, this.pipename + '.pipe.ts')), {
+            this.destinationPath(path.join(destinationPath, this.pipenameFile + '.pipe.ts')), {
+                pipenameFile: this.pipenameFile,
                 pipename: this.pipename,
                 pipenameClass: this.mixins.classify(this.pipename)
             }
@@ -37,7 +39,8 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_pipe.spec.ts'),
-            this.destinationPath(path.join(destinationPath, this.pipename + '.pipe.spec.ts')), {
+            this.destinationPath(path.join(destinationPath, this.pipenameFile + '.pipe.spec.ts')), {
+                pipenameFile: this.pipenameFile,
                 pipename: this.pipename,
                 pipenameClass: this.mixins.classify(this.pipename)
             }

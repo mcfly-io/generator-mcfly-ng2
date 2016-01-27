@@ -3,7 +3,7 @@ import {Directive, ElementRef, Renderer, Input} from 'angular2/core';
 /* beautify ignore:end */
 
 @Directive({
-    selector: '[<%=directivename%>]'
+    selector: '[<%=directivenameFile%>]'
 })
 export class <%=directivenameClass%> {
 

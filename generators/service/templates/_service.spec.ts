@@ -6,7 +6,7 @@ import {
     beforeEachProviders
     //TestComponentBuilder
 } from 'angular2/testing';
-import {<%=servicenameClass %>Service} from './<%=servicename%>.service.ts';
+import {<%=servicenameClass%>Service} from './<%=servicenameFile%>.service.ts';
 /* beautify ignore:end */
 
 describe('Service: <%=servicename%>' , () => {
