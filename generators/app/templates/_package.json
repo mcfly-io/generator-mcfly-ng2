@@ -8,8 +8,8 @@
     "url": ""
   },
   "scripts": {
-    "build": "webpack --progress --profile --colors --display-error-details --display-cached",
-    "watch": "webpack --watch --progress --profile --colors --display-error-details --display-cached",
+    "build": "webpack --progress --profile --display-error-details --display-cached",
+    "watch": "webpack --watch --progress --profile --display-error-details --display-cached",
     "clean": "rm -rf dist coverage",
     "tslint": "tslint -c tslint.json \"<%=clientFolder%>/**/*.ts\" ",
     "eslint": "eslint .",

@@ -41,10 +41,11 @@
     "chalk": "^1.1.1",
     "gulp-filter": "^3.0.1",
     "gulp-js-prettify": "^0.1.0",
+    "gulp-prettify": "^0.4.0",
     "lodash": "3.10.1",
     "mkdirp": "^0.5.1",
-    "npm": "^3.5.3",
     "strip-json-comments": "^2.0.0",
+    "underscore.string": "^3.2.3",
     "update-notifier": "^0.6.0",
     "yeoman-generator": "^0.22.4",
     "yosay": "^1.1.0"

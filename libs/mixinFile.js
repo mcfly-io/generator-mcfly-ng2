@@ -30,11 +30,19 @@ var readJsonFile = function(filename, dirname) {
     return JSON.parse(stripJsonComments(body));
 };
 
+/**
+ * Create a folder synchronously
+ * @param  {String} path The path
+ */
+var createDirSync = function(path) {
+    mkdirp.sync(path);
+};
+
 module.exports = {
     extend: function(generator) {
         var mixins = generator.mixins = generator.mixins || {};
         mixins.readTextFile = readTextFile.bind(generator);
         mixins.readJsonFile = readJsonFile.bind(generator);
-        mixins.mkdirp = mkdirp;
+        mixins.createDirSync = createDirSync;
     }
 };

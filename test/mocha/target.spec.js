@@ -1,28 +1,43 @@
 'use strict';
 var path = require('path');
 var assert = require('yeoman-assert');
+var fs = require('fs');
 //var helpers = require('yeoman-test');
 var testHelper = require('./testHelper');
 
-describe('generator:target', function() {
+//var generatorFullname = testHelper.mixins.getGeneratorFullname(); // generator-mcfly-ng2
+var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
+
+describe(generatorShortname + ':target', function() {
     var targetname = 'dashboard';
-
+    var clientFolder = 'client';
     before(function(done) {
-
-        testHelper.runGenerator('target')
+        var config = testHelper.getYoRc({
+            clientFolder: clientFolder
+        });
+        testHelper.runGenerator('target', config, [generatorShortname + ':component'])
+            .inTmpDir(function(dir) {
+                // setting up expected files
+                fs.writeFileSync('.yo-rc.json', JSON.stringify(config));
+                testHelper.mixins.createDirSync(path.join(dir, clientFolder));
+                fs.writeFileSync(path.join(clientFolder, 'index.html'), '');
+                fs.writeFileSync(path.join(clientFolder, 'index-toto.html'), '');
+                fs.writeFileSync(path.join(clientFolder, 'index-tata.html'), '');
+            })
             .withArguments([targetname])
             .on('end', done);
     });
 
     it('creates expected files', function() {
-        var expectedContents = [
-            [path.join(targetname, 'dummyfile.txt'), /this is a file from target/]
-        ];
+
         var expectedFiles = [
-            path.join(targetname, 'dummyfile.txt')
+            path.join(clientFolder, 'index-dashboard.html'),
+            path.join(clientFolder, 'scripts'),
+            path.join(clientFolder, 'scripts', 'dashboard'),
+            path.join(clientFolder, 'scripts', 'dashboard', 'vendor.ts'),
+            path.join(clientFolder, 'scripts', 'dashboard', 'bootstrap.ts')
         ];
         assert.file(expectedFiles);
-        assert.fileContent(expectedContents);
 
     });
 

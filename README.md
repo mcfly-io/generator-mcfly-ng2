@@ -1,6 +1,13 @@
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+[![Join the chat][gitter-image]][gitter-url]    
+
+[![NPM version][npm-image]][npm-url]    
+[![Build Status][travis-image]][travis-url] [![Coverage percentage][coveralls-image]][coveralls-url]    
+[![Dependency Status][daviddm-image]][daviddm-url] [![Dependency Dev Status][daviddm-dev-image]][daviddm-dev-url]    
+
+[![NPM][npm-nodei-image]][npm-nodei-url]
 
 # generator-mcfly-ng2
+A [Yeoman](http://yeoman.io) generator for scaffolding an app using angular2 and webpack
 
 ## Installation
 
@@ -48,10 +55,8 @@ this.fs.write(this.destinationPath('xxx'), content);
 
 ### Read scaffolded file in test
 ```js
-var mixinFile = require('../../libs/mixinFile');
-var utils = {};
-mixinFile.extend(utils);
-var body = utils.mixins.readTextFile('./package.json');
+var body = testHelper.mixins.readTextFile('./client/index-dashboard.html');
+console.log(body);
 ```
 
 or we can use the testHelper
@@ -78,9 +83,15 @@ assert.JSONFileContent('package.json', {
 
 [npm-image]: https://badge.fury.io/js/generator-mcfly-ng2.svg
 [npm-url]: https://npmjs.org/package/generator-mcfly-ng2
+[npm-nodei-image]: https://nodei.co/npm/generator-mcfly-ng2.png?downloads=false&downloadRank=false&stars=false
+[npm-nodei-url]: https://nodei.co/npm/generator-mcfly-ng2
 [travis-image]: https://travis-ci.org/mcfly-io/generator-mcfly-ng2.svg?branch=master
 [travis-url]: https://travis-ci.org/mcfly-io/generator-mcfly-ng2
 [daviddm-image]: https://david-dm.org/mcfly-io/generator-mcfly-ng2.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/mcfly-io/generator-mcfly-ng2
+[daviddm-dev-image]: https://david-dm.org/mcfly-io/generator-mcfly-ng2/dev-status.svg?theme=shields.io
+[daviddm-dev-url]: https://david-dm.org/mcfly-io/generator-mcfly-ng2#info=devDependencies
 [coveralls-image]: https://coveralls.io/repos/mcfly-io/generator-mcfly-ng2/badge.svg
 [coveralls-url]: https://coveralls.io/r/mcfly-io/generator-mcfly-ng2
+[gitter-image]: https://badges.gitter.im/Join%20Chat.svg
+[gitter-url]: https://gitter.im/mcfly-io/generator-mcfly-ng2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
