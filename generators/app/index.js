@@ -109,6 +109,8 @@ module.exports = generators.Base.extend({
     writing: function() {
 
         this.mixins.createDirSync(this.destinationPath(this.answers.clientFolder));
+        //this.mixins.createDirSync('test');
+        this.fs.write(this.destinationPath('test/.gitignore'), '');
 
         this.fs.copyTpl(
             this.templatePath('.eslintignore'),
@@ -145,7 +147,9 @@ module.exports = generators.Base.extend({
         );
         this.fs.copyTpl(
             this.templatePath('_spec-bundle.js'),
-            this.destinationPath('spec-bundle.js')
+            this.destinationPath('spec-bundle.js'), {
+                clientFolder: this.answers.clientFolder
+            }
         );
         this.fs.copyTpl(
             this.templatePath('_tsconfig.json'),
