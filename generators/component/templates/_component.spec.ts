@@ -14,7 +14,7 @@ describe('Component: <%=componentname%>', () => {
     beforeEachProviders(() => []);
 
     it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
-        return tcb.createAsync(%=componentnameClass %>Component)
+        return tcb.createAsync(<%=componentnameClass%>Component)
             .then((fixture) => {
                 fixture.detectChanges();
                 let compiled = fixture.debugElement.nativeElement;

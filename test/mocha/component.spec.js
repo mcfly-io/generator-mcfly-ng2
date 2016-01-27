@@ -53,6 +53,7 @@ describe(generatorShortname + ':component', function() {
             [pathdir + 'myDummy.component.ts', /export class MyDummyComponent/],
             [pathdir + 'myDummy.component.ts', /selector: 'myDummy'/],
             [pathdir + 'myDummy.component.spec.ts', /import {MyDummyComponent} from '\.\/myDummy.component.ts';/],
+            [pathdir + 'myDummy.component.spec.ts', /return tcb.createAsync\(MyDummyComponent\)/],
             [pathdir + 'myDummy.component.html', /<div>myDummy<\/div>/]
 
         ];
