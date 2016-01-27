@@ -6,10 +6,10 @@ import {
 	beforeEachProviders
 	//TestComponentBuilder
 } from 'angular2/testing';
-import {<%=directivenameClass %>} from './<%=directivename%>.directive.ts';
+import {<%=directivenameClass %>} from './<%=directivenameFile%>.directive.ts';
 /* beautify ignore:end */
 
-describe('Directive: <%=directivename%>', () => {
+describe('Directive: <%=directivenameClass%>', () => {
 
     beforeEachProviders(() => []);
 

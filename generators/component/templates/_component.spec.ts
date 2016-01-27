@@ -6,10 +6,10 @@ import {
 	beforeEachProviders,
 	TestComponentBuilder
 } from 'angular2/testing';
-import {<%=componentnameClass%>Component} from './<%=componentname%>.component.ts';
+import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.component.ts';
 /* beautify ignore:end */
 
-describe('Component: <%=componentname%>', () => {
+describe('Component: <%=componentnameClass%>Component', () => {
 
     beforeEachProviders(() => []);
 

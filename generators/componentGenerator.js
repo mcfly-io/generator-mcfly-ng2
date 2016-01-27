@@ -86,12 +86,13 @@ module.exports = generators.Base.extend({
     configuring: function() {
         this.modulename = this.mixins.camelize(this.modulename || this.answers.modulename);
         this[this.basetype + 'name'] = this.mixins.camelize(this[this.basetype + 'name'] || this.answers[this.basetype + 'name']);
+        this[this.basetype + 'nameFile'] = this.isDasherize ? this.mixins.dasherize(this[this.basetype + 'name']) : this[this.basetype + 'name'];
     },
 
     writing: function() {
         var destinationPath = path.join(this.configOptions.clientFolder, 'scripts', this.modulename, this.basefolder);
         if (this.hasOwnFolder) {
-            destinationPath = path.join(destinationPath, this[this.basetype + 'name']);
+            destinationPath = path.join(destinationPath, this[this.basetype + 'nameFile']);
         }
         this.mixins.createDirSync(destinationPath);
         return destinationPath;

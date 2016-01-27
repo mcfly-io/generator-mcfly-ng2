@@ -80,7 +80,7 @@ module.exports = generators.Base.extend({
 
     configuring: function() {
 
-        this.targetname = this.mixins.camelize(this.targetname || this.answers.targetname);
+        this.targetname = this.mixins.dasherize(this.targetname || this.answers.targetname);
         this.suffix = this.mixins.targetnameToSuffix(this.targetname);
 
         if (_.contains(this.configOptions.clientTargets, this.targetname)) {

@@ -41,15 +41,16 @@ describe(generatorShortname + ':pipe', function() {
         var pathdir = clientFolder + '/scripts/dashboard/pipes/';
 
         var expectedFiles = [
-            pathdir + 'myDummy.pipe.ts',
-            pathdir + 'myDummy.pipe.spec.ts'
+            pathdir + 'my-dummy.pipe.ts',
+            pathdir + 'my-dummy.pipe.spec.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'myDummy.pipe.ts', /export class MyDummyPipe/],
-            [pathdir + 'myDummy.pipe.spec.ts', /import {MyDummyPipe} from '\.\/myDummy.pipe.ts';/]
+            [pathdir + 'my-dummy.pipe.ts', /export class MyDummyPipe/],
+            [pathdir + 'my-dummy.pipe.ts', /name: 'myDummy'/],
+            [pathdir + 'my-dummy.pipe.spec.ts', /import {MyDummyPipe} from '\.\/my-dummy.pipe.ts';/]
         ];
         assert.fileContent(expectedContents);
 

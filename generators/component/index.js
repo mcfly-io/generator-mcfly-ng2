@@ -7,6 +7,7 @@ var Generator = module.exports = ComponentGenerator.extend({
         this.basetype = 'component'; // this will create a property this.componentname
         this.basefolder = 'components'; // this is the folder for the components
         this.hasOwnFolder = true; // to specify if the component files should be in a subfolder
+        this.isDasherize = true; // to specify that the file name should be dasherized
         ComponentGenerator.apply(this, arguments);
     },
 
@@ -27,10 +28,11 @@ var Generator = module.exports = ComponentGenerator.extend({
 
     writing: function() {
         var destinationPath = Generator.__super__.writing.apply(this, arguments);
-
+        //var componentnameFile = this.componentname; //this.mixins.dasherize(this.componentname); // could be componentname
         this.fs.copyTpl(
             this.templatePath('_component.ts'),
-            this.destinationPath(path.join(destinationPath, this.componentname + '.component.ts')), {
+            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ts')), {
+                componentnameFile: this.componentnameFile,
                 componentname: this.componentname,
                 componentnameClass: this.mixins.classify(this.componentname)
             }
@@ -38,7 +40,8 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_component.spec.ts'),
-            this.destinationPath(path.join(destinationPath, this.componentname + '.component.spec.ts')), {
+            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
+                componentnameFile: this.componentnameFile,
                 componentname: this.componentname,
                 componentnameClass: this.mixins.classify(this.componentname)
             }
@@ -46,13 +49,13 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_component.html'),
-            this.destinationPath(path.join(destinationPath, this.componentname + '.component.html')), {
+            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.html')), {
                 componentname: this.componentname
             }
         );
         this.fs.copyTpl(
             this.templatePath('_component.scss'),
-            this.destinationPath(path.join(destinationPath, this.componentname + '.component.scss'))
+            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.scss'))
         );
 
     }

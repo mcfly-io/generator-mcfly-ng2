@@ -9,7 +9,7 @@ var testHelper = require('./testHelper');
 var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
 
 describe(generatorShortname + ':target', function() {
-    var targetname = 'dashboard';
+    var targetname = 'dashboardWeb';
     var clientFolder = 'client';
     before(function(done) {
         var config = testHelper.getYoRc({
@@ -31,11 +31,11 @@ describe(generatorShortname + ':target', function() {
     it('creates expected files', function() {
 
         var expectedFiles = [
-            path.join(clientFolder, 'index-dashboard.html'),
+            path.join(clientFolder, 'index-dashboard-web.html'),
             path.join(clientFolder, 'scripts'),
-            path.join(clientFolder, 'scripts', 'dashboard'),
-            path.join(clientFolder, 'scripts', 'dashboard', 'vendor.ts'),
-            path.join(clientFolder, 'scripts', 'dashboard', 'bootstrap.ts')
+            path.join(clientFolder, 'scripts', 'dashboard-web'),
+            path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'),
+            path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts')
         ];
         assert.file(expectedFiles);
 
