@@ -21,7 +21,8 @@
     "url": "https://github.com/thaiat"
   },
   "files": [
-    "generators"
+    "generators",
+    "libs"
   ],
   "main": "generators/app/index.js",
   "preferGlobal": true,
