@@ -6,10 +6,10 @@ it
 //beforeEachProviders,
 //TestComponentBuilder
 } from 'angular2/testing';
-import {<%=componentnameClass%>Component} from './<%=componentname%>.component.ts';
+import {<%=directivenameClass %>} from './<%=directivename%>.directive.ts';
 /* beautify ignore:end */
 
-describe('Component: <%=componentname%>', () => {
+describe('Directive: <%=directivename%>', () => {
 
     it('should have a url', () => {
         expect(true).toEqual(true);

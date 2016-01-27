@@ -7,10 +7,10 @@ var fs = require('fs');
 //var generatorFullname = testHelper.mixins.getGeneratorFullname(); // generator-mcfly-ng2
 var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
 
-describe(generatorShortname + ':component', function() {
+describe(generatorShortname + ':service', function() {
     var targetname = 'dashboard';
     var clientFolder = 'client';
-    var componentname = 'my dummy';
+    var servicename = 'my dummy';
 
     var config = testHelper.getYoRc({
         clientFolder: clientFolder
@@ -18,8 +18,8 @@ describe(generatorShortname + ':component', function() {
 
     before(function(done) {
         var self = this;
-        testHelper.runGenerator('component')
-            .withArguments([targetname, componentname])
+        testHelper.runGenerator('service')
+            .withArguments([targetname, servicename])
             .inTmpDir(function(dir) {
                 // setting up expected files
                 fs.writeFileSync('.yo-rc.json', JSON.stringify(config));
@@ -38,23 +38,18 @@ describe(generatorShortname + ':component', function() {
     });
 
     it('creates expected files', function() {
-        var pathdir = clientFolder + '/scripts/dashboard/components/myDummy/';
+        var pathdir = clientFolder + '/scripts/dashboard/services/';
 
         var expectedFiles = [
-            pathdir + 'myDummy.component.ts',
-            pathdir + 'myDummy.component.html',
-            pathdir + 'myDummy.component.scss',
-            pathdir + 'myDummy.component.spec.ts'
+            pathdir + 'myDummy.service.ts',
+            pathdir + 'myDummy.service.spec.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'myDummy.component.ts', /export class MyDummyComponent/],
-            [pathdir + 'myDummy.component.ts', /selector: 'myDummy'/],
-            [pathdir + 'myDummy.component.spec.ts', /import {MyDummyComponent} from '\.\/myDummy.component.ts';/],
-            [pathdir + 'myDummy.component.html', /<div>myDummy<\/div>/]
-
+            [pathdir + 'myDummy.service.ts', /export class MyDummyService/],
+            [pathdir + 'myDummy.service.spec.ts', /import {MyDummyService} from '\.\/myDummy.service.ts';/]
         ];
         assert.fileContent(expectedContents);
 

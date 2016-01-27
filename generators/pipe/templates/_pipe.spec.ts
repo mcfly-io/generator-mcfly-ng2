@@ -6,10 +6,10 @@ it
 //beforeEachProviders,
 //TestComponentBuilder
 } from 'angular2/testing';
-import {<%=componentnameClass%>Component} from './<%=componentname%>.component.ts';
+import {<%=pipenameClass %>Pipe} from './<%=pipename%>.pipe.ts';
 /* beautify ignore:end */
 
-describe('Component: <%=componentname%>', () => {
+describe('Pipe: <%=pipename%>', () => {
 
     it('should have a url', () => {
         expect(true).toEqual(true);
