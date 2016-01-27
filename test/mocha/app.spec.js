@@ -54,6 +54,7 @@ describe(generatorShortname + ':app', function() {
                 ['spec-bundle.js', new RegExp('context\\(\'./myclientfolder\',')]
             ];
             assert.fileContent(expectedContents);
+
         });
 
         it('creates a .yo-rc.json file', function() {

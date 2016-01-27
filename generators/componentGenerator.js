@@ -24,7 +24,8 @@ module.exports = generators.Base.extend({
         // Registering file transforms
         this.mixins.beautifyJson();
         this.mixins.beautifyHtml();
-        //this.mixins.beautifyTs();
+        this.mixins.beautifyTs();
+        this.mixins.beautifyCss();
 
         //******* arguments ***********
         // To access arguments later use this.argumentName

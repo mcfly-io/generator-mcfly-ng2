@@ -1,11 +1,13 @@
 'use strict';
 
 var filter = require('gulp-filter');
-var prettifyJs = require('gulp-js-prettify');
-var prettifyHtml = require('gulp-prettify');
+var tap = require('gulp-tap');
+var beautify_js = require('js-beautify').js;
+var beautify_css = require('js-beautify').css;
+var beautify_html = require('js-beautify').html;
 var utils = {};
 require('./mixinFile').extend(utils);
-var beautifConfig = utils.mixins.readJsonFile('../.jsbeautifyrc', __dirname);
+var beautifyConfig = utils.mixins.readJsonFile('../.jsbeautifyrc', __dirname);
 
 /**
  * Beautify a json stream
@@ -16,12 +18,17 @@ var beautifyJson = function(globs) {
     var extensionFilter = filter(globs, {
         restore: true
     });
-    var config = beautifConfig.js;
+    var config = beautifyConfig.js;
     config.indent_size = 2;
     config.max_preserve_newlines = 1;
     this.registerTransformStream([
         extensionFilter,
-        prettifyJs(config),
+        tap(function(file, t) {
+            var contents = file.contents.toString();
+            contents = beautify_js(contents, config);
+            file.contents = new Buffer(contents);
+        }),
+        //prettifyJs(config),
         extensionFilter.restore
     ]);
 };
@@ -35,12 +42,17 @@ var beautifyJs = function(globs) {
     var extensionFilter = filter(globs, {
         restore: true
     });
-    var config = beautifConfig.js;
+    var config = beautifyConfig.js;
     config.indent_size = 4;
-
+    config.max_preserve_newlines = 2;
     this.registerTransformStream([
         extensionFilter,
-        prettifyJs(config),
+        //prettifyJs(config),
+        tap(function(file, t) {
+            var contents = file.contents.toString();
+            contents = beautify_js(contents, config);
+            file.contents = new Buffer(contents);
+        }),
         extensionFilter.restore
     ]);
 };
@@ -54,12 +66,16 @@ var beautifyTs = function(globs) {
     var extensionFilter = filter(globs, {
         restore: true
     });
-    var config = beautifConfig.js;
+    var config = beautifyConfig.js;
     config.indent_size = 4;
-
+    config.max_preserve_newlines = 2;
     this.registerTransformStream([
         extensionFilter,
-        prettifyJs(config),
+        tap(function(file, t) {
+            var contents = file.contents.toString();
+            contents = beautify_js(contents, config);
+            file.contents = new Buffer(contents);
+        }),
         extensionFilter.restore
     ]);
 };
@@ -73,11 +89,15 @@ var beautifyHtml = function(globs) {
     var extensionFilter = filter(globs, {
         restore: true
     });
-    var config = beautifConfig.html;
-
+    var config = beautifyConfig.html;
+    config.max_preserve_newlines = 1;
     this.registerTransformStream([
         extensionFilter,
-        prettifyHtml(config),
+        tap(function(file, t) {
+            var contents = file.contents.toString();
+            contents = beautify_html(contents, config);
+            file.contents = new Buffer(contents);
+        }),
         extensionFilter.restore
     ]);
 };
@@ -91,11 +111,15 @@ var beautifyCss = function(globs) {
     var extensionFilter = filter(globs, {
         restore: true
     });
-    var config = beautifConfig.css;
-
+    var config = beautifyConfig.css;
+    config.max_preserve_newlines = 1;
     this.registerTransformStream([
         extensionFilter,
-        prettifyJs(config),
+        tap(function(file, t) {
+            var contents = file.contents.toString();
+            contents = beautify_css(contents, config);
+            file.contents = new Buffer(contents);
+        }),
         extensionFilter.restore
     ]);
 };
