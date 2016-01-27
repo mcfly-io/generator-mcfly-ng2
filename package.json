@@ -22,7 +22,8 @@
   },
   "files": [
     "generators",
-    "libs"
+    "libs",
+    ".jsbeautifyrc"
   ],
   "main": "generators/app/index.js",
   "preferGlobal": true,
