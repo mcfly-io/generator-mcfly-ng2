@@ -1,6 +1,6 @@
 [![Join the chat][gitter-image]][gitter-url]    
 
-[![NPM version][npm-image]][npm-url]    
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][downloads-url]   
 [![Build Status][travis-image]][travis-url] [![Coverage percentage][coveralls-image]][coveralls-url]    
 [![Dependency Status][daviddm-image]][daviddm-url] [![Dependency Dev Status][daviddm-dev-image]][daviddm-dev-url]    
 
@@ -85,6 +85,8 @@ assert.JSONFileContent('package.json', {
 [npm-url]: https://npmjs.org/package/generator-mcfly-ng2
 [npm-nodei-image]: https://nodei.co/npm/generator-mcfly-ng2.png?downloads=false&downloadRank=false&stars=false
 [npm-nodei-url]: https://nodei.co/npm/generator-mcfly-ng2
+[downloads-image]: http://img.shields.io/npm/dm/generator-mcfly-ng2.svg
+[downloads-url]: http://badge.fury.io/js/generator-mcfly-ng2
 [travis-image]: https://travis-ci.org/mcfly-io/generator-mcfly-ng2.svg?branch=master
 [travis-url]: https://travis-ci.org/mcfly-io/generator-mcfly-ng2
 [daviddm-image]: https://david-dm.org/mcfly-io/generator-mcfly-ng2.svg?theme=shields.io
