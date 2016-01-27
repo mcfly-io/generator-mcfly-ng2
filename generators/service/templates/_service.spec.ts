@@ -9,7 +9,7 @@ import {
 import {<%=servicenameClass%>Service} from './<%=servicenameFile%>.service.ts';
 /* beautify ignore:end */
 
-describe('Service: <%=servicename%>' , () => {
+describe('Service: <%=servicenameClass%>Service' , () => {
 
     beforeEachProviders(() => [<%=servicenameClass %>Service]);
 
