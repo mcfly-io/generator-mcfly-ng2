@@ -1,18 +1,20 @@
 /* beautify ignore:start */
 import {
-it
-//inject,
-//injectAsync,
-//beforeEachProviders,
-//TestComponentBuilder
+    it,
+    inject,
+    //injectAsync,
+    beforeEachProviders
+    //TestComponentBuilder
 } from 'angular2/testing';
 import {<%=servicenameClass %>Service} from './<%=servicename%>.service.ts';
 /* beautify ignore:end */
 
 describe('Service: <%=servicename%>' , () => {
 
-    it('should have a url', () => {
-        expect(true).toEqual(true);
-    });
+    beforeEachProviders(() => [<%=servicenameClass %>Service]);
+
+    it('should be defined', inject([<%=servicenameClass %>Service], (service: <%=servicenameClass %>Service) => {
+        expect(service).toBeDefined();
+    }));
 
 });

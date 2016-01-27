@@ -35,7 +35,7 @@ describe(generatorShortname + ':app', function() {
                 'tsconfig.json',
                 'tslint.json',
                 'webpack.config.js',
-                'test/.gitignore',
+                'test/sanity.spec.ts',
                 clientFolder
             ];
             assert.file(expectedFiles);
