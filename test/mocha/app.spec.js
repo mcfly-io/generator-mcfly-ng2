@@ -35,6 +35,7 @@ describe(generatorShortname + ':app', function() {
                 'tsconfig.json',
                 'tslint.json',
                 'webpack.config.js',
+                'test/sanity.spec.ts',
                 clientFolder
             ];
             assert.file(expectedFiles);
@@ -49,9 +50,11 @@ describe(generatorShortname + ':app', function() {
             });
 
             var expectedContents = [
-                ['README.md', /# name-x/]
+                ['README.md', /# name-x/],
+                ['spec-bundle.js', new RegExp('context\\(\'./myclientfolder\',')]
             ];
             assert.fileContent(expectedContents);
+
         });
 
         it('creates a .yo-rc.json file', function() {

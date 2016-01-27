@@ -109,6 +109,8 @@ module.exports = generators.Base.extend({
     writing: function() {
 
         this.mixins.createDirSync(this.destinationPath(this.answers.clientFolder));
+        //this.mixins.createDirSync('test');
+        //this.fs.write(this.destinationPath('test/.gitignore'), '');
 
         this.fs.copyTpl(
             this.templatePath('.eslintignore'),
@@ -145,7 +147,9 @@ module.exports = generators.Base.extend({
         );
         this.fs.copyTpl(
             this.templatePath('_spec-bundle.js'),
-            this.destinationPath('spec-bundle.js')
+            this.destinationPath('spec-bundle.js'), {
+                clientFolder: this.answers.clientFolder
+            }
         );
         this.fs.copyTpl(
             this.templatePath('_tsconfig.json'),
@@ -164,6 +168,11 @@ module.exports = generators.Base.extend({
         this.fs.copyTpl(
             this.templatePath('webpack.config.js'),
             this.destinationPath('webpack.config.js')
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('sanity.spec.ts'),
+            this.destinationPath('test/sanity.spec.ts')
         );
 
     },

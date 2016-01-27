@@ -12,6 +12,7 @@ var Generator = module.exports = ComponentGenerator.extend({
 
     initializing: function() {
         Generator.__super__.initializing.apply(this, arguments);
+        this.mixins.beautifyTs();
     },
 
     prompting: function() {

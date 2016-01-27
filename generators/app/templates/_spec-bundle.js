@@ -8,7 +8,6 @@
  * file for our client, when we run test, it well compile and bundle them
  * all here! Crazy huh. So we need to do some setup
  */
-var clientFolder = require('./.yo-rc.json')['generator-mclfy-ng2'].clientFolder;
 
 Error.stackTraceLimit = Infinity;
 require('phantomjs-polyfill');
@@ -33,7 +32,7 @@ require('angular2/testing');
   we say do this recursively
 */
 var testContext = require.context('./test', true, /\.spec\.ts/);
-var appContext = require.context('./' + clientFolder, true, /^((?!vendor)(?!bootstrap).)*\.ts/);
+var appContext = require.context('./<%=clientFolder%>', true, /^((?!vendor)(?!bootstrap).)*\.ts/);
 
 // get all the files, for each file, call the context function
 // that will require the file and load it up here. Context will
@@ -44,9 +43,6 @@ testContext.keys().forEach(testContext);
 // see https://github.com/AngularClass/angular2-webpack-starter/issues/124
 var domAdapter = require('angular2/src/platform/browser/browser_adapter');
 domAdapter.BrowserDomAdapter.makeCurrent();
-
-
-
 
 // these are helpers that typescript uses
 // I manually added them by opting out of EmitHelpers by noEmitHelpers: false
