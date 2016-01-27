@@ -113,23 +113,23 @@ module.exports = generators.Base.extend({
         //this.fs.write(this.destinationPath('test/.gitignore'), '');
 
         this.fs.copyTpl(
-            this.templatePath('.eslintignore'),
+            this.templatePath('_eslintignore'),
             this.destinationPath('.eslintignore')
         );
         this.fs.copyTpl(
-            this.templatePath('.eslintrc.json'),
+            this.templatePath('_eslintrc.json'),
             this.destinationPath('.eslintrc.json')
         );
         this.fs.copyTpl(
-            this.templatePath('.gitignore'),
+            this.templatePath('_gitignore'),
             this.destinationPath('.gitignore')
         );
         this.fs.copyTpl(
-            this.templatePath('.jsbeautifyrc'),
+            this.templatePath('_jsbeautifyrc'),
             this.destinationPath('.jsbeautifyrc')
         );
         this.fs.copyTpl(
-            this.templatePath('.npmrc'),
+            this.templatePath('_npmrc'),
             this.destinationPath('.npmrc')
         );
         this.fs.copyTpl(
