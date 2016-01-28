@@ -33,7 +33,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.directivenameFile + '.directive.ts')), {
                 directivenameFile: this.directivenameFile,
                 directivename: this.directivename,
-                directivenameClass: this.mixins.classify(this.directivename)
+                directivenameClass: this.directivenameClass
             }
         );
 
@@ -42,7 +42,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.directivenameFile + '.directive.spec.ts')), {
                 directivenameFile: this.directivenameFile,
                 directivename: this.directivename,
-                directivenameClass: this.mixins.classify(this.directivename)
+                directivenameClass: this.directivenameClass
             }
         );
 

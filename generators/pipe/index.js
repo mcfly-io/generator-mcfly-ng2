@@ -33,7 +33,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.pipenameFile + '.pipe.ts')), {
                 pipenameFile: this.pipenameFile,
                 pipename: this.pipename,
-                pipenameClass: this.mixins.classify(this.pipename)
+                pipenameClass: this.pipenameClass
             }
         );
 
@@ -42,7 +42,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.pipenameFile + '.pipe.spec.ts')), {
                 pipenameFile: this.pipenameFile,
                 pipename: this.pipename,
-                pipenameClass: this.mixins.classify(this.pipename)
+                pipenameClass: this.pipenameClass
             }
         );
 

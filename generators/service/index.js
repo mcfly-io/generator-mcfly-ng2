@@ -33,7 +33,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.servicenameFile + '.service.ts')), {
                 servicenameFile: this.servicenameFile,
                 servicename: this.servicename,
-                servicenameClass: this.mixins.classify(this.servicename)
+                servicenameClass: this.servicenameClass
             }
         );
 
@@ -42,7 +42,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.servicenameFile + '.service.spec.ts')), {
                 servicenameFile: this.servicenameFile,
                 servicename: this.servicename,
-                servicenameClass: this.mixins.classify(this.servicename)
+                servicenameClass: this.servicenameClass
             }
         );
 

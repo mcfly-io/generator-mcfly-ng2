@@ -1,0 +1,3 @@
+<Panel ng:Selector="<%=componentnameClass%>">
+    <Rectangle Fill="Red" Height="30" Margin="10" />
+</Panel>

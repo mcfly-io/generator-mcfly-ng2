@@ -31,7 +31,7 @@ var Generator = module.exports = ComponentGenerator.extend({
         //var componentnameFile = this.componentname; //this.mixins.dasherize(this.componentname); // could be componentname
         this.fs.copyTpl(
             this.templatePath('_component.ts'),
-            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ts')), {
+            this.destinationPath(path.join(destinationPath, this.componentnameClass + '.component.ts')), {
                 componentnameFile: this.componentnameFile,
                 componentname: this.componentname,
                 componentnameClass: this.componentnameClass
@@ -40,7 +40,7 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_component.spec.ts'),
-            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
+            this.destinationPath(path.join(destinationPath, this.componentnameClass + '.component.spec.ts')), {
                 componentnameFile: this.componentnameFile,
                 componentname: this.componentname,
                 componentnameClass: this.componentnameClass
@@ -48,14 +48,12 @@ var Generator = module.exports = ComponentGenerator.extend({
         );
 
         this.fs.copyTpl(
-            this.templatePath('_component.html'),
-            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.html')), {
-                componentname: this.componentname
+            this.templatePath('_component.ngux'),
+            this.destinationPath(path.join(destinationPath, this.componentnameClass + '.component.ngux')), {
+                componentnameFile: this.componentnameFile,
+                componentname: this.componentname,
+                componentnameClass: this.componentnameClass
             }
-        );
-        this.fs.copyTpl(
-            this.templatePath('_component.scss'),
-            this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.scss'))
         );
 
     }
