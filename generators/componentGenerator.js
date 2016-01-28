@@ -87,6 +87,7 @@ module.exports = generators.Base.extend({
         this.modulename = this.mixins.camelize(this.modulename || this.answers.modulename);
         this[this.basetype + 'name'] = this.mixins.camelize(this[this.basetype + 'name'] || this.answers[this.basetype + 'name']);
         this[this.basetype + 'nameFile'] = this.isDasherize ? this.mixins.dasherize(this[this.basetype + 'name']) : this[this.basetype + 'name'];
+        this[this.basetype + 'nameClass'] = this.mixins.classify(this[this.basetype + 'name']);
     },
 
     writing: function() {

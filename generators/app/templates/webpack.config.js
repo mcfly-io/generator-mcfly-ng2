@@ -67,7 +67,7 @@ module.exports = {
             // Support for ngux files
             {
                 test: /\.ngux$/,
-                loader: 'html-loader!ngux-loader'
+                loader: 'html-loader!ngux-loader?subdir=ngux'
             },
             // Support for *.json files.
             {

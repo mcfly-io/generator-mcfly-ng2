@@ -33,7 +33,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.interfacenameFile + '.interface.ts')), {
                 interfacenameFile: this.interfacenameFile,
                 interfacename: this.interfacename,
-                interfacenameClass: this.mixins.classify(this.interfacename)
+                interfacenameClass: this.interfacenameClass
             }
         );
     }
