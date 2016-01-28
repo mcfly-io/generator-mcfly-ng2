@@ -171,6 +171,11 @@ module.exports = generators.Base.extend({
         );
 
         this.fs.copyTpl(
+            this.templatePath('tsd.json'),
+            this.destinationPath('tsd.json')
+        );
+
+        this.fs.copyTpl(
             this.templatePath('sanity.spec.ts'),
             this.destinationPath('test/sanity.spec.ts')
         );

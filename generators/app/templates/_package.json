@@ -21,13 +21,15 @@
     "test": "npm run karma",
     "fuse.preview": "fuse preview",
     "fuse.ios": "fuse build --target=iOS --run",
-    "fuse.android": "fuse build --target=Android --run"
+    "fuse.android": "fuse build --target=Android --run",
+    "postinstall": "tsd install"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.1",
-    "es6-shim": "^0.34.2",
-    "reflect-metadata": "0.1.3",
-    "rxjs": "5.0.0-beta.1",
+    "es6-shim": "^0.33.3",
+    "lodash": "^4.0.1",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
     "zone.js": "^0.5.10"
   },
   "devDependencies": {
@@ -58,6 +60,7 @@
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.8.0",
+    "tsd": "^0.6.5",
     "tslint": "^3.2.1",
     "tslint-eslint-rules": "^1.0.1",
     "tslint-loader": "^2.1.0",

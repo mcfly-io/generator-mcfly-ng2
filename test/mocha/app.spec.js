@@ -36,6 +36,7 @@ describe(generatorShortname + ':app', function() {
                 'tslint.json',
                 'webpack.config.js',
                 'test/sanity.spec.ts',
+                'tsd.json',
                 clientFolder
             ];
             assert.file(expectedFiles);
