@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var gulpMux = require('gulp-mux');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 var target = process.env.TARGET || 'app';
 var port = process.env.PORT || 5000;
@@ -53,7 +54,9 @@ module.exports = {
     resolve: {
         extensions: ['', '.ts', '.js', '.json', '.css', '.html', '.scss', '.sass']
     },
-
+    postcss: function() {
+        return [autoprefixer];
+    },
     module: {
         preLoaders: [{
             test: /\.ts$/,
@@ -77,26 +80,26 @@ module.exports = {
             // Support for CSS as raw text in client folder
             {
                 test: /\.css$/,
-                loader: 'css-loader',
+                loader: 'css-loader!postcss-loader',
                 include: [new RegExp(clientFolder)]
             },
             // Support for CSS as injected style in node_module folder
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader',
+                loader: 'style-loader!css-loader!postcss-loader',
                 include: [/node_modules/]
             },
             // Support for SCSS as raw text in client folder
             {
                 test: /\.scss$/,
-                loader: 'css-loader!sass-loader?sourceMap',
+                loader: 'css-loader!postcss-loader!sass-loader?sourceMap',
                 cacheable: true,
                 include: [new RegExp(clientFolder)]
             },
             // Support for SCSS as inject style in node_module folder
             {
                 test: /\.scss$/,
-                loader: 'style-loader!css-loader!sass-loader?sourceMap',
+                loader: 'style-loader!css-loader!postcss-loader!sass-loader?sourceMap',
                 cacheable: true,
                 include: [/node_modules/]
             },
@@ -104,7 +107,7 @@ module.exports = {
             {
                 test: /\.sass$/,
                 // Passing indentedSyntax query param to node-sass
-                loader: 'css-loader!sass-loader?indentedSyntax&sourceMap',
+                loader: 'css-loader!postcss-loader!sass-loader?indentedSyntax&sourceMap',
                 cacheable: true,
                 include: [new RegExp(clientFolder)]
             },
@@ -112,7 +115,7 @@ module.exports = {
             {
                 test: /\.sass$/,
                 // Passing indentedSyntax query param to node-sass
-                loader: 'style-loader!css-loader!sass-loader?indentedSyntax&sourceMap',
+                loader: 'style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax&sourceMap',
                 cacheable: true,
                 include: [/node_modules/]
             },
