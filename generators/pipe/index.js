@@ -6,7 +6,7 @@ var Generator = module.exports = ComponentGenerator.extend({
     constructor: function() {
         this.basetype = 'pipe'; // this will create a property this.pipename
         this.basefolder = 'pipes'; // this is the folder for the components
-        this.hasOwnFolder = false; // to specify if the component files should be in a subfolder
+        this.hasOwnFolder = true; // to specify if the component files should be in a subfolder
         this.isDasherize = true; // to specify that the file name should be dasherized
         ComponentGenerator.apply(this, arguments);
     },
