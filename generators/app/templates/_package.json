@@ -33,6 +33,7 @@
     "zone.js": "^0.5.10"
   },
   "devDependencies": {
+    "autoprefixer": "^6.3.1",
     "browser-sync": "^2.10.1",
     "css-loader": "^0.23.1",
     "es7-reflect-metadata": "^1.4.0",
@@ -56,6 +57,7 @@
     "node-sass": "^3.4.2",
     "phantomjs": "^2.1.2",
     "phantomjs-polyfill": "0.0.1",
+    "postcss-loader": "^0.8.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",

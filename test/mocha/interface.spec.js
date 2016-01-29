@@ -38,7 +38,7 @@ describe(generatorShortname + ':interface', function() {
     });
 
     it('creates expected files', function() {
-        var pathdir = clientFolder + '/scripts/dashboard/interfaces/';
+        var pathdir = clientFolder + '/scripts/dashboard/interfaces/my-dummy/';
 
         var expectedFiles = [
             pathdir + 'my-dummy.interface.ts'

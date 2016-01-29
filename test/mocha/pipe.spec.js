@@ -10,7 +10,7 @@ var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
 describe(generatorShortname + ':pipe', function() {
     var targetname = 'dashboard';
     var clientFolder = 'client';
-    var servicename = 'my dummy';
+    var componentname = 'my dummy';
 
     var config = testHelper.getYoRc({
         clientFolder: clientFolder
@@ -19,7 +19,7 @@ describe(generatorShortname + ':pipe', function() {
     before(function(done) {
         var self = this;
         testHelper.runGenerator('pipe')
-            .withArguments([targetname, servicename])
+            .withArguments([targetname, componentname])
             .inTmpDir(function(dir) {
                 // setting up expected files
                 fs.writeFileSync('.yo-rc.json', JSON.stringify(config));
@@ -38,7 +38,7 @@ describe(generatorShortname + ':pipe', function() {
     });
 
     it('creates expected files', function() {
-        var pathdir = clientFolder + '/scripts/dashboard/pipes/';
+        var pathdir = clientFolder + '/scripts/dashboard/pipes/my-dummy/';
 
         var expectedFiles = [
             pathdir + 'my-dummy.pipe.ts',
