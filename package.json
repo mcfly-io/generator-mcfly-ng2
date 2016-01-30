@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "bluebird": "^3.1.4",
+    "chai": "^3.5.0",
     "chalk": "1.1.1",
     "coveralls": "^2.11.6",
     "del": "^2.2.0",
