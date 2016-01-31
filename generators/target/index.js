@@ -1,12 +1,11 @@
 'use strict';
 var generators = require('yeoman-generator');
 var path = require('path');
-var _ = require('lodash');
-var chalk = require('chalk');
 var mixinInspector = require('../../libs/mixinInspector');
 var mixinFile = require('../../libs/mixinFile');
 var mixinBeautify = require('../../libs/mixinBeautify');
 var mixinLodash = require('../../libs/mixinLodash');
+var validators = require('../validators');
 
 module.exports = generators.Base.extend({
 
@@ -61,15 +60,7 @@ module.exports = generators.Base.extend({
             when: function() {
                 return !self.targetname || self.targetname.length <= 0;
             },
-            validate: function(value) {
-                if (_.isEmpty(value) || value[0] === '/' || value[0] === '\\') {
-                    return chalk.red('Please enter a non empty name');
-                }
-                if (_.contains(self.configOptions.clientTargets, value)) {
-                    return chalk.red('The target name ') + chalk.yellow(value) + chalk.red(' already exists');
-                }
-                return true;
-            },
+            validate: validators.validateTarget(self.configOptions.clientTargets),
             message: 'What is the name of your target application?'
         }];
         this.prompt(prompts, function(answers) {
@@ -83,8 +74,10 @@ module.exports = generators.Base.extend({
         this.targetname = this.mixins.dasherize(this.targetname || this.answers.targetname);
         this.suffix = this.mixins.targetnameToSuffix(this.targetname);
 
-        if (_.contains(this.configOptions.clientTargets, this.targetname)) {
-            this.log.error(chalk.red('The target name ') + chalk.yellow(this.targetname) + chalk.red(' already exists'));
+        var validator = validators.validateTarget(this.configOptions.clientTargets);
+        var validateResult = validator(this.targetname);
+        if (validateResult !== true) {
+            this.log.error(validateResult);
             this.env.error();
         }
 

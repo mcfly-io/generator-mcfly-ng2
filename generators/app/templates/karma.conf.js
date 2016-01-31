@@ -48,7 +48,8 @@ module.exports = function(config) {
                         loader: 'istanbul-instrumenter-loader',
                         exclude: [/\.e2e\.ts$/, /node_modules/, /\.spec\.ts$/]
                     }
-                ]
+                ],
+                noParse: webpackConfig.module.noParse
             },
             stats: {
                 colors: true,
@@ -57,18 +58,23 @@ module.exports = function(config) {
             noParse: webpackConfig.noParse
         },
         coverageReporter: {
-            dir: 'coverage/unit',
+            dir: 'coverage/unit/',
             reporters: [{
-                type: 'json'
+                type: 'json',
+                subdir: '.'
             }, {
-                type: 'text'
+                type: 'text',
+                subdir:'.'
             }, {
-                type: 'text-summary'
+                type: 'text-summary',
+                subdir:'.'
             }, {
                 type: 'cobertura',
-                file: 'coverage.xml'
+                file: 'coverage.xml',
+                subdir:'.'
             }, {
-                type: 'lcov'
+                type: 'lcov',
+                subdir: '.'
             }]
         },
         webpackServer: {
