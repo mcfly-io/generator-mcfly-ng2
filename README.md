@@ -42,19 +42,19 @@ You have access to the following npm scripts
 * **npm run karma** (run unit test)
 
 ## Distribution
-Note that the code is distributed to the `dist` folder
+Note that the code is distributed to the `dist` folder    
 You can pass a different TARGET or MODE using the following command:
 
 ```sh
 [TARGET=newtarget MODE=dev] npm run build
 ```
 
-Default TARGET is `app`, possible values will depends if you have scaffolded other targets   
+Default TARGET is `app`, possible values will depends if you have scaffolded other targets    
 Default MODE is `dev`, can be either `prod` or `dev`    
 
-The same apply to the `webpack-server` task or `browsersync task
-`npm run webpack-server`:  compile and open a the webpack reload browser
-You can pass a different TARGET or MODE using the following command:
+The same apply to the `webpack-server` task or `browsersync` task    
+`npm run webpack-server`:  compile and open a the webpack reload browser    
+You can pass a different TARGET or MODE using the following command:    
 ```sh
 [TARGET=newtarget MODE=dev] npm run webpack-server
 ```

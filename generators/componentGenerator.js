@@ -12,7 +12,7 @@ module.exports = generators.Base.extend({
             throw 'basetype is undefined';
         }
         if (!this.basefolder) {
-            throw 'basetype is undefined';
+            throw 'basefolder is undefined';
         }
 
         // applying mixins
