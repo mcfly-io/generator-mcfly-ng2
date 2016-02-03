@@ -62,14 +62,14 @@ module.exports = generators.Base.extend({
             type: 'list',
             name: 'modulename',
             choices: this.configOptions.clientModules,
-            message: 'What is the name of the module?',
+            message: 'In which feature would you like to store your ' + self.basetype + '?',
             when: function() {
                 return !self.modulename || self.modulename.length <= 0;
             }
         }, {
             type: 'input',
             name: self.basetype + 'name',
-            message: 'What is your ' + self.basetype + ' name?',
+            message: 'How would you like to name your ' + self.basetype + ' name?',
             when: function() {
                 return !self[self.basetype + 'name'] || self[self.basetype + 'name'].length <= 0;
             }

@@ -54,8 +54,7 @@ module.exports = generators.Base.extend({
 
         this.option('target', {
             desc: 'The name of the default target',
-            type: String,
-            defaults: 'app'
+            type: String
         });
         // ****** options *********
 
@@ -71,17 +70,17 @@ module.exports = generators.Base.extend({
 
         // Have Yeoman greet the user.
         this.log(yosay('Welcome to the awesome ' + chalk.yellow(this.mixins.getGeneratorShortname()) + ' generator!'));
-
+        this.log('Out of the box I create an Angular 2 application.\n');
         var done = this.async();
         var prompts = [{
             type: 'input',
             name: 'name',
-            message: 'What is your project name?',
-            default: this.appname
+            message: 'What is your the name of your project?',
+            default: this.mixins.dasherize(this.appname)
         }, {
             type: 'input',
             name: 'clientFolder',
-            message: 'What is your client folder?',
+            message: 'In which folder would you like your scripts?',
             default: 'client'
         }];
         this.prompt(prompts, function(answers) {
@@ -97,9 +96,8 @@ module.exports = generators.Base.extend({
         this.config.set('filenameSuffix', this.filenameSuffix);
         this.config.set('appname', this.appname);
         this.config.set('clientFolder', this.answers.clientFolder);
-
         this.composeWith(this.mixins.getGeneratorShortname() + ':target', {
-            args: [this.options.target],
+            args: this.options.target ? [this.options.target] : null,
             options: {
                 clientFolder: this.config.get('clientFolder') // passing the client folder for first run
             }

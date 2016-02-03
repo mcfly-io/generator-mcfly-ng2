@@ -65,7 +65,7 @@ module.exports = {
         loaders: [{
                 test: /\.ts$/,
                 loader: 'ts',
-                exclude: [/\.(e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+                exclude: [/\.(e2e|spec|test)\.ts$/, /node_modules\/(?!(ng2-.+))/]
             },
             // Support for ngux files
             {

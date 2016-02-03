@@ -6,14 +6,14 @@ import {
     beforeEachProviders
     //TestComponentBuilder
 } from 'angular2/testing';
-import {<%=servicenameClass%>Service} from './<%=servicenameFile%>.service.ts';
+import {<%=servicenameClass%>} from './<%=servicenameFile%>.service.ts';
 /* beautify ignore:end */
 
-describe('Service: <%=servicenameClass%>Service' , () => {
+describe('Service: <%=servicenameClass%>' , () => {
 
-    beforeEachProviders(() => [<%=servicenameClass %>Service]);
+    beforeEachProviders(() => [<%=servicenameClass%>]);
 
-    it('should be defined', inject([<%=servicenameClass %>Service], (service: <%=servicenameClass %>Service) => {
+    it('should be defined', inject([<%=servicenameClass%>], (service: <%=servicenameClass%>) => {
         expect(service).toBeDefined();
     }));
 

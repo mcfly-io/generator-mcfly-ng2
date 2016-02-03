@@ -56,7 +56,7 @@ module.exports = generators.Base.extend({
         var prompts = [{
             type: 'input',
             name: 'targetname',
-            default: self.targetname,
+            default: 'app',
             when: function() {
                 return !self.targetname || self.targetname.length <= 0;
             },
