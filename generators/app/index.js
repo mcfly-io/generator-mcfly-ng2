@@ -24,7 +24,7 @@ module.exports = generators.Base.extend({
         this.mixins.beautifyJson();
 
         this.appname = this.appname || path.basename(process.cwd());
-        this.appname = this.mixins.camelize(this.appname);
+        this.appname = this.mixins.dasherize(this.appname);
 
         //******* arguments ***********
         // To access arguments later use this.argumentName
@@ -36,7 +36,7 @@ module.exports = generators.Base.extend({
             defaults: this.appname
         });
 
-        this.appname = this.mixins.camelize(this.appname);
+        this.appname = this.mixins.dasherize(this.appname);
         // ***** arguments ********
 
         // ****** options *********
@@ -86,6 +86,7 @@ module.exports = generators.Base.extend({
         }];
         this.prompt(prompts, function(answers) {
             this.answers = answers;
+            this.appname = this.answers.appname ? this.mixins.dasherize(this.answers.appname) : this.mixins.dasherize(this.appname);
             // To access answers later use this.answers.someAnswer;
             this.answers.clientFolder = this.mixins.dasherize(this.answers.clientFolder);
             done();
@@ -135,14 +136,14 @@ module.exports = generators.Base.extend({
         this.fs.copyTpl(
             this.templatePath('_package.json'),
             this.destinationPath('package.json'), {
-                appname: this.mixins.dasherize(this.appname),
+                appname: this.appname,
                 clientFolder: this.answers.clientFolder
             }
         );
         this.fs.copyTpl(
             this.templatePath('_README.md'),
             this.destinationPath('README.md'), {
-                appname: this.mixins.dasherize(this.appname)
+                appname: this.appname
             }
         );
         this.fs.copyTpl(

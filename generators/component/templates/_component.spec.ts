@@ -1,7 +1,7 @@
 /* beautify ignore:start */
 import {
 	it,
-	//inject,
+	inject,
 	injectAsync,
 	beforeEachProviders,
 	TestComponentBuilder
@@ -10,16 +10,24 @@ import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.compone
 /* beautify ignore:end */
 
 describe('Component: <%=componentnameClass%>Component', () => {
-
+    let builder;
     beforeEachProviders(() => []);
 
-    it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
-        return tcb.createAsync(<%=componentnameClass%>Component)
+    beforeEach(inject([TestComponentBuilder], (tcb) => {
+        builder = tcb;
+    }));
+
+    it('should be defined', (done) => {
+        return builder
+            .createAsync(<%=componentnameClass%>Component)
             .then((fixture) => {
                 fixture.detectChanges();
-                let compiled = fixture.debugElement.nativeElement;
-                expect(compiled).toBeDefined();
+                let cmpInstance = fixture.debugElement.componentInstance;
+                let element = fixture.debugElement.nativeElement;
+                expect(cmpInstance).toBeDefined();
+                expect(element).toBeDefined();
+                done();
             });
-    }));
+    });
 
 });
