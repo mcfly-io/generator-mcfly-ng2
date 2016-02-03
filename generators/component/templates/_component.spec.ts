@@ -10,7 +10,7 @@ import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.compone
 /* beautify ignore:end */
 
 describe('Component: <%=componentnameClass%>Component', () => {
-    let builder;
+
     beforeEachProviders(() => []);
 
     it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
