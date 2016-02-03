@@ -61,7 +61,7 @@ describe(generatorShortname + ':app', function() {
         it('creates a .yo-rc.json file', function() {
             var content = {};
             content[generatorFullname] = {
-                appname: appname,
+                appname: 'name-x',
                 clientFolder: clientFolder
             };
             assert.JSONFileContent('.yo-rc.json', content);
@@ -86,7 +86,7 @@ describe(generatorShortname + ':app', function() {
         it('should be transformed to snake case', function() {
             var content = {};
             content[generatorFullname] = {
-                appname: appname,
+                appname: 'name-x',
                 clientFolder: 'dummy-folder'
             };
             assert.JSONFileContent('.yo-rc.json', content);

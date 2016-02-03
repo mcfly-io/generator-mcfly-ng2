@@ -10,15 +10,17 @@ import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.compone
 /* beautify ignore:end */
 
 describe('Component: <%=componentnameClass%>Component', () => {
-
+    let builder;
     beforeEachProviders(() => []);
 
     it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
         return tcb.createAsync(<%=componentnameClass%>Component)
             .then((fixture) => {
                 fixture.detectChanges();
-                let compiled = fixture.debugElement.nativeElement;
-                expect(compiled).toBeDefined();
+                let element = fixture.debugElement.nativeElement;
+                let cmpInstance = fixture.debugElement.componentInstance;
+                expect(cmpInstance).toBeDefined();
+                expect(element).toBeDefined();
             });
     }));
 
