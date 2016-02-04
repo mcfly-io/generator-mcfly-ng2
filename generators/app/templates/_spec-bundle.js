@@ -1,3 +1,4 @@
+'use strict';
 /// @AngularClass
 /*
  * When testing with webpack and ES6, we have to do some extra
