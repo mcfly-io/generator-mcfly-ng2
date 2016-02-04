@@ -7,6 +7,9 @@
     "type": "git",
     "url": ""
   },
+  "engines": {
+    "node": ">= 4.2.1 <= 5"
+  },
   "scripts": {
     "build": "webpack --progress --profile --display-error-details --display-cached",
     "watch": "webpack --watch --progress --profile --display-error-details --display-cached",

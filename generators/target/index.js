@@ -91,7 +91,7 @@ module.exports = generators.Base.extend({
         this.mixins.createDirSync(this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts')));
         this.mixins.createDirSync(this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname)));
 
-        this.fs.copyTpl(
+        this.fs.copy(
             this.templatePath('index.html'),
             this.destinationPath(path.join(this.configOptions.clientFolder, 'index' + this.suffix + '.html'))
         );

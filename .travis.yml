@@ -1,9 +1,8 @@
 language: node_js
 sudo: false
 node_js:
-  - '5.4.1'
+  - v5
   - v4
-  - '0.12'
 
 cache:
   directories:
@@ -19,7 +18,7 @@ deploy:
   on:
     tags: true
     all_branches: true
-    node: '0.12'
+    node: 'v4'
     repo: mcfly-io/generator-mcfly-ng2
   api_key:
     secure: l8KIctJUFziwsr4cl1y37gFBWXsV7+1syvRvC/f9Y+UXxqGTPOGixOmuNulMfnA6tEADzZGKnvhoaWgRk1WwqVDJY1vcnQGtRQ5QyoL/uouIFeGVVbUSv0oSl6AACrIOhQc/QrRoYBWZQt+tfTNwDln1CSf4F+UrXKYlI/RHoNm7Frhe+szWuDaxbwsIrkRJqMFC8hhZ5OQb4n5Cgus2mPhpm62mq8hVcKrhz6YNid7aHFraRZznD1D5YHA61TgmKVSQCGyyBsoUUfox32Fk3EdmbiAQ04ma8R2z5V02bqhTYZsJ7ygzdeI8rXKs2StSaPYiFj8uBrl1ee7LOB6vXAN+pih/0psmLkXXPHXb1l52B20CGMMM6Ydk9l+NSjVuu5ZJQBPdZ0J55lH9Fnm4rTWK6tRe5ORbNyd40m1H7Sio9rvNHadyZ8kRLHUwwHNgeXLw4vUu+sZ7UnTBMzCgO9R6evFlntsgJ2xE1++9u4GffOGU/0Yp4HW9b0GNNLAS77WIdqfyK0nm3INJ6EeZlx9tJ9nFUfZ5tiAXCLufNhlKOvpEW9ZENmNJSaMLGIEweiUem4jeZ4KIUNofjAiZe9M++fUfTTRlC4aXD7CUxIvd3YZnTb+UCp1j1BFsfynRvCDaWTTbPQuSgCNksWPeRKj/WW3RdUMF8lxKpoEkDUo=
