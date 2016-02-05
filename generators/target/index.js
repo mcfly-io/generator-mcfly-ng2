@@ -104,5 +104,18 @@ module.exports = generators.Base.extend({
             this.templatePath('bootstrap.ts'),
             this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'bootstrap.ts'))
         );
+        this.fs.copyTpl(
+            this.templatePath('app.e2e.ts'),
+            this.destinationPath(path.join('test', 'e2e', this.targetname, this.targetname + '.e2e.ts')), {
+                targetname : this.targetname
+            }
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('index.e2e.ts'),
+            this.destinationPath(path.join('test', 'e2e', this.targetname, 'index.e2e.ts')), {
+                targetname : this.targetname
+            }
+        );
     }
 });

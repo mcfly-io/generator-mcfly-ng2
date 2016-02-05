@@ -179,6 +179,16 @@ module.exports = generators.Base.extend({
             this.destinationPath('test/sanity.spec.ts')
         );
 
+        this.fs.copyTpl(
+            this.templatePath('protractor.conf.js'),
+            this.destinationPath('protractor.conf.js')
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('protractor/browserExtension.js'),
+            this.destinationPath('protractor/browserExtension.js')
+        );
+
     },
 
     conflicts: function() {

@@ -37,6 +37,8 @@ describe(generatorShortname + ':app', function() {
                 'webpack.config.js',
                 'test/sanity.spec.ts',
                 'tsd.json',
+                'protractor.conf.js',
+                'protractor/browserExtension.js',
                 clientFolder
             ];
             assert.file(expectedFiles);
@@ -46,6 +48,8 @@ describe(generatorShortname + ':app', function() {
             assert.JSONFileContent('tsconfig.json', {
                 filesGlob: [
                     clientFolder + '/**/*.ts',
+                    'test/**/*.ts',
+                    'typings/tsd.d.ts',
                     '!./node_modules/**/*.ts'
                 ]
             });

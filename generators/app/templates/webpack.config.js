@@ -150,7 +150,6 @@ module.exports = {
                 loader: 'file-loader?name=fonts/[hash].[ext]&prefix=font/'
             }
         ],
-        //noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/]
         noParse: [
             /zone\.js\/dist\/zone-microtask\.js/,
             /zone\.js\/dist\/long-stack-trace-zone\.js/,
