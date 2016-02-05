@@ -7,9 +7,12 @@ You have access to the following npm scripts
 * **npm run clean** (clean the `dist` folder)
 * **npm run build** (build the code to the `dist` folder)
 * **npm run browsersync** (open a live browser on port 5000, recompiling the code on each change)
-* **npm run webpack-server** (same as browsersync but uses webpack-dev-server)
+* **npm run webpack:server** (same as browsersync but uses webpack-dev-server)
 * **npm run lint** (run eslint and tslint)
 * **npm run karma** (run unit test)
+* **npm run karma:watch** (run unit test in watch mode)
+* **npm run e2e** (run e2e test - make sure that browsersync or webpack:server is running in another console window) 
+* **npm run e2e:live** (run e2e test and stop to allow debug - make sure that browsersync or webpack:server is running in another console window) 
 
 ## Distribution
 Note that the code is distributed to the `dist` folder
