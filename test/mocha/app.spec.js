@@ -27,6 +27,7 @@ describe(generatorShortname + ':app', function() {
                 '.gitignore',
                 '.jsbeautifyrc',
                 '.npmrc',
+                '.travis.yml',
                 '.yo-rc.json',
                 'karma.conf.js',
                 'package.json',

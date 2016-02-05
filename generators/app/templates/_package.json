@@ -45,6 +45,7 @@
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "browser-sync": "^2.10.1",
+    "coveralls": "^2.11.6",
     "css-loader": "^0.23.1",
     "eslint": "^1.10.3",
     "eslint-plugin-nodeca": "^1.0.3",

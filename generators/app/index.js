@@ -131,6 +131,12 @@ module.exports = generators.Base.extend({
             this.templatePath('_npmrc'),
             this.destinationPath('.npmrc')
         );
+
+        this.fs.copyTpl(
+            this.templatePath('_travis.yml'),
+            this.destinationPath('.travis.yml')
+        );
+
         this.fs.copyTpl(
             this.templatePath('_package.json'),
             this.destinationPath('package.json'), {
