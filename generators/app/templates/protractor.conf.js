@@ -59,7 +59,7 @@ var config = {
             displayStacktrace: true
         }));
         jasmine.getEnv().addReporter(new HtmlReporter({
-            dest: './screenshots/' + target,
+            dest: './reports/' + target,
             filename: 'index.html'
         }));
     },
