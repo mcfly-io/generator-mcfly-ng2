@@ -39,9 +39,16 @@ describe(generatorShortname + ':target', function() {
                 path.join(clientFolder, 'scripts'),
                 path.join(clientFolder, 'scripts', 'dashboard-web'),
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'),
-                path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts')
+                path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'),
+                path.join('test', 'e2e', 'dashboard-web', 'dashboard-web.e2e.ts'),
+                path.join('test', 'e2e', 'dashboard-web', 'index.e2e.ts')
             ];
             assert.file(expectedFiles);
+
+            var expectedContents = [
+                ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e\.ts/]
+            ];
+            assert.fileContent(expectedContents);
 
         });
 

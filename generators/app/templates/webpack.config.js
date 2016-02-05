@@ -122,7 +122,8 @@ module.exports = {
             // support for .html as raw text
             {
                 test: /\.html$/,
-                loader: 'html-loader'
+                loader: 'html-loader',
+                exclude: [new RegExp(clientFolder + '/index*.html')]
             }, {
                 test: /\.png$/,
                 loader: 'url-loader?name=images/[hash].[ext]&prefix=img/&limit=5000'
@@ -149,7 +150,6 @@ module.exports = {
                 loader: 'file-loader?name=fonts/[hash].[ext]&prefix=font/'
             }
         ],
-        //noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/]
         noParse: [
             /zone\.js\/dist\/zone-microtask\.js/,
             /zone\.js\/dist\/long-stack-trace-zone\.js/,
@@ -196,7 +196,7 @@ module.exports = {
         }),
         new HtmlwebpackPlugin({
             title: 'App - ' + target,
-            template: clientFolder + '/index' + suffix + '.html',
+            template: '../../index' + suffix + '.html',
             inject: 'body'
         })
     ].concat(pluginsProd)

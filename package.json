@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git://github.com/mcfly-io/generator-mcfly-ng2"
   },
+  "engines": {
+    "node": ">= 4.2.1 <= 5"
+  },
   "scripts": {
     "eslint": "eslint .",
     "lint": "npm run eslint",

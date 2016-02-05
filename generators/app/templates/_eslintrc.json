@@ -15,7 +15,8 @@
     "sinon": true,
     "xdescribe": true,
     "xit": true,
-    "by": true
+    "by": true,
+    "element": true
   },
   "plugins": [
     "nodeca"

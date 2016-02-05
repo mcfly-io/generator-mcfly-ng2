@@ -17,6 +17,8 @@
   ],
   "filesGlob": [
     "<%=clientFolder%>/**/*.ts",
+    "test/**/*.ts",
+    "typings/tsd.d.ts",
     "!./node_modules/**/*.ts"
   ]
 }

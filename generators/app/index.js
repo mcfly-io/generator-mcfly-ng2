@@ -131,6 +131,12 @@ module.exports = generators.Base.extend({
             this.templatePath('_npmrc'),
             this.destinationPath('.npmrc')
         );
+
+        this.fs.copyTpl(
+            this.templatePath('_travis.yml'),
+            this.destinationPath('.travis.yml')
+        );
+
         this.fs.copyTpl(
             this.templatePath('_package.json'),
             this.destinationPath('package.json'), {
@@ -177,6 +183,16 @@ module.exports = generators.Base.extend({
         this.fs.copyTpl(
             this.templatePath('sanity.spec.ts'),
             this.destinationPath('test/sanity.spec.ts')
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('protractor.conf.js'),
+            this.destinationPath('protractor.conf.js')
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('protractor/browserExtension.js'),
+            this.destinationPath('protractor/browserExtension.js')
         );
 
     },
