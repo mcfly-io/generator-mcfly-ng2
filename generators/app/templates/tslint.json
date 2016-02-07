@@ -60,7 +60,8 @@
     "variable-name": [
       true,
       "check-format",
-      "ban-keywords"
+      "ban-keywords",
+      "allow-leading-underscore"
     ],
     "whitespace": [
       true,
