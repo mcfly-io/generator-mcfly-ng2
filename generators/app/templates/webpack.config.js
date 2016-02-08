@@ -1,5 +1,6 @@
 'use strict';
 var path = require('path');
+var fs = require('fs');
 var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var HtmlwebpackPlugin = require('html-webpack-plugin');
@@ -11,6 +12,12 @@ var host = process.env.HOST || 'localhost';
 var mode = process.env.MODE || 'dev';
 var clientFolder = require('./.yo-rc.json')['generator-mcfly-ng2'].clientFolder;
 var distFolder = path.join('dist', target, mode);
+
+// make sure the target exists
+if (!fs.existsSync(path.join(clientFolder, 'scripts', target))) {
+    var error = 'The target ' + target + ' does not exist';
+    throw error;
+}
 
 var targetToSuffix = function(targetname) {
     return targetname === DEFAULT_TARGET ? '' : '-' + targetname;
