@@ -51,7 +51,6 @@
     "eslint": "^1.10.3",
     "eslint-plugin-nodeca": "^1.0.3",
     "file-loader": "^0.8.5",
-    "gulp-mux": "^0.2.24",
     "html-loader": "^0.4.0",
     "html-webpack-plugin": "^2.8.1",
     "istanbul-instrumenter-loader": "^0.1.3",

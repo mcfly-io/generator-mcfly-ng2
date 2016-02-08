@@ -1,19 +1,21 @@
 'use strict';
 var path = require('path');
 var webpack = require('webpack');
-var gulpMux = require('gulp-mux');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
-
-var target = process.env.TARGET || 'app';
+var DEFAULT_TARGET = 'app';
+var target = process.env.TARGET || DEFAULT_TARGET;
 var port = process.env.PORT || 5000;
 var host = process.env.HOST || 'localhost';
 var mode = process.env.MODE || 'dev';
 var clientFolder = require('./.yo-rc.json')['generator-mcfly-ng2'].clientFolder;
 var distFolder = path.join('dist', target, mode);
-var suffix = gulpMux.targets.targetToSuffix(target);
 
+var targetToSuffix = function(targetname) {
+    return targetname === DEFAULT_TARGET ? '' : '-' + targetname;
+};
+var suffix = targetToSuffix(target);
 var pluginsProd = mode === 'prod' ? [
     //new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({

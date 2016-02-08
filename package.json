@@ -74,7 +74,6 @@
     "gulp-git": "^1.7.0",
     "gulp-help": "1.6.1",
     "gulp-if": "2.0.0",
-    "gulp-mux": "0.2.24",
     "gulp-order": "1.1.1",
     "gulp-util": "3.0.7",
     "istanbul": "^0.4.2",
