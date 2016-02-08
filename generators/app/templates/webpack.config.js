@@ -4,6 +4,8 @@ var fs = require('fs');
 var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var PostCompilePlugin = require('./plugins/PostCompilePlugin');
 var autoprefixer = require('autoprefixer');
 var DEFAULT_TARGET = 'app';
 var target = process.env.TARGET || DEFAULT_TARGET;
@@ -13,16 +15,28 @@ var mode = process.env.MODE || 'dev';
 var clientFolder = require('./.yo-rc.json')['generator-mcfly-ng2'].clientFolder;
 var distFolder = path.join('dist', target, mode);
 
+var fileExistsSync = function(file) {
+    try {
+        fs.accessSync(file);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
+var isTargetFuse = function(target) {
+    return fileExistsSync(path.join(clientFolder, 'scripts', target, 'index.ux'));
+};
 // make sure the target exists
-if (!fs.existsSync(path.join(clientFolder, 'scripts', target))) {
+if (!fileExistsSync(path.join(clientFolder, 'scripts', target))) {
     var error = 'The target ' + target + ' does not exist';
     throw error;
 }
 
-var targetToSuffix = function(targetname) {
-    return targetname === DEFAULT_TARGET ? '' : '-' + targetname;
-};
-var suffix = targetToSuffix(target);
+//var targetToSuffix = function(targetname) {
+//    return targetname === DEFAULT_TARGET ? '' : '-' + targetname;
+//};
+//var suffix = targetToSuffix(target);
 var pluginsProd = mode === 'prod' ? [
     //new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -143,7 +157,7 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: 'html-loader',
-                exclude: [new RegExp(clientFolder + '/index*.html')]
+                exclude: [new RegExp(clientFolder + '/scripts/' + target + '/index.html')]
             }, {
                 test: /\.png$/,
                 loader: 'url-loader?name=images/[hash].[ext]&prefix=img/&limit=5000'
@@ -216,8 +230,16 @@ module.exports = {
         }),
         new HtmlwebpackPlugin({
             title: 'App - ' + target,
-            template: '../../index' + suffix + '.html',
+            template: 'index.html',
             inject: 'body'
+        }),
+        new CopyWebpackPlugin([{
+            from: 'index.!(html)'
+        }].concat(isTargetFuse(target) ? [{
+            from: './*/**/*.ux'
+        }] : [])),
+        new PostCompilePlugin({
+            filename: path.join(distFolder, 'bundle.js')
         })
     ].concat(pluginsProd)
 };

@@ -2,8 +2,6 @@
 var assert = require('yeoman-assert');
 //var helpers = require('yeoman-test');
 var testHelper = require('./testHelper');
-var path = require('path');
-var fs = require('fs');
 //var generatorFullname = testHelper.mixins.getGeneratorFullname(); // generator-mcfly-ng2
 var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
 
@@ -22,14 +20,7 @@ describe(generatorShortname + ':directive', function() {
             .withArguments([targetname, componentname])
             .inTmpDir(function(dir) {
                 // setting up expected files
-                fs.writeFileSync('.yo-rc.json', JSON.stringify(config));
-                testHelper.mixins.createDirSync(path.join(dir, clientFolder));
-                testHelper.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', targetname));
-                testHelper.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', 'common'));
-                testHelper.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', 'dummy'));
-                fs.writeFileSync(path.join(clientFolder, 'index.html'), '');
-                fs.writeFileSync(path.join(clientFolder, 'index-toto.html'), '');
-                fs.writeFileSync(path.join(clientFolder, 'index-tata.html'), '');
+                testHelper.createFolderStructure(config, dir, clientFolder, targetname);
             })
             .on('ready', function(generator) {
                 self.generator = generator;
@@ -59,7 +50,7 @@ describe(generatorShortname + ':directive', function() {
         var configOptions = this.generator.configOptions;
         var clientModules = configOptions.clientModules;
         var clientTargets = configOptions.clientTargets;
-        assert.objectContent(clientModules, ['common', 'dashboard', 'dummy']);
-        assert.objectContent(clientTargets, ['tata', 'toto', 'app']);
+        assert.objectContent(clientModules, ['app', 'common', 'dashboard', 'dummy', 'tata', 'toto']);
+        assert.objectContent(clientTargets, ['app', 'tata', 'toto']);
     });
 });

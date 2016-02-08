@@ -4,7 +4,7 @@ import {XHR} from 'angular2/src/compiler/xhr';
 /* beautify ignore:end */
 
 export class FileSystemXHR extends XHR {
-    get(url: string): Promise < string > {
+    get(url: string): Promise<string> {
         // let appDir = knownFolders.currentApp().path;
         // let templatePath = path.join(appDir, url);
 
@@ -13,7 +13,6 @@ export class FileSystemXHR extends XHR {
         // }
         // let templateFile = File.fromPath(templatePath);
         // return templateFile.readText();
-        console.log('XHR.get', arguments);
         return super.get.call(arguments);
     }
 }

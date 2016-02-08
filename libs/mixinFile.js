@@ -38,11 +38,26 @@ var createDirSync = function(path) {
     mkdirp.sync(path);
 };
 
+/**
+ * Check if a file or path exists
+ * @param  {String} file - The file path
+ * @returns {Boolean}     - true if exists, false otherwise
+ */
+var fileExistsSync = function(file) {
+    try {
+        fs.accessSync(file);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
 module.exports = {
     extend: function(generator) {
         var mixins = generator.mixins = generator.mixins || {};
         mixins.readTextFile = readTextFile.bind(generator);
         mixins.readJsonFile = readJsonFile.bind(generator);
         mixins.createDirSync = createDirSync;
+        mixins.fileExistsSync = fileExistsSync;
     }
 };

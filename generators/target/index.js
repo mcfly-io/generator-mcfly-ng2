@@ -114,7 +114,7 @@ module.exports = generators.Base.extend({
 
                 this.fs.copy(
                     this.templatePath('index.html'),
-                    this.destinationPath(path.join(this.configOptions.clientFolder, 'index' + this.suffix + '.html'))
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.html'))
                 );
                 break;
 
@@ -129,17 +129,23 @@ module.exports = generators.Base.extend({
                 );
                 this.fs.copy(
                     this.templatePath('index.html'),
-                    this.destinationPath(path.join(this.configOptions.clientFolder, 'index' + this.suffix + '.html'))
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.html'))
                 );
 
                 this.fs.copy(
                     this.templatePath('index.fuse.ux'),
-                    this.destinationPath(path.join(this.configOptions.clientFolder, 'index' + this.suffix + '.ux'))
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.ux')), {
+                        targetname: this.targetname
+                    }
                 );
 
                 this.fs.copy(
                     this.templatePath('index.fuse.unoproj'),
-                    this.destinationPath(path.join(this.configOptions.clientFolder, 'index' + this.suffix + '.unoproj'))
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.unoproj'))
+                );
+                this.fs.copy(
+                    this.templatePath('index.fuse.uxl'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.uxl'))
                 );
                 break;
         }

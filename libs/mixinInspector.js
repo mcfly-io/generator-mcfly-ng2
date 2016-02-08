@@ -2,6 +2,9 @@
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
+var utils = {};
+require('./mixinFile').extend(utils);
+
 /**
  * Returns this generator full name so we can change it in package.json without altering the code
  * @returns {String} The generator full name
@@ -29,23 +32,21 @@ var getClientTargets = function(clientFolder) {
     if (!clientFolder) {
         return [];
     }
-    var pathdir = this.destinationPath(clientFolder);
+    var pathdir = this.destinationPath(path.join(clientFolder, 'scripts'));
     if (!fs.existsSync(pathdir)) {
         return [];
     }
-    var re = /^(index-.*\.html|index\.html)$/;
+    //var re = /^(index-.*\.html|index\.html)$/;
 
-    var files = fs.readdirSync(pathdir);
-    var result = _(files)
-        .filter(function(name) {
-            return re.test(name);
+    var result = fs.readdirSync(pathdir)
+        .filter(function(file) {
+            return fs.statSync(path.join(pathdir, file)).isDirectory() === true && utils.mixins.fileExistsSync(path.join(pathdir, file, 'index.html'));
         })
         .map(function(name) {
             var appname = path.basename(name, '.html');
             appname = appname === 'index' ? 'app' : _(appname.split('-')).last();
             return appname;
-        })
-        .value();
+        });
     return result;
 };
 
