@@ -69,12 +69,23 @@ module.exports = {
     module: {
         preLoaders: [{
             test: /\.ts$/,
-            loader: 'tslint-loader'
+            loader: 'tslint-loader',
+            exclude: [/node_modules/]
         }],
-        loaders: [{
+        loaders: [
+            // A special ts loader case for node_modules so we can ignore errors
+            {
                 test: /\.ts$/,
                 loader: 'ts',
-                exclude: [/\.(e2e|test)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+                include: [/node_modules/],
+                query: {
+                    instance: 'node_modules',
+                    ignoreDiagnostics: [2339]
+                }
+            }, {
+                test: /\.ts$/,
+                loader: 'ts',
+                include: [new RegExp(clientFolder), /test/]
             },
             // Support for ngux files
             {
