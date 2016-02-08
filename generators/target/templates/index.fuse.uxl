@@ -1,0 +1,11 @@
+<Extensions Backend="CPlusPlus" Condition="iOS">
+    <Require Key="Xcode.Plist.Element">
+        <![CDATA[
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true />
+        </dict>
+        ]]>
+    </Require>
+</Extensions>

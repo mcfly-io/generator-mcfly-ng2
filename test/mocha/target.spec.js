@@ -11,7 +11,7 @@ var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
 
 describe(generatorShortname + ':target', function() {
 
-    describe('with valid target', function() {
+    describe('with valid web target', function() {
 
         var targetname = 'dashboardWeb';
         var clientFolder = 'client';
@@ -47,6 +47,56 @@ describe(generatorShortname + ':target', function() {
 
             var expectedContents = [
                 ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e\.ts/]
+            ];
+            assert.fileContent(expectedContents);
+
+        });
+
+    });
+
+    describe('with valid fuse target', function() {
+
+        var targetname = 'dashboardWeb';
+        var clientFolder = 'client';
+        before(function(done) {
+            var config = testHelper.getYoRc({
+                clientFolder: clientFolder
+            });
+            testHelper.runGenerator('target', config, [generatorShortname + ':component'])
+                .inTmpDir(function(dir) {
+                    // setting up expected files
+                    fs.writeFileSync('.yo-rc.json', JSON.stringify(config));
+                    testHelper.mixins.createDirSync(path.join(dir, clientFolder));
+                    fs.writeFileSync(path.join(clientFolder, 'index.html'), '');
+                    fs.writeFileSync(path.join(clientFolder, 'index-toto.html'), '');
+                    fs.writeFileSync(path.join(clientFolder, 'index-tata.html'), '');
+                })
+                .withArguments([targetname])
+                .withPrompts({
+                    targettype: 'fuse'
+                })
+                .on('end', done);
+        });
+
+        it('creates expected files', function() {
+
+            var expectedFiles = [
+                path.join(clientFolder, 'index-dashboard-web.html'),
+                path.join(clientFolder, 'index-dashboard-web.ux'),
+                path.join(clientFolder, 'index-dashboard-web.unoproj'),
+                path.join(clientFolder, 'scripts'),
+                path.join(clientFolder, 'scripts', 'dashboard-web'),
+                path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'),
+                path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'),
+                path.join('test', 'e2e', 'dashboard-web', 'dashboard-web.e2e.ts'),
+                path.join('test', 'e2e', 'dashboard-web', 'index.e2e.ts')
+            ];
+            assert.file(expectedFiles);
+
+            var expectedContents = [
+                ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e\.ts/],
+                [path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'), /fuse_polyfills/],
+                [path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'), /fuse\/bootstrap/]
             ];
             assert.fileContent(expectedContents);
 

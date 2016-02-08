@@ -52,10 +52,10 @@ module.exports = generators.Base.extend({
             defaults: false
         });
 
-        this.option('target', {
-            desc: 'The name of the default target',
-            type: String
-        });
+        // this.option('target', {
+        //     desc: 'The name of the default target',
+        //     type: String
+        // });
         // ****** options *********
 
     },
@@ -88,6 +88,7 @@ module.exports = generators.Base.extend({
             this.appname = this.answers.appname ? this.mixins.dasherize(this.answers.appname) : this.mixins.dasherize(this.appname);
             // To access answers later use this.answers.someAnswer;
             this.answers.clientFolder = this.mixins.dasherize(this.answers.clientFolder);
+            this.answers.targetname = this.mixins.dasherize(this.answers.targetname);
             done();
         }.bind(this));
     },
@@ -98,7 +99,7 @@ module.exports = generators.Base.extend({
         this.config.set('appname', this.appname);
         this.config.set('clientFolder', this.answers.clientFolder);
         this.composeWith(this.mixins.getGeneratorShortname() + ':target', {
-            args: this.options.target ? [this.options.target] : null,
+            //args: this.options.target ? [this.options.target] : null,
             options: {
                 clientFolder: this.config.get('clientFolder') // passing the client folder for first run
             }
@@ -194,6 +195,14 @@ module.exports = generators.Base.extend({
             this.templatePath('protractor/browserExtension.js'),
             this.destinationPath('protractor/browserExtension.js')
         );
+
+        ['AngularBootstrap.js', 'AngularRenderer.js', 'bootstrap.ts', 'dom_adapter.ts', 'element.ts', 'fuse_location_strategy.ts', 'fuse_polyfills.ts', 'renderer.ts', 'vendor.ts', 'xhr.ts', 'zone.ts', 'zone_patch.ts']
+        .forEach(function(file) {
+            this.fs.copyTpl(
+                this.templatePath('fuse/' + file),
+                this.destinationPath('fuse/' + file)
+            );
+        }.bind(this));
 
     },
 
