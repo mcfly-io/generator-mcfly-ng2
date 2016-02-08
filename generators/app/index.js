@@ -196,6 +196,11 @@ module.exports = generators.Base.extend({
             this.destinationPath('protractor/browserExtension.js')
         );
 
+        this.fs.copy(
+            this.templatePath('plugins/PostCompilePlugin.js'),
+            this.destinationPath('plugins/PostCompilePlugin.js')
+        );
+
         ['AngularBootstrap.js', 'AngularRenderer.js', 'bootstrap.ts', 'dom_adapter.ts', 'element.ts', 'fuse_location_strategy.ts', 'fuse_polyfills.ts', 'renderer.ts', 'vendor.ts', 'xhr.ts', 'zone.ts', 'zone_patch.ts']
         .forEach(function(file) {
             this.fs.copyTpl(

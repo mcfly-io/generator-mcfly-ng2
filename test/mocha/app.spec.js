@@ -52,7 +52,8 @@ describe(generatorShortname + ':app', function() {
                 'fuse/vendor.ts',
                 'fuse/xhr.ts',
                 'fuse/zone.ts',
-                'fuse/zone_patch.ts'
+                'fuse/zone_patch.ts',
+                'plugins/PostCompilePlugin.js'
             ];
             assert.file(expectedFiles);
             assert.JSONFileContent('package.json', {
