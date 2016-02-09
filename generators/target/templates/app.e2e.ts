@@ -6,7 +6,7 @@ describe('App', () => {
 
   it('should have a title', () => {
     let subject = browser.getTitle();
-    let result = 'App - <%=targetname%>';
+    let result = 'Application'; //'App - <%=targetname%>';  // TODO: switch back when https://github.com/TypeStrong/ts-loader/issues/152 is solved
     expect(subject).toEqual(result);
   });
 
