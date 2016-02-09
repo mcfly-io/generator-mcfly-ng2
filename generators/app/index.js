@@ -201,6 +201,11 @@ module.exports = generators.Base.extend({
             this.destinationPath('plugins/PostCompilePlugin.js')
         );
 
+        this.fs.copy(
+            this.templatePath('fuse/fuse.d.ts'),
+            this.destinationPath('typings/fuse/fuse.d.ts')
+        );
+
         ['AngularBootstrap.js', 'AngularRenderer.js', 'bootstrap.ts', 'dom_adapter.ts', 'element.ts', 'fuse_location_strategy.ts', 'fuse_polyfills.ts', 'renderer.ts', 'vendor.ts', 'xhr.ts', 'zone.ts', 'zone_patch.ts']
         .forEach(function(file) {
             this.fs.copyTpl(

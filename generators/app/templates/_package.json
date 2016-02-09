@@ -28,9 +28,9 @@
     "pree2e": "npm run webdriver:update -- --standalone",
     "e2e": "ts-node node_modules/.bin/protractor",
     "e2e:live": "protractor --elementExplorer",
-    "fuse.preview": "cd dist/${TARGET-app}/${MODE-dev} && fuse preview",
-    "fuse.ios": "cd dist/${TARGET-app}/${MODE-dev} && fuse build --target=iOS --run",
-    "fuse.android": "cd dist/${TARGET-app}/${MODE-dev} && fuse build --target=Android --run",
+    "fuse:preview": "cd dist/${TARGET-app}/${MODE-dev} && fuse preview",
+    "fuse:ios": "cd dist/${TARGET-app}/${MODE-dev} && fuse build --target=iOS --run",
+    "fuse:android": "cd dist/${TARGET-app}/${MODE-dev} && fuse build --target=Android --run",
     "postinstall": "tsd install"
   },
   "dependencies": {

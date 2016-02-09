@@ -99,7 +99,10 @@ module.exports = {
             }, {
                 test: /\.ts$/,
                 loader: 'ts',
-                include: [new RegExp(clientFolder), /test/]
+                include: [new RegExp(clientFolder), /test/],
+                query: {
+                    instance: 'client'
+                }
             },
             // Support for ngux files
             {
