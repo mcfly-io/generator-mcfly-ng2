@@ -159,7 +159,7 @@ module.exports = {
             // support for .html as raw text
             {
                 test: /\.html$/,
-                loader: 'html-loader',
+                loader: 'html-loader?interpolate',
                 exclude: [new RegExp(clientFolder + '/scripts/' + target + '/index.html')]
             }, {
                 test: /\.png$/,
