@@ -233,6 +233,7 @@ module.exports = {
         }),
         new HtmlwebpackPlugin({
             title: 'App - ' + target,
+            baseUrl: '/',
             template: 'index.html',
             inject: 'body'
         }),

@@ -224,9 +224,5 @@ module.exports = generators.Base.extend({
         this.npmInstall(null, {
             skipInstall: this.options['skip-install']
         });
-    },
-
-    end: function() {
-        this.log(chalk.green('Woot!!! It appears that everything installed correctly.'));
     }
 });
