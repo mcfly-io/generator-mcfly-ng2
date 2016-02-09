@@ -24,13 +24,24 @@ var Generator = module.exports = ComponentGenerator.extend({
 
     prompting: function() {
         var done = this.async();
-        Generator.__super__.prompting.call(this, done);
+        var self = this;
+        var extraPrompts = [{
+            type: 'list',
+            name: 'targettype',
+            default: 'web',
+            when: function() {
+                return !self.options.targettype || self.options.targettype.length <= 0;
+            },
+            message: 'What type of component do you want to create?',
+            choices: ['web', 'fuse']
+        }];
+        Generator.__super__.prompting.call(this, done, extraPrompts);
 
     },
 
     configuring: function() {
         Generator.__super__.configuring.apply(this, arguments);
-        this.targettype = this.options.targettype;
+        this.targettype = this.answers.targettype || this.options.targettype;
     },
 
     writing: function() {

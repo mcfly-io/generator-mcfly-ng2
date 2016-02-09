@@ -31,7 +31,7 @@ var Generator = module.exports = ComponentGenerator.extend({
         //var componentnameFile = this.componentname; //this.mixins.dasherize(this.componentname); // could be componentname
         this.fs.copyTpl(
             this.templatePath('_component.ts'),
-            this.destinationPath(path.join(destinationPath, this.componentnameClass + '.component.ts')), {
+            this.destinationPath(path.join(destinationPath, this.componentname + '.ts')), {
                 componentnameFile: this.componentnameFile,
                 componentname: this.componentname,
                 componentnameClass: this.componentnameClass
@@ -40,7 +40,7 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_component.spec.ts'),
-            this.destinationPath(path.join(destinationPath, this.componentnameClass + '.component.spec.ts')), {
+            this.destinationPath(path.join(destinationPath, this.componentname + '.spec.ts')), {
                 componentnameFile: this.componentnameFile,
                 componentname: this.componentname,
                 componentnameClass: this.componentnameClass
@@ -49,7 +49,7 @@ var Generator = module.exports = ComponentGenerator.extend({
 
         this.fs.copyTpl(
             this.templatePath('_component.ngux'),
-            this.destinationPath(path.join(destinationPath, this.componentnameClass + '.component.ngux')), {
+            this.destinationPath(path.join(destinationPath, this.componentname + '.ngux')), {
                 componentnameFile: this.componentnameFile,
                 componentname: this.componentname,
                 componentnameClass: this.componentnameClass

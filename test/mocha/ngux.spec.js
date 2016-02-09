@@ -32,20 +32,20 @@ describe(generatorShortname + ':ngux', function() {
         var pathdir = clientFolder + '/scripts/dashboard/components/my-dummy/';
 
         var expectedFiles = [
-            pathdir + 'MyDummy.component.ts',
-            pathdir + 'MyDummy.component.ngux',
-            pathdir + 'MyDummy.component.spec.ts'
+            pathdir + 'MyDummy.ts',
+            pathdir + 'MyDummy.ngux',
+            pathdir + 'MyDummy.spec.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'MyDummy.component.ts', /export class MyDummyComponent/],
-            [pathdir + 'MyDummy.component.ts', /selector: 'MyDummy'/],
-            [pathdir + 'MyDummy.component.ts', /require\('\.\/ngux\/MyDummy\.component\.js'\);/],
-            [pathdir + 'MyDummy.component.spec.ts', /import {MyDummyComponent} from '\.\/MyDummy.component.ts';/],
-            [pathdir + 'MyDummy.component.spec.ts', /return tcb.createAsync\(MyDummyComponent\)/],
-            [pathdir + 'MyDummy.component.ngux', /ng:Selector="MyDummy"/]
+            [pathdir + 'MyDummy.ts', /export class MyDummy/],
+            [pathdir + 'MyDummy.ts', /selector: 'MyDummy'/],
+            [pathdir + 'MyDummy.ts', /require\(\'\.\/ngux\/myDummy\.js\'\);/],
+            [pathdir + 'MyDummy.spec.ts', /import {MyDummy} from '\.\/myDummy.ts';/],
+            [pathdir + 'MyDummy.spec.ts', /return tcb.createAsync\(MyDummy\)/],
+            [pathdir + 'MyDummy.ngux', /ng:Selector="MyDummy"/]
 
         ];
         assert.fileContent(expectedContents);
