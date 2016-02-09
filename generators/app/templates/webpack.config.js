@@ -1,19 +1,42 @@
 'use strict';
 var path = require('path');
+var fs = require('fs');
 var webpack = require('webpack');
-var gulpMux = require('gulp-mux');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var PostCompilePlugin = require('./plugins/PostCompilePlugin');
 var autoprefixer = require('autoprefixer');
-
-var target = process.env.TARGET || 'app';
+var DEFAULT_TARGET = 'app';
+var target = process.env.TARGET || DEFAULT_TARGET;
 var port = process.env.PORT || 5000;
 var host = process.env.HOST || 'localhost';
 var mode = process.env.MODE || 'dev';
 var clientFolder = require('./.yo-rc.json')['generator-mcfly-ng2'].clientFolder;
 var distFolder = path.join('dist', target, mode);
-var suffix = gulpMux.targets.targetToSuffix(target);
 
+var fileExistsSync = function(file) {
+    try {
+        fs.accessSync(file);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
+var isTargetFuse = function(target) {
+    return fileExistsSync(path.join(clientFolder, 'scripts', target, 'index.ux'));
+};
+// make sure the target exists
+if (!fileExistsSync(path.join(clientFolder, 'scripts', target))) {
+    var error = 'The target ' + target + ' does not exist';
+    throw error;
+}
+
+//var targetToSuffix = function(targetname) {
+//    return targetname === DEFAULT_TARGET ? '' : '-' + targetname;
+//};
+//var suffix = targetToSuffix(target);
 var pluginsProd = mode === 'prod' ? [
     //new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -60,12 +83,26 @@ module.exports = {
     module: {
         preLoaders: [{
             test: /\.ts$/,
-            loader: 'tslint-loader'
+            loader: 'tslint-loader',
+            exclude: [/node_modules/]
         }],
-        loaders: [{
+        loaders: [
+            // A special ts loader case for node_modules so we can ignore errors
+            {
                 test: /\.ts$/,
                 loader: 'ts',
-                exclude: [/\.(e2e|test)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+                include: [/node_modules/],
+                query: {
+                    instance: 'node_modules',
+                    ignoreDiagnostics: [2339]
+                }
+            }, {
+                test: /\.ts$/,
+                loader: 'ts',
+                include: [new RegExp(clientFolder), /test/],
+                query: {
+                    instance: 'client'
+                }
             },
             // Support for ngux files
             {
@@ -122,8 +159,8 @@ module.exports = {
             // support for .html as raw text
             {
                 test: /\.html$/,
-                loader: 'html-loader',
-                exclude: [new RegExp(clientFolder + '/index*.html')]
+                loader: 'html-loader?interpolate',
+                exclude: [new RegExp(clientFolder + '/scripts/' + target + '/index.html')]
             }, {
                 test: /\.png$/,
                 loader: 'url-loader?name=images/[hash].[ext]&prefix=img/&limit=5000'
@@ -196,8 +233,16 @@ module.exports = {
         }),
         new HtmlwebpackPlugin({
             title: 'App - ' + target,
-            template: '../../index' + suffix + '.html',
+            template: 'index.html',
             inject: 'body'
+        }),
+        new CopyWebpackPlugin([{
+            from: 'index.!(html)'
+        }].concat(isTargetFuse(target) ? [{
+            from: './*/**/*.ux'
+        }] : [])),
+        new PostCompilePlugin({
+            filename: path.join(distFolder, 'bundle.js')
         })
     ].concat(pluginsProd)
 };

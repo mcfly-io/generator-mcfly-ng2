@@ -10,7 +10,7 @@ describe(generatorShortname + ':app', function() {
     var appname = 'Name x';
     var clientFolder = 'myclientfolder';
 
-    describe('with option mobile false', function() {
+    describe('scaffolding', function() {
         before(function(done) {
             testHelper.runGenerator('app', null, [generatorShortname + ':target'])
                 .withArguments([appname])
@@ -40,7 +40,21 @@ describe(generatorShortname + ':app', function() {
                 'tsd.json',
                 'protractor.conf.js',
                 'protractor/browserExtension.js',
-                clientFolder
+                clientFolder,
+                'fuse/AngularBootstrap.js',
+                'fuse/AngularRenderer.js',
+                'fuse/bootstrap.ts',
+                'fuse/dom_adapter.ts',
+                'fuse/element.ts',
+                'fuse/fuse_location_strategy.ts',
+                'fuse/fuse_polyfills.ts',
+                'fuse/renderer.ts',
+                'fuse/vendor.ts',
+                'fuse/xhr.ts',
+                'fuse/zone.ts',
+                'fuse/zone_patch.ts',
+                'plugins/PostCompilePlugin.js',
+                'typings/fuse/fuse.d.ts'
             ];
             assert.file(expectedFiles);
             assert.JSONFileContent('package.json', {
@@ -72,10 +86,6 @@ describe(generatorShortname + ':app', function() {
             assert.JSONFileContent('.yo-rc.json', content);
 
         });
-    });
-
-    describe('with option mobile true', function() {
-
     });
 
     describe('clientFolder', function() {

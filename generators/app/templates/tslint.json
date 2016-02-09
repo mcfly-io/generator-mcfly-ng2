@@ -24,7 +24,7 @@
     "no-debugger": true,
     "no-duplicate-key": true,
     "no-duplicate-variable": true,
-    "no-empty": true,
+    "no-empty": false,
     "no-eval": true,
     "no-inferrable-types": true,
     "no-internal-module": true,
@@ -60,7 +60,8 @@
     "variable-name": [
       true,
       "check-format",
-      "ban-keywords"
+      "ban-keywords",
+      "allow-leading-underscore"
     ],
     "whitespace": [
       true,

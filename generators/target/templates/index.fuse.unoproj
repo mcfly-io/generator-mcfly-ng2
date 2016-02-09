@@ -1,0 +1,70 @@
+{
+  "RootNamespace":"",
+  "Version": "0.0.1",
+  "VersionCount": 1,
+  "Title": "Yoobic",
+  "Copyright": "Copyright (C) 2016",
+  "Publisher": "Yoobic",
+  "Mobile": {
+    "KeepAlive": false,
+    "ShowStatusbar": true,
+    "RunsInBackground": true,
+    "Orientations": "Portrait"
+  },
+  "Android": {
+    "ApplicationLabel": "<%=appname%>",
+    "Icons": {
+      "LDPI": "./resources/android/drawable-ldpi/icon.png",
+      "MDPI": "./resources/android/drawable-mdpi/icon.png",
+      "HDPI": "./resources/android/drawable-hdpi/icon.png",
+      "XHDPI": "./resources/android/drawable-xhdpi/icon.png",
+      "XXHDPI": "./resources/android/drawable-xxhdpi/icon.png",
+      "XXXHDPI": "./resources/android/drawable-xxxhdpi/icon.png"
+    }
+  },
+  "iOS": {
+    "Icons": {
+      "iPhone_29_2x": "./resources/ios/icons/icon-small@2x.png",
+      "iPhone_29_3x": "./resources/ios/icons/icon-small@3x.png",
+      "iPhone_40_2x": "./resources/ios/icons/icon-40@2x.png",
+      "iPhone_40_3x": "./resources/ios/icons/icon-40@3x.png",
+      "iPhone_60_2x": "./resources/ios/icons/icon-60@2x.png",
+      "iPhone_60_3x": "./resources/ios/icons/icon-60@3x.png",
+      "iPad_29_1x": "./resources/ios/icons/icon-small.png",
+      "iPad_29_2x": "./resources/ios/icons/icon-small@2x.png",
+      "iPad_40_1x": "./resources/ios/icons/icon-40@2x.png",
+      "iPad_40_2x": "./resources/ios/icons/icon-40@2x.png",
+      "iPad_76_1x": "./resources/ios/icons/icon-76@2x.png",
+      "iPad_76_2x": "./resources/ios/icons/icon-76@2x.png"
+    }
+  },
+  "Packages": [
+        "Fuse.Animations",
+        "Fuse.BasicTheme",
+        "Fuse.Themes",
+        "Fuse.Controls",
+        "Fuse.Designer",
+        "Fuse.Drawing",
+        "Fuse.Drawing.Primitives",
+        "Fuse.Effects",
+        "Fuse.Elements",
+        "Fuse.Entities",
+        "Fuse.Gestures",
+        "Fuse.Navigation",
+        "Fuse.Shapes",
+        "Fuse.Triggers",
+        "Fuse.Reactive",
+        "Fuse.Android",
+        "Fuse.Desktop",
+        "Fuse.iOS",
+        "Fuse.Scripting",
+        "FuseCore",
+        "Uno.Collections",
+        "Uno.Geometry",
+        "Experimental.iOS",
+        "Fuse.UserEvents"
+  ],
+  "Includes": [
+    "*"
+  ]
+}

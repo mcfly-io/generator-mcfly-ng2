@@ -45,8 +45,30 @@ var runGenerator = function(name, config, subs) {
     return runGen;
 };
 
+/**
+ * Create a proper folder structure for testing the generator on a pre existing project
+ * @param {Object} config - The config yo rc object
+ * @param {String} dir - The directory of the scaffolded project
+ * @param {String} clientFolder - The client folder
+ * @param {Strijng} targetname - The name of the target
+ */
+var createFolderStructure = function(config, dir, clientFolder, targetname) {
+    fs.writeFileSync('.yo-rc.json', JSON.stringify(config));
+    utils.mixins.createDirSync(path.join(dir, clientFolder));
+    utils.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', 'app'));
+    utils.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', targetname));
+    utils.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', 'common'));
+    utils.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', 'dummy'));
+    utils.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', 'toto'));
+    utils.mixins.createDirSync(path.join(dir, clientFolder, 'scripts', 'tata'));
+    fs.writeFileSync(path.join(clientFolder, 'scripts', 'app', 'index.html'), '');
+    fs.writeFileSync(path.join(clientFolder, 'scripts', 'toto', 'index.html'), '');
+    fs.writeFileSync(path.join(clientFolder, 'scripts', 'tata', 'index.html'), '');
+};
+
 module.exports = {
     mixins: utils.mixins,
     runGenerator: runGenerator,
-    getYoRc: getYoRc
+    getYoRc: getYoRc,
+    createFolderStructure: createFolderStructure
 };

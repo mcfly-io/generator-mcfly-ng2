@@ -54,10 +54,10 @@ module.exports = generators.Base.extend({
         this.configOptions.clientModules = this.mixins.getClientModules(this.configOptions.clientFolder);
     },
 
-    prompting: function(done) {
+    prompting: function(done, extraPrompts) {
         done = done || this.async();
         var self = this;
-
+        extraPrompts = extraPrompts || [];
         var prompts = [{
             type: 'list',
             name: 'modulename',
@@ -73,7 +73,7 @@ module.exports = generators.Base.extend({
             when: function() {
                 return !self[self.basetype + 'name'] || self[self.basetype + 'name'].length <= 0;
             }
-        }];
+        }].concat(extraPrompts);
 
         this.prompt(prompts, function(answers) {
             this.answers = answers;

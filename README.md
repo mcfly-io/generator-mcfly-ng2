@@ -35,6 +35,10 @@ You then have access to the following sub generators:
 * **yo mcfly-ng2:directive** (Creates a directive)
 * **yo mcfly-ng2:interface** (Creates an interface)
 
+> *NOTE:*    
+> When scaffolding a new target, the generator will ask you to choose between `web` or `fuse`.    
+> `web` is a normal web project    
+> `fuse` is a fusetools mobile app    
 
 You have access to the following npm scripts
 * **npm run clean** (clean the `dist` folder)
