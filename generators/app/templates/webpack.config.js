@@ -3,7 +3,7 @@ var path = require('path');
 var fs = require('fs');
 var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-var HtmlwebpackPlugin = require('html-webpack-plugin');
+//var HtmlwebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var PostCompilePlugin = require('./plugins/PostCompilePlugin');
 var autoprefixer = require('autoprefixer');
@@ -52,7 +52,7 @@ var pluginsProd = mode === 'prod' ? [
 ] : [];
 
 module.exports = {
-    devtool: 'source-map', //'eval-source-map',
+    devtool: mode === 'prod' ? 'source-map' : 'eval-source-map', //'eval-source-map',
     debug: true,
     cache: true,
     context: path.resolve(path.join(clientFolder, 'scripts', target)), // the base directory for resolving the entry option
@@ -67,10 +67,10 @@ module.exports = {
         filename: '[name].js',
         sourceMapFilename: '[name].js.map',
         chunkFilename: '[id].chunk.js',
-        devtoolModuleFilenameTemplate: function(info) {
-            //return 'scripts/app' + info.resourcePath.replace(__dirname, '../..').replace(/~/g, '/node_modules/');
-            //return info.resourcePath.replace(clientFolder + '/' + 'scripts', '').replace(/~/g, '/node_modules/');
-        },
+        //devtoolModuleFilenameTemplate: function(info) {
+        //return 'scripts/app' + info.resourcePath.replace(__dirname, '../..').replace(/~/g, '/node_modules/');
+        //return info.resourcePath.replace(clientFolder + '/' + 'scripts', '').replace(/~/g, '/node_modules/');
+        //},
         devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]'
     },
 
@@ -231,13 +231,15 @@ module.exports = {
             minChunks: 2,
             chunks: ['bundle', 'vendor']
         }),
-        new HtmlwebpackPlugin({
-            title: 'App - ' + target,
-            template: 'index.html',
-            inject: 'body'
-        }),
+        // TODO: switch back when https://github.com/TypeStrong/ts-loader/issues/152 is solved
+        // new HtmlwebpackPlugin({
+        //     title: 'App - ' + target,
+        //     baseUrl: '/',
+        //     template: 'index.html',
+        //     inject: 'body'
+        // }),
         new CopyWebpackPlugin([{
-            from: 'index.!(html)'
+            from: 'index.*' //'index.!(html)' // TODO: switch back when https://github.com/TypeStrong/ts-loader/issues/152 is solved
         }].concat(isTargetFuse(target) ? [{
             from: './*/**/*.ux'
         }] : [])),
