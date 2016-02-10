@@ -14,7 +14,7 @@
     "build": "webpack --progress --profile --display-error-details --display-cached",
     "watch": "webpack --watch --progress --profile --display-error-details --display-cached",
     "clean": "rimraf dist coverage reports",
-    "tslint": "tslint -c tslint.json \"<%=clientFolder%>/**/*.ts\" ",
+    "tslint": "tslint -c tslint.json \"<%=clientFolder%>/**/*.ts\" \"test/**/*.ts\" \"fuse/**/*.ts\" ",
     "eslint": "eslint .",
     "lint": "npm run tslint && npm run eslint",
     "browsersync": "npm run watch & browser-sync start --server=dist/${TARGET-app}/${MODE-dev} --files=\"dist/${TARGET-app}/${MODE-dev}/*.*\" --port 5000",
