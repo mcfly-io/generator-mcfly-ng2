@@ -50,6 +50,8 @@
     "js-beautify": "beautify-web/js-beautify",
     "lodash": "3.10.1",
     "mkdirp": "^0.5.1",
+    "repeating": "^2.0.0",
+    "string-length": "^1.0.1",
     "strip-json-comments": "^2.0.0",
     "underscore.string": "^3.2.3",
     "update-notifier": "^0.6.0",
