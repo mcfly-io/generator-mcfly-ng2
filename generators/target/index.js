@@ -113,7 +113,7 @@ module.exports = generators.Base.extend({
                 );
 
                 this.fs.copy(
-                    this.templatePath('index.html'), // TODO: switch back to index.template.html when https://github.com/TypeStrong/ts-loader/issues/152 is solved
+                    this.templatePath('index.template.html'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.html'))
                 );
                 break;

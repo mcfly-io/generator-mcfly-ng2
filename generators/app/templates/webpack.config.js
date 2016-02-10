@@ -3,7 +3,7 @@ var path = require('path');
 var fs = require('fs');
 var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-//var HtmlwebpackPlugin = require('html-webpack-plugin');
+var HtmlwebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var PostCompilePlugin = require('./plugins/PostCompilePlugin');
 var autoprefixer = require('autoprefixer');
@@ -231,15 +231,14 @@ module.exports = {
             minChunks: 2,
             chunks: ['bundle', 'vendor']
         }),
-        // TODO: switch back when https://github.com/TypeStrong/ts-loader/issues/152 is solved
-        // new HtmlwebpackPlugin({
-        //     title: 'App - ' + target,
-        //     baseUrl: '/',
-        //     template: 'index.html',
-        //     inject: 'body'
-        // }),
+        new HtmlwebpackPlugin({
+            title: 'App - ' + target,
+            baseUrl: '/',
+            template: 'index.html',
+            inject: 'body'
+        }),
         new CopyWebpackPlugin([{
-            from: 'index.*' //'index.!(html)' // TODO: switch back when https://github.com/TypeStrong/ts-loader/issues/152 is solved
+            from: 'index.!(html)'
         }].concat(isTargetFuse(target) ? [{
             from: './*/**/*.ux'
         }] : [])),
