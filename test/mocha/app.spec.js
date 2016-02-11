@@ -17,6 +17,12 @@ describe(generatorShortname + ':app', function() {
                 .withPrompts({
                     clientFolder: clientFolder
                 })
+                .on('ready', function(generator) {
+                    // mock notifyUpdate
+                    generator.mixins.notifyUpdate = function(pckg, cb) {
+                        cb();
+                    };
+                })
                 .on('end', done);
         });
 
@@ -94,6 +100,12 @@ describe(generatorShortname + ':app', function() {
                 .withArguments([appname])
                 .withPrompts({
                     clientFolder: 'Dummy Folder'
+                })
+                .on('ready', function(generator) {
+                    // mock notifyUpdate
+                    generator.mixins.notifyUpdate = function(pckg, cb) {
+                        cb();
+                    };
                 })
                 .on('end', done);
         });

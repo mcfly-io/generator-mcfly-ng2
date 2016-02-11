@@ -61,8 +61,15 @@ module.exports = generators.Base.extend({
     },
 
     initializing: function() {
+        var done = this.async();
+        var self = this;
         this.pkg = this.mixins.readJsonFile('../../package.json', __dirname);
-        this.mixins.notifyUpdate(this.pkg);
+        this.mixins.notifyUpdate(this.pkg, function(message) {
+            if (message) {
+                self.log(message);
+            }
+            done();
+        });
 
     },
 
