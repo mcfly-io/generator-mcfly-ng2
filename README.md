@@ -62,8 +62,8 @@ You can pass a different TARGET or MODE using the following command:
 Default TARGET is `app`, possible values will depends if you have scaffolded other targets    
 Default MODE is `dev`, can be either `prod` or `dev`    
 
-The same apply to the `webpack-server` task or `browsersync` task    
-`npm run webpack-server`:  compile and open a the webpack reload browser    
+The same apply to the `webpack:server` task or `browsersync` task    
+`npm run webpack:server`:  compile and open a the webpack reload browser    
 You can pass a different TARGET or MODE using the following command:    
 ```sh
 [TARGET=newtarget MODE=dev] npm run webpack-server
@@ -71,7 +71,7 @@ You can pass a different TARGET or MODE using the following command:
 
 ## Launching
 ```sh
-npm run webpack-server
+npm run webpack:server
 # or
 npm run browsersync
 ```
