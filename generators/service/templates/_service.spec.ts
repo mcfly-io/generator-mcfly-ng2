@@ -1,11 +1,5 @@
 /* beautify ignore:start */
-import {
-    it,
-    inject,
-    //injectAsync,
-    beforeEachProviders
-    //TestComponentBuilder
-} from 'angular2/testing';
+import {it, inject, beforeEachProviders} from 'angular2/testing';
 import {<%=servicenameClass%>} from './<%=servicenameFile%>.service.ts';
 /* beautify ignore:end */
 
