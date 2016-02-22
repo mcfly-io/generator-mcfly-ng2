@@ -1,6 +1,6 @@
 /* beautify ignore:start */
 import {it, injectAsync, beforeEachProviders, TestComponentBuilder} from 'angular2/testing';
-import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.component.ts';
+import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.component';
 /* beautify ignore:end */
 
 describe('Component: <%=componentnameClass%>Component', () => {

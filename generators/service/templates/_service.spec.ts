@@ -1,6 +1,6 @@
 /* beautify ignore:start */
 import {it, inject, beforeEachProviders} from 'angular2/testing';
-import {<%=servicenameClass%>} from './<%=servicenameFile%>.service.ts';
+import {<%=servicenameClass%>} from './<%=servicenameFile%>.service';
 /* beautify ignore:end */
 
 describe('Service: <%=servicenameClass%>' , () => {

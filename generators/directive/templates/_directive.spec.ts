@@ -1,6 +1,6 @@
 /* beautify ignore:start */
 import {it, beforeEachProviders} from 'angular2/testing';
-import {<%=directivenameClass %>} from './<%=directivenameFile%>.directive.ts';
+import {<%=directivenameClass %>} from './<%=directivenameFile%>.directive';
 /* beautify ignore:end */
 
 describe('Directive: <%=directivenameClass%>', () => {
