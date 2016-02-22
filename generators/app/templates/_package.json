@@ -83,7 +83,7 @@
     "tslint": "^3.2.1",
     "tslint-eslint-rules": "^1.0.1",
     "tslint-loader": "^2.1.0",
-    "typescript": "^1.7.5",
+    "typescript": "1.7.5",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.0",
