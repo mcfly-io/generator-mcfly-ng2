@@ -14,7 +14,7 @@ PostCompilePlugin.prototype.apply = function(compiler) {
         }
         setTimeout(function() {
             fs.appendFile(self.options.filename, '\n/***/', function() {});
-        }, 500);
+        }, 2000);
 
     });
 };
