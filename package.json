@@ -52,24 +52,24 @@
     "mkdirp": "^0.5.1",
     "repeating": "^2.0.0",
     "string-length": "^1.0.1",
-    "strip-json-comments": "^2.0.0",
+    "strip-json-comments": "^2.0.1",
     "underscore.string": "^3.2.3",
     "update-notifier": "^0.6.0",
     "yeoman-generator": "^0.22.4",
     "yosay": "^1.1.0"
   },
   "devDependencies": {
-    "bluebird": "^3.1.4",
+    "bluebird": "^3.3.1",
     "chai": "^3.5.0",
     "chalk": "1.1.1",
     "coveralls": "^2.11.6",
     "del": "^2.2.0",
-    "eslint": "^1.10.3",
+    "eslint": "^2.2.0",
     "eslint-plugin-nodeca": "^1.0.3",
     "event-stream": "^3.3.2",
     "github": "0.2.4",
     "github-username": "2.1.0",
-    "gulp": "3.9.0",
+    "gulp": "3.9.1",
     "gulp-bump": "1.0.0",
     "gulp-concat": "2.6.0",
     "gulp-exec": "2.1.2",
@@ -84,9 +84,8 @@
     "node-jsxml": "^0.7.0",
     "require-dir": "0.3.0",
     "run-sequence": "^1.1.5",
-    "strip-json-comments": "2.0.0",
-    "yargs": "^3.32.0",
+    "yargs": "^4.1.0",
     "yeoman-assert": "^2.1.1",
-    "yeoman-test": "^1.0.0"
+    "yeoman-test": "^1.1.0"
   }
 }

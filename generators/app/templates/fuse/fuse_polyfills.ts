@@ -1,7 +1,8 @@
+///<reference path="../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
 import 'es6-shim';
-assert = function() {
-    return true;
-};
+// assert = function() {
+//     return true;
+// };
 // console.log('window');
 // console.dir(window);
 // 

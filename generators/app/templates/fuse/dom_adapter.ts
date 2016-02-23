@@ -10,7 +10,7 @@ export class FuseDomAdapter extends Parse5DomAdapter {
     }
 
     getXHR(): Type {
-        console.log('getXHR!', arguments);
+        //console.log('getXHR!', arguments);
         return null;
     }
 

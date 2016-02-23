@@ -43,7 +43,7 @@ describe(generatorShortname + ':ngux', function() {
             [pathdir + 'myDummy.ts', /export class MyDummy/],
             [pathdir + 'myDummy.ts', /selector: 'MyDummy'/],
             [pathdir + 'myDummy.ts', /require\(\'\.\/ngux\/myDummy\.js\'\);/],
-            [pathdir + 'myDummy.spec.ts', /import {MyDummy} from '\.\/myDummy.ts';/],
+            [pathdir + 'myDummy.spec.ts', /import {MyDummy} from '\.\/myDummy';/],
             [pathdir + 'myDummy.spec.ts', /return tcb.createAsync\(MyDummy\)/],
             [pathdir + 'myDummy.ngux', /ng:Selector="MyDummy"/]
 

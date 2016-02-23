@@ -64,7 +64,7 @@ export class FuseLocationStrategy extends LocationStrategy {
     // }
 
     constructor() {
-        console.log('FuseLocationStrategy');
+        //console.log('FuseLocationStrategy');
         super();
         this.baseHref = '/';
     }

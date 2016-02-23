@@ -1,12 +1,6 @@
 /* beautify ignore:start */
-import {
-	it,
-	//inject,
-	injectAsync,
-	beforeEachProviders,
-	TestComponentBuilder
-} from 'angular2/testing';
-import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.component.ts';
+import {it, injectAsync, beforeEachProviders, TestComponentBuilder} from 'angular2/testing';
+import {<%=componentnameClass%>Component} from './<%=componentnameFile%>.component';
 /* beautify ignore:end */
 
 describe('Component: <%=componentnameClass%>Component', () => {
@@ -15,10 +9,11 @@ describe('Component: <%=componentnameClass%>Component', () => {
 
     it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
         return tcb.createAsync(<%=componentnameClass%>Component)
-            .then((fixture) => {
-                fixture.detectChanges();
+            .then((fixture) => {            
                 let element = fixture.debugElement.nativeElement;
-                let cmpInstance = fixture.debugElement.componentInstance;
+                let cmpInstance = <<%=componentnameClass%>>fixture.debugElement.componentInstance;
+                fixture.detectChanges();
+
                 expect(cmpInstance).toBeDefined();
                 expect(element).toBeDefined();
             });

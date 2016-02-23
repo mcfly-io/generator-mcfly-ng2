@@ -41,7 +41,7 @@ describe(generatorShortname + ':pipe', function() {
         var expectedContents = [
             [pathdir + 'my-dummy.pipe.ts', /export class MyDummyPipe/],
             [pathdir + 'my-dummy.pipe.ts', /name: 'myDummy'/],
-            [pathdir + 'my-dummy.pipe.spec.ts', /import {MyDummyPipe} from '\.\/my-dummy.pipe.ts';/]
+            [pathdir + 'my-dummy.pipe.spec.ts', /import {MyDummyPipe} from '\.\/my-dummy.pipe';/]
         ];
         assert.fileContent(expectedContents);
 

@@ -43,7 +43,7 @@
     "no-alert": 2,
     "no-array-constructor": 2,
     "no-caller": 2,
-    "no-catch-shadow": 2,
+    "no-catch-shadow": 0,
     "no-cond-assign": 2,
     "no-console": 2,
     "no-constant-condition": 2,
