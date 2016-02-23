@@ -89,7 +89,8 @@ describe(generatorShortname + ':component', function() {
             var expectedFiles = [
                 pathdir + 'myDummy.ts',
                 pathdir + 'myDummy.ngux',
-                pathdir + 'myDummy.spec.ts'
+                pathdir + 'myDummy.spec.ts',
+                pathdir + 'ngux/myDummy.js'
             ];
 
             assert.file(expectedFiles);

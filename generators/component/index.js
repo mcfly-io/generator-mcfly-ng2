@@ -106,6 +106,10 @@ var Generator = module.exports = ComponentGenerator.extend({
                         componentnameClass: this.componentnameClass
                     }
                 );
+                this.fs.copyTpl(
+                    this.templatePath('ngux/_component.js'),
+                    this.destinationPath(path.join(destinationPath, 'ngux', this.componentname + '.js'))
+                );
                 break;
         }
 
