@@ -1,8 +1,6 @@
 {
   "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules",
   "rules": {
-    "no-irregular-whitespace": true,
-
     "class-name": true,
     "curly": true,
     "eofline": false,
@@ -36,7 +34,12 @@
     "no-inferrable-types": true,
     "no-internal-module": true,
     "no-shadowed-variable": true,
-    "no-trailing-comma": true,
+    "trailing-comma": [
+            true, {
+                "multiline": "never",
+                "singleline": "never"
+            }
+    ],
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
     "no-unused-variable": true,

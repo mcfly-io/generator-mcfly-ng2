@@ -142,7 +142,7 @@ export class FuseRenderer implements Renderer {
             window.fusejs.angularRenderer.setEventListener(renderElement.id, renderElement.type, name, zonedCallback);
         }
         return function() {
-            console.log('fuse renderer needs to implement the listen remove function ' + name);
+            //console.log('fuse renderer needs to implement the listen remove function ' + name);
         };
     }
 
@@ -196,7 +196,7 @@ export class FuseRenderer implements Renderer {
         if (window.fusejs) {
             //console.log(text);
         } else {
-            console.log(text, args);
+            //console.log(text, args);
         }
     }
 }
