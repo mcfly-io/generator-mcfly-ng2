@@ -40,7 +40,7 @@ describe(generatorShortname + ':directive', function() {
 
         var expectedContents = [
             [pathdir + 'my-dummy.directive.ts', /export class MyDummy/],
-            [pathdir + 'my-dummy.directive.spec.ts', /import {MyDummy} from '\.\/my-dummy.directive.ts';/]
+            [pathdir + 'my-dummy.directive.spec.ts', /import {MyDummy} from '\.\/my-dummy.directive';/]
         ];
         assert.fileContent(expectedContents);
 

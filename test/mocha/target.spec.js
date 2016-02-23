@@ -41,7 +41,7 @@ describe(generatorShortname + ':target', function() {
             assert.file(expectedFiles);
 
             var expectedContents = [
-                ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e\.ts/]
+                ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e/]
             ];
             assert.fileContent(expectedContents);
 
@@ -86,7 +86,7 @@ describe(generatorShortname + ':target', function() {
             assert.file(expectedFiles);
 
             var expectedContents = [
-                ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e\.ts/],
+                ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e/],
                 [path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'), /fuse_polyfills/],
                 [path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'), /fuse\/bootstrap/]
             ];

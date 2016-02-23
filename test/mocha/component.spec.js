@@ -47,7 +47,7 @@ describe(generatorShortname + ':component', function() {
             var expectedContents = [
                 [pathdir + 'my-dummy.component.ts', /export class MyDummyComponent/],
                 [pathdir + 'my-dummy.component.ts', /selector: 'my-dummy'/],
-                [pathdir + 'my-dummy.component.spec.ts', /import {MyDummyComponent} from '\.\/my-dummy.component.ts';/],
+                [pathdir + 'my-dummy.component.spec.ts', /import {MyDummyComponent} from '\.\/my-dummy.component';/],
                 [pathdir + 'my-dummy.component.spec.ts', /createAsync\(MyDummyComponent\)/],
                 [pathdir + 'my-dummy.component.html', /<div>myDummy<\/div>/]
 
