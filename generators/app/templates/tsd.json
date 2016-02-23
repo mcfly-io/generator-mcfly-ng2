@@ -16,6 +16,15 @@
     },
     "angular-protractor/angular-protractor.d.ts": {
         "commit": "e69fe60f2d6377ea4fae539493997b098f52cad1"
+    },
+    "node/node.d.ts": {
+    "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
+    },
+    "webpack/webpack.d.ts": {
+     "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
+    },
+    "es6-shim/es6-shim.d.ts": {
+      "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
     }
   }
 }
