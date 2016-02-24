@@ -99,7 +99,7 @@ module.exports = {
             }, {
                 test: /\.ts$/,
                 loader: 'ts',
-                include: [new RegExp(clientFolder), /test/],
+                include: [new RegExp(clientFolder), /test/, /fuse/],
                 query: {
                     instance: 'client'
                 }
