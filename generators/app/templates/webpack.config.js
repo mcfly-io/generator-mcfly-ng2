@@ -75,7 +75,11 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.ts', '.js', '.json', '.css', '.html', '.scss', '.sass']
+        extensions: ['', '.ts', '.js', '.json', '.css', '.html', '.scss', '.sass'],
+        alias: {
+            angular2: path.resolve('./node_modules/angular2'),
+            rxjs: path.resolve('./node_modules/rxjs')
+        }
     },
     postcss: function() {
         return [autoprefixer];
