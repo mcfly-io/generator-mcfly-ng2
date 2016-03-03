@@ -75,7 +75,11 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.ts', '.js', '.json', '.css', '.html', '.scss', '.sass']
+        extensions: ['', '.ts', '.js', '.json', '.css', '.html', '.scss', '.sass'],
+        alias: {
+            angular2: path.resolve('./node_modules/angular2'),
+            rxjs: path.resolve('./node_modules/rxjs')
+        }
     },
     postcss: function() {
         return [autoprefixer];
@@ -159,7 +163,7 @@ module.exports = {
             // support for .html as raw text
             {
                 test: /\.html$/,
-                loader: 'html-loader??interpolate&-minimize',
+                loader: 'html-loader?interpolate&-minimize',
                 exclude: [new RegExp(clientFolder + '/scripts/' + target + '/index.html')]
             }, {
                 test: /\.png$/,
@@ -243,7 +247,8 @@ module.exports = {
             from: './*/**/*.ux'
         }] : [])),
         new PostCompilePlugin({
-            filename: path.join(distFolder, 'bundle.js')
+            filename: path.join(distFolder, 'bundle.js'),
+            isFuse: isTargetFuse(target)
         })
     ].concat(pluginsProd)
 };

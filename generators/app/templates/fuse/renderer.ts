@@ -1,13 +1,7 @@
-/* beautify ignore:start */
-import {Injectable} from 'angular2/src/core/di';
-//import {createRenderView} from 'angular2/src/core/render/view_factory'; //NodeFactory
-import {Renderer, RenderComponentType, RootRenderer, RenderDebugInfo} from 'angular2/src/core/render/api';
-import {isBlank, isPresent} from 'angular2/src/facade/lang';
-//import {DefaultProtoViewRef, DefaultRenderView, DefaultRenderFragmentRef} from 'angular2/src/core/render/view';
-//import {DOM} from 'angular2/src/platform/dom/dom_adapter';
-//import {ViewNode, DummyViewNode} from './view_node';
-import {Element} from './element';
-/* beautify ignore:end */
+import { Injectable } from 'angular2/src/core/di';
+import { Renderer, RenderComponentType, RootRenderer, RenderDebugInfo } from 'angular2/src/core/render/api';
+import { isBlank, isPresent } from 'angular2/src/facade/lang';
+import { Element } from './element';
 
 @Injectable()
 export class FuseRootRenderer implements RootRenderer {
@@ -196,7 +190,7 @@ export class FuseRenderer implements Renderer {
         if (window.fusejs) {
             //console.log(text);
         } else {
-            //console.log(text, args);
+            window.console.log(text, args);
         }
     }
 }

@@ -55,10 +55,8 @@ describe(generatorShortname + ':app', function() {
                 'fuse/fuse_location_strategy.ts',
                 'fuse/fuse_polyfills.ts',
                 'fuse/renderer.ts',
-                'fuse/vendor.ts',
                 'fuse/xhr.ts',
                 'fuse/zone.ts',
-                'fuse/zone_patch.ts',
                 'plugins/PostCompilePlugin.js',
                 'typings/fuse/fuse.d.ts'
             ];

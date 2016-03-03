@@ -45,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
-    "gulp-filter": "^3.0.1",
+    "gulp-filter": "^4.0.0",
     "gulp-tap": "0.1.3",
     "js-beautify": "beautify-web/js-beautify",
     "lodash": "3.10.1",
@@ -53,16 +53,16 @@
     "repeating": "^2.0.0",
     "string-length": "^1.0.1",
     "strip-json-comments": "^2.0.1",
-    "underscore.string": "^3.2.3",
-    "update-notifier": "^0.6.0",
+    "underscore.string": "^3.3.4",
+    "update-notifier": "^0.6.1",
     "yeoman-generator": "^0.22.4",
     "yosay": "^1.1.0"
   },
   "devDependencies": {
-    "bluebird": "^3.3.1",
+    "bluebird": "^3.3.3",
     "chai": "^3.5.0",
     "chalk": "1.1.1",
-    "coveralls": "^2.11.6",
+    "coveralls": "^2.11.8",
     "del": "^2.2.0",
     "eslint": "^2.2.0",
     "eslint-plugin-nodeca": "^1.0.3",
@@ -84,7 +84,7 @@
     "node-jsxml": "^0.7.0",
     "require-dir": "0.3.0",
     "run-sequence": "^1.1.5",
-    "yargs": "^4.1.0",
+    "yargs": "^4.2.0",
     "yeoman-assert": "^2.1.1",
     "yeoman-test": "^1.1.0"
   }

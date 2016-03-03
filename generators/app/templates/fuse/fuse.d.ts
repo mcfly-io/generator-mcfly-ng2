@@ -31,3 +31,5 @@ interface Window {
     clearWebpackCache: any;
     fusejs: FuseJS;
 }
+
+declare var WorkerGlobalScope;

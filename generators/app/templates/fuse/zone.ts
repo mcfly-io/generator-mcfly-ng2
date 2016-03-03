@@ -1,8 +1,6 @@
-let utils = require('zone.js/lib/utils.ts');
-
-//import {patchEventTargetMethods} from 'zone.js/lib/utils';
+let zoneUtils = require('zone.js/lib/utils.ts');
 window.Zone = global['Zone'];
 window.zone = global['zone'];
 if (window.fusejs) {
-    utils.patchEventTargetMethods(global['XMLHttpRequest'] && global['XMLHttpRequest'].prototype);
+    zoneUtils.patchEventTargetMethods(global['XMLHttpRequest'] && global['XMLHttpRequest'].prototype);
 }
