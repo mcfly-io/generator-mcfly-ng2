@@ -23,7 +23,7 @@ module.exports = function(context) {
     var rootId;
 
     var consoleLog = function(text) {
-        // console.log(text);
+        //console.log(text);
     };
 
     this.isScope = function(type) {
@@ -157,14 +157,16 @@ module.exports = function(context) {
         // if (callback) {
         //     consoleLog('callback is defined' + callback.toString());
         // }
-        if (this.isScope(type)) {
-            var element = tree[id];
+        //if (this.isScope(type)) {
+        var element = tree[id];
+        if (element) {
             if (element[eventName + '_event']) {
                 element[eventName + '_event'].callbacks.push(callback);
             } else {
                 consoleLog('event not defined ' + eventName + '_event' + ' for id: ' + id);
             }
         }
+        //}
     };
 
     this.removeAllListeners = function(id, type) {
@@ -172,14 +174,16 @@ module.exports = function(context) {
         // if (callback) {
         //     consoleLog('callback is defined' + callback.toString());
         // }
-        if (this.isScope(type)) {
-            var element = tree[id];
+        //if (this.isScope(type)) {
+        var element = tree[id];
+        if (element) {
             for (var a in element) {
                 if (element[a] instanceof EventFactory) {
                     element[a].callbacks = [];
                 }
             }
         }
+        //}
         // element[eventName + '_event'].callbacks.splice(element[eventName + '_event'].callbacks.indexOf(callback), 1);
     };
 

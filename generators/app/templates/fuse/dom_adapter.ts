@@ -1,8 +1,6 @@
-/* beautify ignore:start */
-import {Parse5DomAdapter} from 'angular2/src/platform/server/parse5_adapter';
-import {setRootDomAdapter} from 'angular2/src/platform/dom/dom_adapter';
-import {Type} from 'angular2/src/facade/lang';
-/* beautify ignore:end */
+import { Parse5DomAdapter } from 'angular2/src/platform/server/parse5_adapter';
+import { setRootDomAdapter } from 'angular2/src/platform/dom/dom_adapter';
+import { Type } from 'angular2/src/facade/lang';
 
 export class FuseDomAdapter extends Parse5DomAdapter {
     static makeCurrent() {

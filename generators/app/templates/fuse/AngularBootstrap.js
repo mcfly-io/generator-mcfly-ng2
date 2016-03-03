@@ -86,7 +86,7 @@ function reloadAngular() {
     });
 }
 try {
-    debounce(reloadAngular, 1000)();
+    debounce(reloadAngular, 5000)();
 } catch (err) {
 
 }

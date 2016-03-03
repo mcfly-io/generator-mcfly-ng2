@@ -63,6 +63,8 @@ obj/
 
 # Fuse
 .build/
+.uno
+build
 
 # Changelog
 CHANGELOG.md

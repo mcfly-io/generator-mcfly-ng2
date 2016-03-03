@@ -247,7 +247,8 @@ module.exports = {
             from: './*/**/*.ux'
         }] : [])),
         new PostCompilePlugin({
-            filename: path.join(distFolder, 'bundle.js')
+            filename: path.join(distFolder, 'bundle.js'),
+            isFuse: isTargetFuse(target)
         })
     ].concat(pluginsProd)
 };

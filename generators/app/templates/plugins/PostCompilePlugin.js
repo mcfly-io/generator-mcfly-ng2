@@ -12,6 +12,9 @@ PostCompilePlugin.prototype.apply = function(compiler) {
         if (!self.options.filename) {
             return;
         }
+        if (!self.options.isFuse) {
+            return;
+        }
         setTimeout(function() {
             fs.appendFile(self.options.filename, '\n/***/', function() {});
         }, 2000);

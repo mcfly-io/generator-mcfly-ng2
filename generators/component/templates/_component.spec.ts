@@ -9,7 +9,7 @@ describe('Component: <%=componentnameClass%>Component', () => {
 
     it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
         return tcb.createAsync(<%=componentnameClass%>Component)
-            .then((fixture) => {            
+            .then((fixture) => {
                 let element = fixture.debugElement.nativeElement;
                 let cmpInstance = <<%=componentnameClass%>Component>fixture.debugElement.componentInstance;
                 fixture.detectChanges();
