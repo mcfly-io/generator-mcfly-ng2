@@ -51,6 +51,7 @@
         "Fuse.Entities",
         "Fuse.Gestures",
         "Fuse.Navigation",
+        "Fuse.Physics",
         "Fuse.Shapes",
         "Fuse.Triggers",
         "Fuse.Reactive",
@@ -62,7 +63,9 @@
         "Uno.Collections",
         "Uno.Geometry",
         "Experimental.iOS",
-        "Fuse.UserEvents"
+        "Fuse.UserEvents",
+        "Experimental.TextureLoader",
+        "Experimental.Http"
   ],
   "Includes": [
     "*"
