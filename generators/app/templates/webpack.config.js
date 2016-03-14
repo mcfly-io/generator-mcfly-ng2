@@ -242,10 +242,18 @@ module.exports = {
             inject: 'body'
         }),
         new CopyWebpackPlugin([{
-            from: 'index.!(html)'
-        }].concat(isTargetFuse(target) ? [{
-            from: './*/**/*.ux'
-        }] : [])),
+                from: 'index.!(html)'
+            }]
+            .concat([{
+                from: './**/resources/**/*.*'
+            }])
+            .concat(isTargetFuse(target) ? [{
+                from: './*/**/*.ux'
+            }] : [])
+            .concat(isTargetFuse(target) ? [{
+                from: './**/*.uno'
+            }] : [])
+        ),
         new PostCompilePlugin({
             filename: path.join(distFolder, 'bundle.js'),
             isFuse: isTargetFuse(target)
