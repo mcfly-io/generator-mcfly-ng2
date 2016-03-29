@@ -1,5 +1,5 @@
-node_modules/**
-bower_components/**
-dist/**
-coverage/**
+node_modules/
+bower_components/
+dist/
+coverage/
 spec-bundle.js
