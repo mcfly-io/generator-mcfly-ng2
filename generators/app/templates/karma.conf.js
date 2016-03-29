@@ -14,6 +14,8 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+            // http://stackoverflow.com/questions/29391111/karma-phantomjs-and-es6-promises
+            'node_modules/babel-polyfill/dist/polyfill.js',
             // we are building the test environment in ./spec-bundle.js
             {
                 pattern: 'spec-bundle.js',
