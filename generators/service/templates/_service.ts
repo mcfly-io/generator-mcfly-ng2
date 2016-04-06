@@ -1,6 +1,4 @@
-/* beautify ignore:start */
-import {Injectable} from 'angular2/core';
-/* beautify ignore:end */
+import { Injectable } from 'angular2/core';
 
 @Injectable()
 export class <%=servicenameClass%> {

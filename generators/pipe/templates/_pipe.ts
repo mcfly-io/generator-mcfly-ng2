@@ -1,6 +1,4 @@
-/* beautify ignore:start */
-import {Pipe, PipeTransform} from 'angular2/core';
-/* beautify ignore:end */
+import { Pipe, PipeTransform } from 'angular2/core';
 
 @Pipe({ name: '<%=pipename%>' })
 export class <%=pipenameClass%>Pipe implements PipeTransform {
