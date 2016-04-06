@@ -127,8 +127,16 @@ describe(generatorShortname + ':target', function() {
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'main.scss'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'config.xml'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'ionic.config.json'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'package.json'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'vendor.ts'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'bootstrap.ts'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_platform_add', '010_install_plugins.js'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_plugin_add', '010_register_plugin.js'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_plugin_rm', '010_deregister_plugin.js'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_prepare', '010_add_platform_class.js'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_prepare', '020_remove_sass_from_platforms.js'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'before_platform_add', 'init_directories.js'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_prepare', '010_add_platform_class.js'),
                 path.join('test', 'e2e', 'mobile-ionic', 'mobile-ionic.e2e.ts'),
                 path.join('test', 'e2e', 'mobile-ionic', 'index.e2e.ts')
             ];
@@ -140,9 +148,6 @@ describe(generatorShortname + ':target', function() {
                 [path.join(clientFolder, 'scripts', 'mobile-ionic', 'config.xml'), /href="http:\/\/dummyappname\.com"/],
                 [path.join(clientFolder, 'scripts', 'mobile-ionic', 'config.xml'), /dummyappname Team/],
                 [path.join(clientFolder, 'scripts', 'mobile-ionic', 'ionic.config.json'), /"name": "dummyappname"/]
-                //[path.join(clientFolder, 'scripts', 'mobile-ionic', 'vendor.ts'), /fuse_polyfills/],
-                //[path.join(clientFolder, 'scripts', 'mobile-ionic', 'bootstrap.ts'), /fuse\/bootstrap/],
-                //[path.join(clientFolder, 'scripts', 'mobile-ionic', 'index.unoproj'), /"ApplicationLabel": "dummyappname"/]
             ];
 
             assert.fileContent(expectedContents);

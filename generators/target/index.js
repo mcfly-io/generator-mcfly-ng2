@@ -133,6 +133,10 @@ module.exports = generators.Base.extend({
                         appname: this.config.get('appname')
                     }
                 );
+                this.fs.copy(
+                    this.templatePath('ionic.package.json'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'package.json'))
+                );
                 this.fs.copyTpl(
                     this.templatePath('config.ionic2.xml'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'config.xml')), {
@@ -146,6 +150,31 @@ module.exports = generators.Base.extend({
                 this.fs.copy(
                     this.templatePath('main.ionic2.scss'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'main.scss'))
+                );
+                this.fs.copy(
+                    this.templatePath('hooks/after_platform_add/010_install_plugins.js'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'after_platform_add', '010_install_plugins.js'))
+                );
+                this.fs.copy(
+                    this.templatePath('hooks/after_plugin_add/010_register_plugin.js'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'after_plugin_add', '010_register_plugin.js'))
+                );
+                this.fs.copy(
+                    this.templatePath('hooks/after_plugin_rm/010_deregister_plugin.js'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'after_plugin_rm', '010_deregister_plugin.js'))
+                );
+                this.fs.copy(
+                    this.templatePath('hooks/after_prepare/010_add_platform_class.js'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'after_prepare', '010_add_platform_class.js'))
+                );
+                this.fs.copy(
+                    this.templatePath('hooks/after_prepare/020_remove_sass_from_platforms.js'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'after_prepare', '020_remove_sass_from_platforms.js'))
+                );
+
+                this.fs.copy(
+                    this.templatePath('hooks/before_platform_add/init_directories.js'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'before_platform_add', 'init_directories.js'))
                 );
                 break;
 
