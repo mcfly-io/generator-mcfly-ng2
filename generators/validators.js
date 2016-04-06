@@ -13,7 +13,7 @@ var validateTarget = function(clientTargets) {
             return chalk.red('Please enter a non empty name');
         }
         value = utils.mixins.dasherize(value);
-        if (_.contains(clientTargets, value)) {
+        if (_.includes(clientTargets, value)) {
             return chalk.red('The target name ') + chalk.yellow(value) + chalk.red(' already exists');
         }
         return true;
