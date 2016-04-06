@@ -67,8 +67,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(distFolder),
-
+        path: isTargetIonic2(target) ? path.resolve(path.join(distFolder, 'www')) : path.resolve(distFolder),
         filename: '[name].js',
         sourceMapFilename: '[name].js.map',
         chunkFilename: '[id].chunk.js',
@@ -270,10 +269,20 @@ module.exports = {
                 from: './**/*.uno'
             }] : [])
             .concat(isTargetIonic2(target) ? [{
-                from: './config.xml'
+                from: './config.xml',
+                to: '../config.xml' // we need to go up one folder in the case of ionic2
             }] : [])
             .concat(isTargetIonic2(target) ? [{
-                from: './ionic.config.json'
+                from: './ionic.config.json',
+                to: '../ionic.config.json' // we need to go up one folder in the case of ionic2
+            }] : [])
+            .concat(isTargetIonic2(target) ? [{
+                from: './package.json',
+                to: '../package.json' // we need to go up one folder in the case of ionic2
+            }] : [])
+            .concat(isTargetIonic2(target) ? [{
+                from: './hooks',
+                to: '../hooks' // we need to go up one folder in the case of ionic2
             }] : [])
 
         ),

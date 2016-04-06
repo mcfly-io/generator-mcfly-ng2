@@ -51,6 +51,8 @@ You have access to the following npm scripts
 * **npm run karma:watch** (run unit test in watch mode)
 * **npm run e2e** (run e2e test - make sure that browsersync or webpack:server is running in another console window) 
 * **npm run e2e:live** (run e2e test and stop to allow debug - make sure that browsersync or webpack:server is running in another console window) 
+* **npm run ionic:serve** (run an ionic2 app in the browser)
+* **npm run ionic:emulate** (run an ionic2 app in the emulator)
 
 ## Distribution
 Note that the code is distributed to the `dist` folder    
