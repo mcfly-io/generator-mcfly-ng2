@@ -66,6 +66,47 @@ describe(generatorShortname + ':component', function() {
         });
     });
 
+    describe('with target type ionic2', function() {
+        before(function(done) {
+            var self = this;
+            testHelper.runGenerator('component')
+                .withArguments([targetname, componentname])
+                .withOptions({
+                    targettype: 'ionic2'
+                })
+                .inTmpDir(function(dir) {
+                    // setting up expected files
+                    testHelper.createFolderStructure(config, dir, clientFolder, targetname);
+                })
+                .on('ready', function(generator) {
+                    self.generator = generator;
+                })
+                .on('end', done);
+        });
+
+        it('creates expected files', function() {
+            var pathdir = clientFolder + '/scripts/dashboard/components/my-dummy/';
+
+            var expectedFiles = [
+                pathdir + 'my-dummy.component.ts',
+                pathdir + 'my-dummy.component.html',
+                pathdir + 'my-dummy.component.scss',
+                pathdir + 'my-dummy.component.spec.ts'
+            ];
+
+            assert.file(expectedFiles);
+
+            var expectedContents = [
+                [pathdir + 'my-dummy.component.ts', /export class MyDummyComponent/],
+                [pathdir + 'my-dummy.component.spec.ts', /import { MyDummyComponent } from '\.\/my-dummy.component';/],
+                [pathdir + 'my-dummy.component.spec.ts', /createAsync\(MyDummyComponent\)/],
+                [pathdir + 'my-dummy.component.html', /<ion-content>myDummy<\/ion-content>/]
+            ];
+
+            assert.fileContent(expectedContents);
+        });
+    });
+
     describe('with target type fuse', function() {
         before(function(done) {
             var self = this;

@@ -98,6 +98,59 @@ describe(generatorShortname + ':target', function() {
 
     });
 
+    describe('with valid ionic2 target', function() {
+
+        var targetname = 'mobileIonic';
+        var clientFolder = 'client';
+        before(function(done) {
+            var config = testHelper.getYoRc({
+                clientFolder: clientFolder
+            });
+            testHelper.runGenerator('target', config, [generatorShortname + ':component'])
+                .inTmpDir(function(dir) {
+                    // setting up expected files
+                    testHelper.createFolderStructure(config, dir, clientFolder, targetname);
+                })
+                .withArguments([targetname])
+                .withPrompts({
+                    targettype: 'ionic2'
+                })
+                .on('end', done);
+        });
+
+        it('creates expected files', function() {
+
+            var expectedFiles = [
+                path.join(clientFolder, 'scripts'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'index.html'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'main.scss'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'config.xml'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'ionic.config.json'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'vendor.ts'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'bootstrap.ts'),
+                path.join('test', 'e2e', 'mobile-ionic', 'mobile-ionic.e2e.ts'),
+                path.join('test', 'e2e', 'mobile-ionic', 'index.e2e.ts')
+            ];
+            assert.file(expectedFiles);
+
+            var expectedContents = [
+                ['test/e2e/mobile-ionic/index.e2e.ts', /mobile-ionic\.e2e/],
+                [path.join(clientFolder, 'scripts', 'mobile-ionic', 'config.xml'), /email="hi@dummyappname"/],
+                [path.join(clientFolder, 'scripts', 'mobile-ionic', 'config.xml'), /href="http:\/\/dummyappname\.com"/],
+                [path.join(clientFolder, 'scripts', 'mobile-ionic', 'config.xml'), /dummyappname Team/],
+                [path.join(clientFolder, 'scripts', 'mobile-ionic', 'ionic.config.json'), /"name": "dummyappname"/]
+                //[path.join(clientFolder, 'scripts', 'mobile-ionic', 'vendor.ts'), /fuse_polyfills/],
+                //[path.join(clientFolder, 'scripts', 'mobile-ionic', 'bootstrap.ts'), /fuse\/bootstrap/],
+                //[path.join(clientFolder, 'scripts', 'mobile-ionic', 'index.unoproj'), /"ApplicationLabel": "dummyappname"/]
+            ];
+
+            assert.fileContent(expectedContents);
+
+        });
+
+    });
+
     describe('with invalid target', function() {
         var targetname = 'toto';
         var clientFolder = 'client';
