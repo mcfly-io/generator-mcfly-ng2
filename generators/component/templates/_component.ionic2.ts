@@ -2,8 +2,8 @@ import { App, Platform } from 'ionic-angular';
 import { StatusBar, Globalization } from 'ionic-native';
 
 @App({
-    styles: [require('./app.component.scss').toString()],
-    template: require('./app.component.html'),
+    styles: [require('./<%=componentnameFile%>.component.scss').toString()],
+    template: require('./<%=componentnameFile%>.component.html'),
     config: {
         // http://ionicframework.com/docs/v2/api/config/Config/
     },
@@ -20,6 +20,6 @@ export class <%=componentnameClass%>Component {
                 res => { },
                 err => { }
             );
-        };
+        });
     }
 }

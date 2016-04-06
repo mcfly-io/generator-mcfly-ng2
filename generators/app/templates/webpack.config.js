@@ -27,6 +27,11 @@ var fileExistsSync = function(file) {
 var isTargetFuse = function(target) {
     return fileExistsSync(path.join(clientFolder, 'scripts', target, 'index.ux'));
 };
+
+var isTargetIonic2 = function(target) {
+    return fileExistsSync(path.join(clientFolder, 'scripts', target, 'ionic.config.json'));
+};
+
 // make sure the target exists
 if (!fileExistsSync(path.join(clientFolder, 'scripts', target))) {
     var error = 'The target ' + target + ' does not exist';
@@ -264,6 +269,13 @@ module.exports = {
             .concat(isTargetFuse(target) ? [{
                 from: './**/*.uno'
             }] : [])
+            .concat(isTargetIonic2(target) ? [{
+                from: './config.xml'
+            }] : [])
+            .concat(isTargetIonic2(target) ? [{
+                from: './ionic.config.json'
+            }] : [])
+
         ),
         new PostCompilePlugin({
             filename: path.join(distFolder, 'bundle.js'),
