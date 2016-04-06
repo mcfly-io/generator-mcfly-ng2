@@ -8,7 +8,7 @@ import 'es6-shim';
 // 
 // console.log('global');
 // console.dir(global);
-
+window.console = console;
 window.JSON = JSON;
 window.RegExp = RegExp;
 window.Map = Map;
@@ -21,6 +21,7 @@ console.error = console.log;
 
 window.requireCache = require.cache;
 window.clearWebpackCache = function(originalCache) {
+
     let cache = require.cache;
     //     delete require.cache[require.resolve('bundle')];
     delete cache[0];

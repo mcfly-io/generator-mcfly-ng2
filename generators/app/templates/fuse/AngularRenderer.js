@@ -60,7 +60,7 @@ module.exports = function(context) {
 
     this.setAttribute = function(id, attribute, value) {
         //consoleLog('setting node  ' + id + '  in tree for ' + attribute + ' : ' + value);
-        if (!tree[id][attribute]) {
+        if (!tree[id] || !tree[id][attribute]) {
             //consoleLog('couldnt find attribute ' + attribute + ' on object ' + id);
             return;
         }
@@ -95,7 +95,7 @@ module.exports = function(context) {
     this.renderElement = function(id, type, parentId, collectionName, scope) {
         consoleLog('renderElement ' + id + ' parentId ' + parentId);
         if (!this.isScope(type)) {
-            consoleLog(id + 'is not a scope');
+            consoleLog(type + 'is not a scope');
             if (toBeAttached[id] && toBeAttached[id].length > 0 && tree[parentId]) {
                 consoleLog('found to be attached childs for  ' + id + ' in  parentId ' + parentId);
                 var parentEl = tree[parentId];

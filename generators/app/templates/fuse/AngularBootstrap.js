@@ -6,11 +6,9 @@ window.fusejs = window.fusejs || {
     renderer: null,
     requireCacheAfterVendor: {},
     timers: [],
-    context: Observable() // {
-        //id: 'root',
-        //depth: 0,
-        //children: Observable()
-        //}
+    geoLocation: require('FuseJS/GeoLocation'),
+    camera: require('FuseJS/Camera'),
+    context: Observable()
 };
 
 function debounce(fn, delay) {
@@ -68,8 +66,7 @@ function bootstrapAngular() {
         if (window.fusejs.applicationRef) {
             try {
                 window.fusejs.applicationRef.dispose();
-            } catch (err) {
-            }
+            } catch (err) {}
         }
     }
     /// BOOTSTRAP APPLICATION : ON EVERY CHANGE
