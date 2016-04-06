@@ -67,7 +67,7 @@ module.exports = generators.Base.extend({
             name: 'targettype',
             default: 'web',
             message: 'What type of target application do you want to create?',
-            choices: ['web', 'fuse']
+            choices: ['web', 'fuse', 'ionic2']
         }];
         this.prompt(prompts, function(answers) {
             this.answers = answers;
@@ -104,17 +104,48 @@ module.exports = generators.Base.extend({
         switch (this.targettype) {
             case 'web':
                 this.fs.copyTpl(
-                    this.templatePath('vendor.ts'),
+                    this.templatePath('vendor.web.ts'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'vendor.ts'))
                 );
                 this.fs.copyTpl(
-                    this.templatePath('bootstrap.ts'),
+                    this.templatePath('bootstrap.web.ts'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'bootstrap.ts'))
                 );
 
                 this.fs.copy(
-                    this.templatePath('index.template.html'),
+                    this.templatePath('index.web.html'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.html'))
+                );
+                break;
+
+            case 'ionic2':
+                this.fs.copyTpl(
+                    this.templatePath('vendor.ionic2.ts'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'vendor.ts'))
+                );
+                this.fs.copyTpl(
+                    this.templatePath('bootstrap.ionic2.ts'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'bootstrap.ts'))
+                );
+                this.fs.copyTpl(
+                    this.templatePath('ionic.config.json'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'ionic.config.json')), {
+                        appname: this.config.get('appname')
+                    }
+                );
+                this.fs.copyTpl(
+                    this.templatePath('config.ionic2.xml'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'config.xml')), {
+                        appname: this.config.get('appname')
+                    }
+                );
+                this.fs.copy(
+                    this.templatePath('index.ionic2.html'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.html'))
+                );
+                this.fs.copy(
+                    this.templatePath('main.ionic2.scss'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'main.scss'))
                 );
                 break;
 
@@ -128,7 +159,7 @@ module.exports = generators.Base.extend({
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'bootstrap.ts'))
                 );
                 this.fs.copy(
-                    this.templatePath('index.html'),
+                    this.templatePath('index.fuse.html'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.html'))
                 );
 
@@ -142,7 +173,7 @@ module.exports = generators.Base.extend({
                 this.fs.copyTpl(
                     this.templatePath('index.fuse.unoproj'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.unoproj')), {
-                        appname : this.config.get('appname')
+                        appname: this.config.get('appname')
                     }
                 );
                 this.fs.copy(

@@ -201,6 +201,11 @@ module.exports = {
             /.+angular2\/bundles\/.+/
         ]
     },
+    sassLoader: {
+        includePaths: [
+            path.resolve(__dirname, './node_modules/ionicons/dist/scss')
+        ]
+    },
     tslint: {
         emitErrors: false,
         failOnHint: false

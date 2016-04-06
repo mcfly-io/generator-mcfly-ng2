@@ -51,7 +51,7 @@ var Generator = module.exports = ComponentGenerator.extend({
         switch (this.targettype) {
             case 'web':
                 this.fs.copyTpl(
-                    this.templatePath('_component.ts'),
+                    this.templatePath('_component.web.ts'),
                     this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ts')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
@@ -60,7 +60,7 @@ var Generator = module.exports = ComponentGenerator.extend({
                 );
 
                 this.fs.copyTpl(
-                    this.templatePath('_component.spec.ts'),
+                    this.templatePath('_component.web.spec.ts'),
                     this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
@@ -69,15 +69,51 @@ var Generator = module.exports = ComponentGenerator.extend({
                 );
 
                 this.fs.copyTpl(
-                    this.templatePath('_component.html'),
+                    this.templatePath('_component.web.html'),
                     this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.html')), {
                         componentname: this.componentname
                     }
                 );
                 this.fs.copyTpl(
-                    this.templatePath('_component.scss'),
+                    this.templatePath('_component.web.scss'),
                     this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.scss'))
                 );
+                break;
+
+            case 'ionic2':
+
+                this.fs.copyTpl(
+                    this.templatePath('_component.ionic2.ts'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ts')), {
+                        componentnameFile: this.componentnameFile,
+                        componentname: this.componentname,
+                        componentnameClass: this.componentnameClass
+                    }
+                );
+
+                this.fs.copyTpl(
+                    this.templatePath('_component.ionic2.spec.ts'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
+                        componentnameFile: this.componentnameFile,
+                        componentname: this.componentname,
+                        componentnameClass: this.componentnameClass
+                    }
+                );
+
+                this.fs.copyTpl(
+                    this.templatePath('_component.ionic2.html'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.html')), {
+                        componentnameFile: this.componentnameFile,
+                        componentname: this.componentname,
+                        componentnameClass: this.componentnameClass
+                    }
+                );
+
+                this.fs.copyTpl(
+                    this.templatePath('_component.ionic2.scss'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.scss'))
+                );
+
                 break;
 
             case 'fuse':
