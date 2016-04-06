@@ -1,6 +1,4 @@
-/* beautify ignore:start */
-import {Directive, ElementRef, Renderer, Input} from 'angular2/core';
-/* beautify ignore:end */
+import { Directive, ElementRef, Renderer, Input } from 'angular2/core';
 
 @Directive({
     selector: '[<%=directivenameFile%>]'

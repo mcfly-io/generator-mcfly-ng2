@@ -15,14 +15,18 @@ import { COMMON_DIRECTIVES, COMMON_PIPES, FORM_PROVIDERS } from 'angular2/common
 import { HTTP_PROVIDERS } from 'angular2/http';
 import { ROUTER_PROVIDERS, LocationStrategy } from 'angular2/router';
 import { FuseLocationStrategy } from './fuse_location_strategy';
+import { bind } from 'angular2/core';
 
 export type ProviderArray = Array<Type | Provider | any[]>;
 let _platform = null;
 
 export function fuseBootstraper(customProviders: ProviderArray = null): ApplicationRef {
     FuseDomAdapter.makeCurrent();
+    let platformProviders: ProviderArray = [
+        PLATFORM_COMMON_PROVIDERS
+    ];
 
-    let fuseProviders: ProviderArray = [
+    let defaultAppProviders: ProviderArray = [
         FuseRenderer,
         provide(Renderer, {
             useClass: FuseRenderer
@@ -50,24 +54,22 @@ export function fuseBootstraper(customProviders: ProviderArray = null): Applicat
 
         APPLICATION_COMMON_PROVIDERS,
         COMPILER_PROVIDERS,
-        PLATFORM_COMMON_PROVIDERS,
-        ROUTER_PROVIDERS,
         FORM_PROVIDERS,
         HTTP_PROVIDERS,
-
-        provide(LocationStrategy, {
-            useClass: FuseLocationStrategy
-        })
+        ROUTER_PROVIDERS,
+        bind(LocationStrategy).toClass(FuseLocationStrategy)
+        // ROUTER_PROVIDERS,
+        // provide(LocationStrategy, {
+        //     useClass: FuseLocationStrategy
+        // })
     ];
 
-    let appProviders = [
-
-    ];
+    let appProviders = [defaultAppProviders];
     if (isPresent(customProviders)) {
         appProviders.push(customProviders);
     }
     if (!_platform) {
-        _platform = platform(fuseProviders);
+        _platform = platform(platformProviders);
     }
 
     let app = _platform.application(appProviders);

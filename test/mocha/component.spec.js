@@ -47,11 +47,12 @@ describe(generatorShortname + ':component', function() {
             var expectedContents = [
                 [pathdir + 'my-dummy.component.ts', /export class MyDummyComponent/],
                 [pathdir + 'my-dummy.component.ts', /selector: 'my-dummy'/],
-                [pathdir + 'my-dummy.component.spec.ts', /import {MyDummyComponent} from '\.\/my-dummy.component';/],
+                [pathdir + 'my-dummy.component.spec.ts', /import { MyDummyComponent } from '\.\/my-dummy.component';/],
                 [pathdir + 'my-dummy.component.spec.ts', /createAsync\(MyDummyComponent\)/],
                 [pathdir + 'my-dummy.component.html', /<div>myDummy<\/div>/]
 
             ];
+
             assert.fileContent(expectedContents);
 
         });
@@ -98,7 +99,7 @@ describe(generatorShortname + ':component', function() {
             var expectedContents = [
                 [pathdir + 'myDummy.ts', /export class MyDummy/],
                 [pathdir + 'myDummy.ts', /selector: 'MyDummy'/],
-                [pathdir + 'myDummy.spec.ts', /import {MyDummy} from '\.\/myDummy.ts';/],
+                [pathdir + 'myDummy.spec.ts', /import { MyDummy } from '\.\/myDummy.ts';/],
                 [pathdir + 'myDummy.spec.ts', /createAsync\(MyDummy\)/],
                 [pathdir + 'myDummy.ngux', /ng:Selector=\"MyDummy\"/]
 

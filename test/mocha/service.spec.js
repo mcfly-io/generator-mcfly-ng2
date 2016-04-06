@@ -40,7 +40,7 @@ describe(generatorShortname + ':service', function() {
 
         var expectedContents = [
             [pathdir + 'my-dummy.service.ts', /export class MyDummy/],
-            [pathdir + 'my-dummy.service.spec.ts', /import {MyDummy} from '\.\/my-dummy.service';/]
+            [pathdir + 'my-dummy.service.spec.ts', /import { MyDummy } from '\.\/my-dummy.service';/]
         ];
         assert.fileContent(expectedContents);
 

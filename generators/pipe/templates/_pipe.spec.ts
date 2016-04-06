@@ -1,7 +1,5 @@
-/* beautify ignore:start */
-import {it} from 'angular2/testing';
-import {<%=pipenameClass %>Pipe} from './<%=pipenameFile%>.pipe';
-/* beautify ignore:end */
+import { it } from 'angular2/testing';
+import { <%=pipenameClass %>Pipe } from './<%=pipenameFile%>.pipe';
 
 describe('Pipe: <%=pipenameClass%>Pipe', () => {
 	let pipe: <%=pipenameClass %>Pipe;

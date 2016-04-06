@@ -2,8 +2,8 @@
     <JavaScript File="./common.js" ux:Global="common" />
     <JavaScript File="./vendor.js" ux:Global="vendor" />
     <JavaScript File="./bundle.js" ux:Global="bundle" />
-    <JavaScript File="../../../fuse/AngularRenderer.js" ux:Global="AngularRenderer" />
-    <JavaScript File="../../../fuse/AngularBootstrap.js" />
+    <JavaScript File="./fuse/AngularRenderer.js" ux:Global="AngularRenderer" />
+    <JavaScript File="./fuse/AngularBootstrap.js" />
    <Main/>
 </App>
 

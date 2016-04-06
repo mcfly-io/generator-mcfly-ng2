@@ -1,6 +1,4 @@
-/* beautify ignore:start */
-import {Component} from 'angular2/core';
-/* beautify ignore:end */
+import { Component } from 'angular2/core';
 
 @Component({
     selector: '<%=componentnameFile%>',

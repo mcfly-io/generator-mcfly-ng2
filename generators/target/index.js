@@ -139,9 +139,11 @@ module.exports = generators.Base.extend({
                     }
                 );
 
-                this.fs.copy(
+                this.fs.copyTpl(
                     this.templatePath('index.fuse.unoproj'),
-                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.unoproj'))
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'index.unoproj')), {
+                        appname : this.config.get('appname')
+                    }
                 );
                 this.fs.copy(
                     this.templatePath('index.fuse.uxl'),

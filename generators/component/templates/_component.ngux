@@ -1,3 +1,5 @@
-<Rectangle ng:Selector="<%=componentnameClass%>" Background="#ffff00" Height="100">
-    <Text Value="Hello" />
-</Rectangle>
+<Panel ng:Selector="<%=componentnameClass%>">
+    <Rectangle Background="#ffff00" Height="100">
+        <Text Value="Hello" />
+    </Rectangle>
+</Panel>

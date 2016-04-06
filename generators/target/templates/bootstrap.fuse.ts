@@ -1,14 +1,13 @@
-/* beautify ignore:start */
-import {fuseBootstraper} from '../../../fuse/bootstrap';
-import {Main} from './components/main/main';
-/* beautify ignore:end */
+import { fuseBootstraper } from '../../../fuse/bootstrap';
+import { Main } from './components/main/main';
 
 let providers = [];
+let bootstraper = fuseBootstraper(providers);
 if (!window.fusejs) {
-    fuseBootstraper(providers).bootstrap(Main);
+    bootstraper.bootstrap(Main);
 } else {
     window.fusejs.rootComponent = Main;
     if (!window.fusejs.bootstraper) {
-        window.fusejs.bootstraper = fuseBootstraper(providers);
+        window.fusejs.bootstraper = bootstraper;
     }
 }

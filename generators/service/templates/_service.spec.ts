@@ -1,7 +1,5 @@
-/* beautify ignore:start */
-import {it, inject, beforeEachProviders} from 'angular2/testing';
-import {<%=servicenameClass%>} from './<%=servicenameFile%>.service';
-/* beautify ignore:end */
+import { it, inject, beforeEachProviders } from 'angular2/testing';
+import { <%=servicenameClass%> } from './<%=servicenameFile%>.service';
 
 describe('Service: <%=servicenameClass%>' , () => {
 

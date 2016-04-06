@@ -241,6 +241,12 @@ module.exports = {
             template: 'index.html',
             inject: 'body'
         }),
+        // copy fuse js files
+        new CopyWebpackPlugin(isTargetFuse(target) ? [{
+            from: '../../../fuse',
+            to: './fuse'
+        }] : [], { ignore: ['*.ts'] }),
+        // copy other files
         new CopyWebpackPlugin([{
                 from: 'index.!(html)'
             }]
