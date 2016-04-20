@@ -209,6 +209,11 @@ module.exports = generators.Base.extend({
         );
 
         this.fs.copy(
+            this.templatePath('plugins/ChangeModePlugin.js'),
+            this.destinationPath('plugins/ChangeModePlugin.js')
+        );
+
+        this.fs.copy(
             this.templatePath('fuse/fuse.d.ts'),
             this.destinationPath('typings/fuse/fuse.d.ts')
         );

@@ -6,6 +6,7 @@ var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var PostCompilePlugin = require('./plugins/PostCompilePlugin');
+var ChangeModePlugin = require('./plugins/ChangeModePlugin');
 var autoprefixer = require('autoprefixer');
 var DEFAULT_TARGET = 'app';
 var target = process.env.TARGET || DEFAULT_TARGET;
@@ -289,6 +290,10 @@ module.exports = {
         new PostCompilePlugin({
             filename: path.join(distFolder, 'bundle.js'),
             isFuse: isTargetFuse(target)
+        }),
+        new ChangeModePlugin({
+            folder: '../hooks',
+            mode: 33261
         })
     ].concat(pluginsProd)
 };
