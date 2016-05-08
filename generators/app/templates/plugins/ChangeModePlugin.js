@@ -1,10 +1,8 @@
-/* eslint no-console: 1 */
 'use strict';
 global.Promise = require('bluebird');
 var fs = Promise.promisifyAll(require('fs'));
 var dir = Promise.promisifyAll(require('node-dir'));
 var path = require('path');
-var _ = require('lodash');
 
 // taken from copy-webpack-plugin:
 var getOutputDir = function getOutputDir(compiler) {
