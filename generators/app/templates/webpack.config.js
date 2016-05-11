@@ -116,7 +116,12 @@ module.exports = {
             // Support for ngux files
             {
                 test: /\.ngux$/,
-                loader: 'html-loader!ngux-loader?subdir=ngux'
+                loader: 'ngux-loader',
+                query: {
+                    subdir: 'ngux',
+                    noEmitUx: true,
+                    useOutput: true
+                }
             },
             // Support for *.json files.
             {
@@ -291,9 +296,9 @@ module.exports = {
             filename: path.join(distFolder, 'bundle.js'),
             isFuse: isTargetFuse(target)
         }),
-        new ChangeModePlugin({
+        new ChangeModePlugin(isTargetIonic2(target) ? {
             folder: '../hooks',
             mode: 33261
-        })
+        } : {})
     ].concat(pluginsProd)
 };

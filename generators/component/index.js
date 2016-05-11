@@ -142,6 +142,7 @@ var Generator = module.exports = ComponentGenerator.extend({
                         componentnameClass: this.componentnameClass
                     }
                 );
+                // not needed as ngux-loader setup in webpack-config.js will now put ngux subdir and files in dist
                 this.fs.copyTpl(
                     this.templatePath('ngux/_component.js'),
                     this.destinationPath(path.join(destinationPath, 'ngux', this.componentname + '.js'))

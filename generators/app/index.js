@@ -178,6 +178,7 @@ module.exports = generators.Base.extend({
             this.templatePath('tslint.json'),
             this.destinationPath('tslint.json')
         );
+
         this.fs.copyTpl(
             this.templatePath('webpack.config.js'),
             this.destinationPath('webpack.config.js')
@@ -186,6 +187,11 @@ module.exports = generators.Base.extend({
         this.fs.copyTpl(
             this.templatePath('tsd.json'),
             this.destinationPath('tsd.json')
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('typedoc.json'),
+            this.destinationPath('typedoc.json')
         );
 
         this.fs.copyTpl(
