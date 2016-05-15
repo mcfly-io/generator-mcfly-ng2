@@ -81,7 +81,7 @@ You have access to the following npm scripts:
 * **npm run ionic:serve:lab** (run an ionic2 app in the browser in lab mode)
 * **npm run ionic:emulate** (run an ionic2 app in the emulator)
 
->*NB: Normally, the webpack ChangeMode plugin (`plugins/ChangeModePlugin.js`) should make sure that the ionic hooks in the dist folder are executable, if *
+>*N.B.: Normally, the webpack ChangeMode plugin (`plugins/ChangeModePlugin.js`) should make sure that the ionic hooks in the dist folder are executable. If however you get errors like these:`Running command: <path_to_hook_dir> <path_to_hook.js> <path_to_ionic_target_dist>` `Error: spawn EACCES`, use **npm run ionic:hooks:chmodx** to fix the hooks.*
 
 ## Distribution
 Note that the code is distributed to the `dist` folder    
