@@ -12,8 +12,6 @@
   },
   "scripts": {
     "build": "webpack --progress --profile --display-error-details --display-cached",
-    "postbuild": "npm run copy:all",
-    "prewatch": "npm run copy:all # need to run this before watch",
     "watch": "webpack --watch --progress --profile --display-error-details --display-cached",
 
     "tslint": "tslint -c tslint.json \"<%=clientFolder%>/**/*.ts\" \"test/**/*.ts\" \"fuse/**/*.ts\" ",
@@ -21,10 +19,15 @@
     "clean": "rimraf dist coverage reports",
     "clean:docs": "rimraf doc",
 
-    "copy:all": "npm run copy:resources && npm run copy:fonts &&  npm run copy:fuse",
-    "copy:resources": "mkdir -p dist/${TARGET-app}/${MODE-dev} && cp -r <%=clientFolder%>/resources dist/${TARGET-app}/${MODE-dev}",
-    "copy:fonts": "mkdir -p dist/${TARGET-app}/${MODE-dev} && cp -r <%=clientFolder%>/fonts dist/${TARGET-app}/${MODE-dev}",
-    "copy:fuse": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/index.ux ]; then mkdir -p dist/${TARGET-app}/${MODE-dev}/fuse && cp fuse/*.js dist/${TARGET-app}/${MODE-dev}/fuse; fi",
+    "error:unbuilt": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m has not been built in mode \\x1B[1;35m${MODE-dev}\\x1B[0m. Please run \\x1B[1mTARGET=${TARGET-app} MODE=${MODE-dev} npm run build\\x1B[0m and try again.\" && exit 1",
+    "error:not:ionic": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid ionic target. Please choose a valid target by setting \\x1B[1mTARGET=\\<ionic_target\\>\\x1B[0m before running the command and try again.\nIf you have not scaffolded a valid ionic target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select ionic.\" && exit 1",
+    "error:not:fuse": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid fuse target. Please choose a valid target by setting \\x1B[1mTARGET=\\<fuse_target\\>\\x1B[0m before running the command and try again.\nIf you have not scaffolded a valid fuse target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select fuse.\" && exit 1",
+    "error:missing:platform": "echo \"\\x1B[1;30;41mError!\\x1B[0m No \\x1B[1;35mPLATFORM\\x1B[0m variable specified. Please choose a valid platform by setting \\x1B[1mPLATFORM=ios\\x1B[0m or \\x1B[1mPLATFORM=android\\x1B[0m before running the command and try again.\" && exit 1",
+
+    "check:target:ionic": "if [ ! -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then npm run error:not:ionic; fi",
+    "check:target:fuse": "if [ ! -f <%=clientFolder%>/scripts/${TARGET-app}/index.ux ]; then npm run error:not:fuse; fi",
+    "check:already:built": "if [ ! -d dist/${TARGET-app}/${MODE-dev}/ ]; then npm run error:unbuilt; fi",
+    "check:ionic:platform": "if [ -z ${PLATFORM} ]; then error:missing:platform; elif [ ! -d dist/${TARGET-app}/${MODE-dev}/platforms/${PLATFORM} ]; then (OPERATION=add npm run ionic:platform); fi",
 
     "lint": "npm run tslint && npm run eslint",
     "tslint": "tslint -c tslint.json \"<%=clientFolder%>/**/*.ts\" \"test/**/*.ts\" \"fuse/**/*.ts\" ",
@@ -46,10 +49,11 @@
     "e2e": "ts-node node_modules/.bin/protractor",
     "e2e:live": "protractor --elementExplorer",
 
-    "ionic:hooks:chmodx": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then find -L dist/${TARGET-app}/${MODE-dev}/hooks -type f -and -exec chmod +x {} \";\"; fi",
-    "ionic:package:copy": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then cp -f dist/${TARGET-app}/${MODE-dev}/package.json <%=clientFolder%>/scripts/${TARGET-app}/package.json; fi",
-    "preionic:platform": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml -a ! -d dist/${TARGET-app}/${MODE-dev}/ ]; then echo \"Error! Cannot run ionic platform: Please run 'TARGET=${TARGET-app} MODE=${MODE-dev} npm run build' first.\" && exit 1; fi",
-    "ionic:platform": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then (cd dist/${TARGET-app}/${MODE-dev} && for p in ${PLATFORM-(ios android)}; do for o in ${OPERATION-(rm add)}; do ionic platform $o $p ${OPTIONS}; done; done); fi",
+    "ionic:hooks:chmodx": "find -L dist/${TARGET-app}/${MODE-dev}/hooks -type f -and -exec chmod +x {} \";\"",
+    "ionic:package:copy": "cp -f dist/${TARGET-app}/${MODE-dev}/package.json <%=clientFolder%>/scripts/${TARGET-app}/package.json",
+    
+    "preionic:platform": "npm run check:target:ionic --silent && npm run check:already:built --silent",
+    "ionic:platform": "(cd dist/${TARGET-app}/${MODE-dev} && for p in ${PLATFORM-(ios android)}; do for o in ${OPERATION-(rm add)}; do ionic platform $o $p ${OPTIONS}; done; done)",
     "postionic:platform": "npm run ionic:package:copy",
     "ionic:platform:rm": "OPERATION=rm npm run ionic:platform",
     "ionic:platform:add": "OPERATION=add npm run ionic:platform",
@@ -60,24 +64,25 @@
     "ionic:platform:rm:ios": "PLATFORM=ios OPERATION=rm npm run ionic:platform",
     "ionic:platform:add:ios": "PLATFORM=ios OPERATION=add npm run ionic:platform",
 
-    "preionic:plugin": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml -a ! -d dist/${TARGET-app}/${MODE-dev}/ ]; then echo \"Error! Cannot run ionic plugin: Please run 'TARGET=${TARGET-app} MODE=${MODE-dev} npm run build' first.\" && exit 1; fi",
-    "ionic:plugin": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then (cd dist/${TARGET-app}/${MODE-dev} && for p in ${PLUGIN}; do for o in ${OPERATION-(rm add)}; do ionic plugin $o $p ${OPTIONS}; done; done); fi",
+    "preionic:plugin": "npm run check:target:ionic --silent && npm run check:already:built --silent",
+    "ionic:plugin": "(cd dist/${TARGET-app}/${MODE-dev} && for p in ${PLUGIN}; do for o in ${OPERATION-(rm add)}; do ionic plugin $o $p ${OPTIONS}; done; done)",
     "postionic:plugin": "npm run ionic:package:copy",
     "ionic:plugin:rm": "OPERATION=rm npm run ionic:plugin",
     "ionic:plugin:add": "OPERATION=add npm run ionic:plugin",
 
-    "preionic:run": "npm run copy:all && if [ -z \"${PLATFORM}\" ]; then PLATFORM+=(ios); fi && if [ ! -d dist/${TARGET-app}/${MODE-dev}/platforms/${PLATFORM} ]; then OPERATION=add npm run ionic:platform; elif fi",
+    "preionic:run": "npm run check:target:ionic --silent && npm run check:already:built --silent && npm run check:ionic:platform --silent",
     "ionic:run": "(cd dist/${TARGET-app}/${MODE-dev} && ionic run ${PLATFORM} ${OPTIONS-(--device)})",
-    "ionic:run:android": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then PLATFORM=android npm run ionic:run; fi",
-    "ionic:run:ios": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then PLATFORM=ios npm run ionic:run; fi",
-    "preionic:serve": "npm run copy:all",
-    "ionic:serve": "(npm run watch) & (cd dist/${TARGET-app}/${MODE-dev} && ionic serve ${OPTIONS})",
+    "ionic:run:android": "PLATFORM=android npm run ionic:run",
+    "ionic:run:ios": "PLATFORM=ios npm run ionic:run",
+    "preionic:serve": "npm run check:target:ionic --silent && npm run check:already:built --silent",
+    "ionic:serve": "((npm run watch) & (cd dist/${TARGET-app}/${MODE-dev} && ionic serve ${OPTIONS}))",
     "ionic:serve:lab": "OPTIONS+=(--lab) npm run ionic:serve",
-    "preionic:emulate": "npm run copy:all",
-    "ionic:emulate": "npm run watch & cd dist/${TARGET-app}/${MODE-dev} && ionic emulate",
+    "preionic:emulate": "npm run check:target:ionic --silent && npm run check:already:built --silent",
+    "ionic:emulate": "((npm run watch) & (cd dist/${TARGET-app}/${MODE-dev} && ionic emulate))",
 
+    "prefuse:cli": "npm run check:target:fuse --silent && npm run check:already:built --silent",
     "fuse:clean": "(cd dist/${TARGET-app}/${MODE-dev} && uno clean)",
-    "prefuse:cli": "npm run copy:all",
+    "prefuse:cli": "npm run check:target:fuse --silent && npm run check:already:built --silent",
     "fuse:cli": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/index.ux ]; then (cd dist/${TARGET-app}/${MODE-dev} && fuse ${COMMAND} ${ARGS}); fi",
     "fuse:build:ios": "COMMAND=build OPTIONS+=(--target=iOS --run) npm run fuse:cli",
     "fuse:build:android": "COMMAND=build OPTIONS+=(--target=android --run) npm run fuse:cli",
@@ -85,6 +90,7 @@
     "fuse:preview:ios": "COMMAND=preview OPTIONS+=(--target=ios) npm run fuse:cli",
     "fuse:preview:android": "COMMAND=preview OPTIONS+=(--target=android) npm run fuse:cli",
 
+    "preelectron": "npm run check:already:built --silent",
     "electron": "electron dist/${TARGET-app}/${MODE-dev}",
 
     "postinstall": "tsd install"    

@@ -132,7 +132,6 @@ describe(generatorShortname + ':component', function() {
                 pathdir + 'myDummy.ts',
                 pathdir + 'myDummy.ngux',
                 pathdir + 'myDummy.spec.ts',
-                pathdir + 'ngux/myDummy.js'
             ];
 
             assert.file(expectedFiles);
@@ -140,7 +139,8 @@ describe(generatorShortname + ':component', function() {
             var expectedContents = [
                 [pathdir + 'myDummy.ts', /export class MyDummy/],
                 [pathdir + 'myDummy.ts', /selector: 'MyDummy'/],
-                [pathdir + 'myDummy.spec.ts', /import { MyDummy } from '\.\/myDummy.ts';/],
+                [pathdir + 'myDummy.ts', /template: require\(\'myDummy.ngux\'\)/],
+                [pathdir + 'myDummy.spec.ts', /import { MyDummy } from '\.\/myDummy\.ts';/],
                 [pathdir + 'myDummy.spec.ts', /createAsync\(MyDummy\)/],
                 [pathdir + 'myDummy.ngux', /ng:Selector=\"MyDummy\"/]
 
