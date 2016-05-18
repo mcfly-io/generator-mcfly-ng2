@@ -1,20 +1,22 @@
 import { it, injectAsync, beforeEachProviders, TestComponentBuilder } from 'angular2/testing';
 import { <%=componentnameClass%> } from './<%=componentname%>.ts';
 
-describe('Component: <%=componentnameClass%>', () => {
+describe('Module: <%=modulename%>', () => {
+    describe('Component: <%=componentnameClass%>', () => {
 
-    beforeEachProviders(() => []);
+        beforeEachProviders(() => []);
 
-    it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
-        return tcb.createAsync(<%=componentnameClass%>)
-            .then((fixture) => {
-                let element = fixture.debugElement.nativeElement;
-                let cmpInstance = <<%=componentnameClass%>>fixture.debugElement.componentInstance;
-                fixture.detectChanges();
+        it('should be defined', injectAsync([TestComponentBuilder], (tcb) => {
+            return tcb.createAsync(<%=componentnameClass%>)
+                .then((fixture) => {
+                    let element = fixture.debugElement.nativeElement;
+                    let cmpInstance = <<%=componentnameClass%>>fixture.debugElement.componentInstance;
+                    fixture.detectChanges();
 
-                expect(cmpInstance).toBeDefined();
-                expect(element).toBeDefined();
-            });
-    }));
+                    expect(cmpInstance).toBeDefined();
+                    expect(element).toBeDefined();
+                });
+        }));
 
+    });
 });

@@ -42,7 +42,8 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.servicenameFile + '.service.spec.ts')), {
                 servicenameFile: this.servicenameFile,
                 servicename: this.servicename,
-                servicenameClass: this.servicenameClass
+                servicenameClass: this.servicenameClass,
+                modulename: this.modulename
             }
         );
 

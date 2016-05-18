@@ -190,6 +190,7 @@ export class FuseRenderer implements Renderer {
         if (window.fusejs) {
             //console.log(text);
         } else {
+            // tslint:disable-next-line:no-console
             window.console.log(text, args);
         }
     }

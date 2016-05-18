@@ -20,8 +20,8 @@
     "clean:docs": "rimraf doc",
 
     "error:unbuilt": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m has not been built in mode \\x1B[1;35m${MODE-dev}\\x1B[0m. Please run \\x1B[1mTARGET=${TARGET-app} MODE=${MODE-dev} npm run build\\x1B[0m and try again.\" && exit 1",
-    "error:not:ionic": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid ionic target. Please choose a valid target by setting \\x1B[1mTARGET=\\<ionic_target\\>\\x1B[0m before running the command and try again.\nIf you have not scaffolded a valid ionic target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select ionic.\" && exit 1",
-    "error:not:fuse": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid fuse target. Please choose a valid target by setting \\x1B[1mTARGET=\\<fuse_target\\>\\x1B[0m before running the command and try again.\nIf you have not scaffolded a valid fuse target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select fuse.\" && exit 1",
+    "error:not:ionic": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid ionic target. Please choose a valid target by setting \\x1B[1mTARGET=<ionic_target>\\x1B[0m before running the command and try again. If you have not scaffolded a valid ionic target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select ionic.\" && exit 1",
+    "error:not:fuse": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid fuse target. Please choose a valid target by setting \\x1B[1mTARGET=<fuse_target>\\x1B[0m before running the command and try again. If you have not scaffolded a valid fuse target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select fuse.\" && exit 1",
     "error:missing:platform": "echo \"\\x1B[1;30;41mError!\\x1B[0m No \\x1B[1;35mPLATFORM\\x1B[0m variable specified. Please choose a valid platform by setting \\x1B[1mPLATFORM=ios\\x1B[0m or \\x1B[1mPLATFORM=android\\x1B[0m before running the command and try again.\" && exit 1",
 
     "check:target:ionic": "if [ ! -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then npm run error:not:ionic; fi",
@@ -83,7 +83,7 @@
     "prefuse:cli": "npm run check:target:fuse --silent && npm run check:already:built --silent",
     "fuse:clean": "(cd dist/${TARGET-app}/${MODE-dev} && uno clean)",
     "prefuse:cli": "npm run check:target:fuse --silent && npm run check:already:built --silent",
-    "fuse:cli": "if [ -f <%=clientFolder%>/scripts/${TARGET-app}/index.ux ]; then (cd dist/${TARGET-app}/${MODE-dev} && fuse ${COMMAND} ${ARGS}); fi",
+    "fuse:cli": "(cd dist/${TARGET-app}/${MODE-dev} && fuse ${COMMAND} ${ARGS})",
     "fuse:build:ios": "COMMAND=build OPTIONS+=(--target=iOS --run) npm run fuse:cli",
     "fuse:build:android": "COMMAND=build OPTIONS+=(--target=android --run) npm run fuse:cli",
     "fuse:preview": "COMMAND=preview npm run fuse:cli",

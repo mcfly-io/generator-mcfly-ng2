@@ -1,12 +1,14 @@
 import { it, beforeEachProviders } from 'angular2/testing';
-import { <%=directivenameClass %> } from './<%=directivenameFile%>.directive';
+import { <%=directivenameClass%> } from './<%=directivenameFile%>.directive';
 
-describe('Directive: <%=directivenameClass%>', () => {
+describe('Module: <%=modulename%>', () => {
+    describe('Directive: <%=directivenameClass%>', () => {
 
-    beforeEachProviders(() => []);
+        beforeEachProviders(() => []);
 
-    it('should have a url', () => {
-        expect(true).toEqual(true);
+        it('should have a url', () => {
+            expect(true).toEqual(true);
+        });
+
     });
-
 });

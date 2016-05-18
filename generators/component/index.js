@@ -64,7 +64,8 @@ var Generator = module.exports = ComponentGenerator.extend({
                     this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
-                        componentnameClass: this.componentnameClass
+                        componentnameClass: this.componentnameClass,
+                        modulename: this.modulename
                     }
                 );
 
@@ -96,7 +97,8 @@ var Generator = module.exports = ComponentGenerator.extend({
                     this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
-                        componentnameClass: this.componentnameClass
+                        componentnameClass: this.componentnameClass,
+                        modulename: this.modulename
                     }
                 );
 
@@ -131,7 +133,8 @@ var Generator = module.exports = ComponentGenerator.extend({
                     this.destinationPath(path.join(destinationPath, this.componentname + '.spec.ts')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
-                        componentnameClass: this.componentnameClass
+                        componentnameClass: this.componentnameClass,
+                        modulename: this.modulename
                     }
                 );
                 this.fs.copyTpl(
