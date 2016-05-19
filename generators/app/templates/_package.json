@@ -14,20 +14,8 @@
     "build": "webpack --progress --profile --display-error-details --display-cached",
     "watch": "webpack --watch --progress --profile --display-error-details --display-cached",
 
-    "tslint": "tslint -c tslint.json \"<%=clientFolder%>/**/*.ts\" \"test/**/*.ts\" \"fuse/**/*.ts\" ",
-    "eslint": "eslint .",
     "clean": "rimraf dist coverage reports",
     "clean:docs": "rimraf doc",
-
-    "error:unbuilt": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m has not been built in mode \\x1B[1;35m${MODE-dev}\\x1B[0m. Please run \\x1B[1mTARGET=${TARGET-app} MODE=${MODE-dev} npm run build\\x1B[0m and try again.\" && exit 1",
-    "error:not:ionic": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid ionic target. Please choose a valid target by setting \\x1B[1mTARGET=<ionic_target>\\x1B[0m before running the command and try again. If you have not scaffolded a valid ionic target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select ionic.\" && exit 1",
-    "error:not:fuse": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid fuse target. Please choose a valid target by setting \\x1B[1mTARGET=<fuse_target>\\x1B[0m before running the command and try again. If you have not scaffolded a valid fuse target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select fuse.\" && exit 1",
-    "error:missing:platform": "echo \"\\x1B[1;30;41mError!\\x1B[0m No \\x1B[1;35mPLATFORM\\x1B[0m variable specified. Please choose a valid platform by setting \\x1B[1mPLATFORM=ios\\x1B[0m or \\x1B[1mPLATFORM=android\\x1B[0m before running the command and try again.\" && exit 1",
-
-    "check:target:ionic": "if [ ! -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then npm run error:not:ionic; fi",
-    "check:target:fuse": "if [ ! -f <%=clientFolder%>/scripts/${TARGET-app}/index.ux ]; then npm run error:not:fuse; fi",
-    "check:already:built": "if [ ! -d dist/${TARGET-app}/${MODE-dev}/ ]; then npm run error:unbuilt; fi",
-    "check:ionic:platform": "if [ -z ${PLATFORM} ]; then error:missing:platform; elif [ ! -d dist/${TARGET-app}/${MODE-dev}/platforms/${PLATFORM} ]; then (OPERATION=add npm run ionic:platform); fi",
 
     "lint": "npm run tslint && npm run eslint",
     "tslint": "tslint -c tslint.json \"<%=clientFolder%>/**/*.ts\" \"test/**/*.ts\" \"fuse/**/*.ts\" ",
@@ -51,7 +39,7 @@
 
     "ionic:hooks:chmodx": "find -L dist/${TARGET-app}/${MODE-dev}/hooks -type f -and -exec chmod +x {} \";\"",
     "ionic:package:copy": "cp -f dist/${TARGET-app}/${MODE-dev}/package.json <%=clientFolder%>/scripts/${TARGET-app}/package.json",
-    
+
     "preionic:platform": "npm run check:target:ionic --silent && npm run check:already:built --silent",
     "ionic:platform": "(cd dist/${TARGET-app}/${MODE-dev} && for p in ${PLATFORM-(ios android)}; do for o in ${OPERATION-(rm add)}; do ionic platform $o $p ${OPTIONS}; done; done)",
     "postionic:platform": "npm run ionic:package:copy",
@@ -93,7 +81,17 @@
     "preelectron": "npm run check:already:built --silent",
     "electron": "electron dist/${TARGET-app}/${MODE-dev}",
 
-    "postinstall": "tsd install"    
+    "postinstall": "tsd install",
+
+    "error:unbuilt": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m has not been built in mode \\x1B[1;35m${MODE-dev}\\x1B[0m. Please run \\x1B[1mTARGET=${TARGET-app} MODE=${MODE-dev} npm run build\\x1B[0m and try again.\" && exit 1",
+    "error:not:ionic": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid ionic target. Please choose a valid target by setting \\x1B[1mTARGET=<ionic_target>\\x1B[0m before running the command and try again. If you have not scaffolded a valid ionic target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select ionic.\" && exit 1",
+    "error:not:fuse": "echo \"\\x1B[1;30;41mError!\\x1B[0m Target \\x1B[1;35m${TARGET-app}\\x1B[0m is not a valid fuse target. Please choose a valid target by setting \\x1B[1mTARGET=<fuse_target>\\x1B[0m before running the command and try again. If you have not scaffolded a valid fuse target yet, please run \\x1B[1myo mcfly-ng2:target\\x1B[0m and select fuse.\" && exit 1",
+    "error:missing:platform": "echo \"\\x1B[1;30;41mError!\\x1B[0m No \\x1B[1;35mPLATFORM\\x1B[0m variable specified. Please choose a valid platform by setting \\x1B[1mPLATFORM=ios\\x1B[0m or \\x1B[1mPLATFORM=android\\x1B[0m before running the command and try again.\" && exit 1",
+
+    "check:target:ionic": "if [ ! -f <%=clientFolder%>/scripts/${TARGET-app}/config.xml ]; then npm run error:not:ionic; fi",
+    "check:target:fuse": "if [ ! -f <%=clientFolder%>/scripts/${TARGET-app}/index.ux ]; then npm run error:not:fuse; fi",
+    "check:already:built": "if [ ! -d dist/${TARGET-app}/${MODE-dev}/ ]; then npm run error:unbuilt; fi",
+    "check:ionic:platform": "if [ -z ${PLATFORM} ]; then error:missing:platform; elif [ ! -d dist/${TARGET-app}/${MODE-dev}/platforms/${PLATFORM} ]; then (OPERATION=add npm run ionic:platform); fi"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.8",
