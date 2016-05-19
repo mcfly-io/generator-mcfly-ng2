@@ -41,18 +41,47 @@ You then have access to the following sub generators:
 > `fuse` is a fusetools mobile app    
 > `ionic2` is an Ionic 2 mobile app (cordova)    
 
-You have access to the following npm scripts
+You have access to the following npm scripts:
+
+***Clean & Build***
 * **npm run clean** (clean the `dist` folder)
 * **npm run build** (build the code to the `dist` folder)
 * **npm run browsersync** (open a live browser on port 5000, recompiling the code on each change)
 * **npm run webpack:server** (same as browsersync but uses webpack-dev-server)
+
+***Test***
 * **npm run lint** (run eslint and tslint)
 * **npm run karma** (run unit test)
 * **npm run karma:watch** (run unit test in watch mode)
 * **npm run e2e** (run e2e test - make sure that browsersync or webpack:server is running in another console window) 
 * **npm run e2e:live** (run e2e test and stop to allow debug - make sure that browsersync or webpack:server is running in another console window) 
+
+***Docs***
+* **npm run docs** (run typedoc using the `typedoc.json` config file)
+
+>*NB: All fuse & ionic npm commands accept an optional `OPTIONS=(...)` variable to pass additional options to those clis. `OPTIONS` can either be a single plugin name or a space-separated bash/zsh list, i.e. enclosed in parens, `(...)`, or in quotation marks `"..."`*
+
+***Fuse Commands***
+* **npm run fuse:clean** (run `uno clean` to clean up generated resources in your fuse target)
+* **npm run fuse:build\[:*platform*\]** (build and run your ionic target on a device)
+    - This command takes an optional platform (`ios` or `android`), if omitted the command will do both of the alternatives in this order.
+* **npm run fuse:preview\[:*platform*\]** (build and run your ionic target on a device)
+    - This command takes an optional platform (`ios` or `android`), if omitted the command will do both of the alternatives in this order.
+
+***Ionic Commands***
+* **npm run ionic:platform\[:*operation*\]\[:*platform*\]** (remove or add platforms to your ionic target)
+    - This command takes an optional operation (`rm` or `add`) and platform (`ios` or `android`), if either is omitted the command will do both of the alternatives in this order.
+* **PLUGIN=(ionic-plugin1[ ionic-plugin2]) npm run ionic:plugin\[:*operation*\]** (remove or add plugins to your ionic target)
+    - This command takes an optional operation (`rm` or `add`), if it is omitted the command will attempt to remove and then add the plugin.
+    - This command is often run without the operation parameter.
+    - `PLUGIN` can either be a single plugin name or a space-separated bash/zsh list, i.e. enclosed in parens, `(...)`, or in quotation marks `"..."`
+* **npm run ionic:run\[:*platform*\]** (build and run your ionic target on a device)
+    - This command takes an optional platform (`ios` or `android`), if omitted the command will do both of the alternatives in this order.
 * **npm run ionic:serve** (run an ionic2 app in the browser)
+* **npm run ionic:serve:lab** (run an ionic2 app in the browser in lab mode)
 * **npm run ionic:emulate** (run an ionic2 app in the emulator)
+
+>*N.B.: Normally, the webpack ChangeMode plugin (`plugins/ChangeModePlugin.js`) should make sure that the ionic hooks in the dist folder are executable. If however you get errors like these:`Running command: <path_to_hook_dir> <path_to_hook.js> <path_to_ionic_target_dist>` `Error: spawn EACCES`, use **npm run ionic:hooks:chmodx** to fix the hooks.*
 
 ## Distribution
 Note that the code is distributed to the `dist` folder    
@@ -69,7 +98,7 @@ The same apply to the `webpack:server` task or `browsersync` task
 `npm run webpack:server`:  compile and open a the webpack reload browser    
 You can pass a different TARGET or MODE using the following command:    
 ```sh
-[TARGET=newtarget MODE=dev] npm run webpack-server
+[TARGET=newtarget MODE=dev] npm run webpack:server
 ```
 
 ## Launching

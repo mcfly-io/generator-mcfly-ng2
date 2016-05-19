@@ -176,6 +176,11 @@ module.exports = generators.Base.extend({
                     this.templatePath('hooks/before_platform_add/init_directories.js'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'before_platform_add', 'init_directories.js'))
                 );
+
+                this.fs.copy(
+                    this.templatePath('hooks/before_plugin_add/init_directories.js'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'hooks', 'before_plugin_add', 'init_directories.js'))
+                );
                 break;
 
             case 'fuse':

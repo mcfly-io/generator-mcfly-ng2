@@ -42,7 +42,8 @@ var Generator = module.exports = ComponentGenerator.extend({
             this.destinationPath(path.join(destinationPath, this.pipenameFile + '.pipe.spec.ts')), {
                 pipenameFile: this.pipenameFile,
                 pipename: this.pipename,
-                pipenameClass: this.pipenameClass
+                pipenameClass: this.pipenameClass,
+                modulename: this.modulename
             }
         );
 

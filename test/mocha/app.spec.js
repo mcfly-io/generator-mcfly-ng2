@@ -58,6 +58,7 @@ describe(generatorShortname + ':app', function() {
                 'fuse/xhr.ts',
                 'fuse/zone.ts',
                 'plugins/PostCompilePlugin.js',
+                'plugins/ChangeModePlugin.js',
                 'typings/fuse/fuse.d.ts'
             ];
             assert.file(expectedFiles);
