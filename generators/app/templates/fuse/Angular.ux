@@ -1,0 +1,3 @@
+<Panel ux:Class="Angular">
+	<JavaScript File="fuseBootstrap.js" />
+</Panel>

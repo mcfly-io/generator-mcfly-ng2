@@ -1,3 +1,12 @@
+/* eslint-disable */
+if (!window.isFuse) {
+    //window = this;
+    window.addEventListener = window.EventTarget.prototype.addEventListener;
+    window.removeEventListener = window.EventTarget.prototype.removeEventListener;
+    require('fuse/localStorage.js');
+}
+/* eslint-enable */
+
 'use strict';
 var Observable = require('FuseJS/Observable');
 window.isFuse = true;
@@ -11,31 +20,10 @@ window.fusejs = window.fusejs || {
     context: Observable()
 };
 
-function debounce(fn, delay) {
-    return function() {
-        var self = this;
-        var args = arguments;
-        if (window.fusejs.timers.length > 0) {
-            for (var i = 0; i < window.fusejs.timers.length; i++) {
-                clearTimeout(window.fusejs.timers[i]);
-            }
-            window.fusejs.timers = [];
-        }
-        var timer = setTimeout(function() {
-            fn.apply(self, args);
-        }, delay);
-        window.fusejs.timers.push(timer);
-    };
-}
-
 function loadRenderer() {
     if (!window.fusejs.angularRenderer) {
-        // window.context = {
-        //     id: 'root',
-        //     depth: 0,
-        //     children: Observable()
-        // };
-        var AngularRendererClass = require('AngularRenderer');
+
+        var AngularRendererClass = require('fuse/fuseRenderer.js');
         window.fusejs.angularRenderer = new AngularRendererClass(window.fusejs.context);
         require('common');
         require('vendor');
@@ -59,32 +47,41 @@ function reloadBundle() {
 
 function bootstrapAngular() {
     /// DISPOSE PREVIOUS APPLICATION : ON EVERY CHANGE
-    if (window.fusejs.angularRenderer) {
-        window.fusejs.angularRenderer.reset();
-        //window.fusejs.context.children.clear();
-        window.fusejs.context.clear();
-        if (window.fusejs.applicationRef) {
-            try {
-                window.fusejs.applicationRef.dispose();
-            } catch (err) {}
-        }
-    }
+    //if (window.fusejs.angularRenderer) {
+    //window.fusejs.angularRenderer.reset();
+    // window.fusejs.context.clear();
+    // if (window.fusejs.applicationRef) {
+    //     try {
+    //         window.fusejs.applicationRef.dispose();
+    //     } catch (err) {}
+    // }
+    //}
     /// BOOTSTRAP APPLICATION : ON EVERY CHANGE
-    return window.fusejs.bootstraper.bootstrap(window.fusejs.rootComponent);
+    return window.fusejs.bootstraper();
 }
 
 function reloadAngular() {
+    //console.log('reloadAngular');
+    //console.log(window.isLoading);
     window.isLoading = true;
     loadRenderer();
     reloadBundle();
     bootstrapAngular().then(function(applicationRef) {
         window.fusejs.applicationRef = applicationRef;
-        window.fusejs.angularRenderer.print();
+        setTimeout(function() {
+            //console.log('resetting is loading');
+            window.isLoading = false;
+        }, 20000);
+        //window.fusejs.angularRenderer.print();
     });
 }
 try {
-    debounce(reloadAngular, 5000)();
+    if (!window.isLoading) {
+        reloadAngular();
+    }
 } catch (err) {
-
+    /* eslint-disable */
+    console.log(err);
+    /* eslint-enable */
 }
 module.exports = window.fusejs.context;

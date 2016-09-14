@@ -1,12 +1,24 @@
-import { provide } from 'angular2/core';
-import { bootstrap } from 'angular2/platform/browser';
-import { ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy } from 'angular2/router';
-import { HTTP_PROVIDERS } from 'angular2/http';
+import { NgModule, enableProdMode } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+//import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//import { RouterModule } from '@angular/router';
+
+enableProdMode();
+
 import { MainComponent } from './components/main/main.component';
+@NgModule({
+    declarations: [MainComponent],
+    imports: [
+        BrowserModule, FormsModule, ReactiveFormsModule
+    ],
+    providers: [],
+    bootstrap: [MainComponent]
+})
+class MainModule { }
 
-//import {enableProdMode} from 'angular2/core';
-//enableProdMode();
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-bootstrap(MainComponent, [HTTP_PROVIDERS, ROUTER_PROVIDERS, provide(LocationStrategy, {
-    useClass: HashLocationStrategy
-})]);
+document.addEventListener('DOMContentLoaded', () => {
+    platformBrowserDynamic().bootstrapModule(MainModule);
+});

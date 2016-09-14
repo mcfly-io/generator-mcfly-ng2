@@ -1,4 +1,4 @@
-<Panel ng:Selector="<%=componentnameClass%>">
+<Panel ng:Selector="<%=componentnameFile%>">
     <Rectangle Background="#ffff00" Height="100">
         <Text Value="Hello" />
     </Rectangle>

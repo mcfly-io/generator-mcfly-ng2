@@ -121,7 +121,7 @@ var Generator = module.exports = ComponentGenerator.extend({
             case 'fuse':
                 this.fs.copyTpl(
                     this.templatePath('_component.fuse.ts'),
-                    this.destinationPath(path.join(destinationPath, this.componentname + '.ts')), {
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ts')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
                         componentnameClass: this.componentnameClass
@@ -130,7 +130,7 @@ var Generator = module.exports = ComponentGenerator.extend({
 
                 this.fs.copyTpl(
                     this.templatePath('_component.fuse.spec.ts'),
-                    this.destinationPath(path.join(destinationPath, this.componentname + '.spec.ts')), {
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
                         componentnameClass: this.componentnameClass,
@@ -139,7 +139,7 @@ var Generator = module.exports = ComponentGenerator.extend({
                 );
                 this.fs.copyTpl(
                     this.templatePath('_component.ngux'),
-                    this.destinationPath(path.join(destinationPath, this.componentname + '.ngux')), {
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ngux')), {
                         componentnameFile: this.componentnameFile,
                         componentname: this.componentname,
                         componentnameClass: this.componentnameClass

@@ -1,7 +1,6 @@
-import { Injectable } from 'angular2/src/core/di';
-import { Renderer, RenderComponentType, RootRenderer, RenderDebugInfo } from 'angular2/src/core/render/api';
-import { isBlank, isPresent } from 'angular2/src/facade/lang';
+import { Injectable, Renderer, RenderComponentType, RootRenderer } from '@angular/core';
 import { Element } from './element';
+import { isPresent, isBlank } from './lang-facade';
 
 @Injectable()
 export class FuseRootRenderer implements RootRenderer {
@@ -131,7 +130,8 @@ export class FuseRenderer implements Renderer {
 
     public listen(renderElement: Element, name: string, callback: Function): Function {
         this.consoleLog('listen', arguments);
-        let zonedCallback = global['zone'].bind(callback);
+        let zonedCallback = (<any>global).Zone.current.wrap(callback);
+        //        let zonedCallback = global['zone'].bind(callback);
         if (window.fusejs) {
             window.fusejs.angularRenderer.setEventListener(renderElement.id, renderElement.type, name, zonedCallback);
         }
@@ -182,9 +182,13 @@ export class FuseRenderer implements Renderer {
         this.consoleLog('setText', arguments);
     }
 
-    public setElementDebugInfo(renderElement: Element, info: RenderDebugInfo) {
+    public setElementDebugInfo(renderElement: Element, info: any) {
         //
     }
+
+    public animate(element: any, startingStyles: any, keyframes: any, duration: number, delay: number, easing: string): any {
+        return null;
+    };
 
     private consoleLog(text: string, args: any) {
         if (window.fusejs) {
@@ -194,4 +198,5 @@ export class FuseRenderer implements Renderer {
             window.console.log(text, args);
         }
     }
+
 }

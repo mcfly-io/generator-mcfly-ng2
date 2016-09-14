@@ -1,4 +1,3 @@
-///<reference path="../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
 import 'es6-shim';
 // assert = function() {
 //     return true;
@@ -8,7 +7,7 @@ import 'es6-shim';
 // 
 // console.log('global');
 // console.dir(global);
-window.console = console;
+//window['console'] = console;
 window.JSON = JSON;
 window.RegExp = RegExp;
 window.Map = Map;
@@ -20,7 +19,7 @@ console.warn = console.log;
 console.error = console.log;
 
 window.requireCache = require.cache;
-window.clearWebpackCache = function(originalCache) {
+window.clearWebpackCache = function(originalCache: any) {
 
     let cache = require.cache;
     //     delete require.cache[require.resolve('bundle')];

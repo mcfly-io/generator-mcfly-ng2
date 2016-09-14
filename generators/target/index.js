@@ -67,7 +67,7 @@ module.exports = generators.Base.extend({
             name: 'targettype',
             default: 'web',
             message: 'What type of target application do you want to create?',
-            choices: ['web', 'fuse', 'ionic2']
+            choices: ['web', 'fuse']
         }];
         this.prompt(prompts, function(answers) {
             this.answers = answers;

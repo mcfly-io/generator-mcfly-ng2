@@ -9,12 +9,31 @@ interface AngularRenderer {
     print(): void;
 }
 
+interface Location {
+    latitude: number;
+    longitude: number;
+    accuracy: number;
+}
+
 interface FuseJS {
     angularRenderer: AngularRenderer;
     applicationRef: any;
     rootComponent: any;
+    platformProviders: Array<any>;
+    routerProviders: Array<any>;
     bootstraper: any;
+    geoLocation: {
+        location: Location,
+        getLocation(timeout: number): Promise<Location>,
+        onChanged(location: Location): any
+        startListening(minimumReportInterval: number, desiredAccuracyInMeters: number): any
+    };
+    camera: {
+        takePicture(options: { targetWidth: number, targetHeight: number, correctOrientation: boolean }): any
+    };
 }
+
+interface Zone { }
 
 interface Window {
     Zone: any;
@@ -30,6 +49,8 @@ interface Window {
     requireCache: any;
     clearWebpackCache: any;
     fusejs: FuseJS;
+    cordova: any;
+    Storage: Function;
+    sessionStorage: any;
+    IonicNative: any;
 }
-
-declare var WorkerGlobalScope;
