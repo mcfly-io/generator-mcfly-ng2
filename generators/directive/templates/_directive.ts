@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer, Input } from '@angular/core';
+import { Directive, ElementRef, Renderer } from '@angular/core';
 
 @Directive({
     selector: '[<%=directivenameFile%>]'

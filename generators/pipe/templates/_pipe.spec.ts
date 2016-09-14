@@ -1,4 +1,3 @@
-import { it } from 'angular2/testing';
 import { <%=pipenameClass %>Pipe } from './<%=pipenameFile%>.pipe';
 
 describe('Module: <%=modulename%>', () => {
