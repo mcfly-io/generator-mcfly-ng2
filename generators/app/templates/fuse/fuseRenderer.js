@@ -6,6 +6,7 @@ function EventFactory() {
     this.callbacks = [];
     var cl = this.callbacks;
     this.raise = function(args) {
+        //console.log('raise');
         // if (args && args.value) {
         //     console.log('Value From outside: ' + args.value);
         // }
@@ -60,6 +61,7 @@ module.exports = function(context) {
 
     this.setAttribute = function(id, attribute, value) {
         //consoleLog('setting node  ' + id + '  in tree for ' + attribute + ' : ' + value);
+        //console.log('setting node  ' + id + '  in tree for ' + attribute + ' : ' + value);
         if (!tree[id] || !tree[id][attribute]) {
             //consoleLog('couldnt find attribute ' + attribute + ' on object ' + id);
             return;
@@ -153,7 +155,7 @@ module.exports = function(context) {
     };
 
     this.setEventListener = function(id, type, eventName, callback) {
-        // consoleLog('setEventListener'); // + id + eventName);
+        consoleLog('setEventListener ' + id + eventName);
         // if (callback) {
         //     consoleLog('callback is defined' + callback.toString());
         // }

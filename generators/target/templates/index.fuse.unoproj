@@ -12,7 +12,7 @@
     "Orientations": "Portrait"
   },
   "Android": {
-    "ApplicationLabel": "<%=appname%>",
+    "ApplicationLabel": "<%= appname %>",
     "Icons": {
       "LDPI": "./resources/android/drawable-ldpi/icon.png",
       "MDPI": "./resources/android/drawable-mdpi/icon.png",
@@ -24,50 +24,41 @@
   },
   "iOS": {
     "Icons": {
-      "iPhone_29_2x": "./resources/ios/icons/icon-small@2x.png",
-      "iPhone_29_3x": "./resources/ios/icons/icon-small@3x.png",
-      "iPhone_40_2x": "./resources/ios/icons/icon-40@2x.png",
-      "iPhone_40_3x": "./resources/ios/icons/icon-40@3x.png",
-      "iPhone_60_2x": "./resources/ios/icons/icon-60@2x.png",
-      "iPhone_60_3x": "./resources/ios/icons/icon-60@3x.png",
-      "iPad_29_1x": "./resources/ios/icons/icon-small.png",
-      "iPad_29_2x": "./resources/ios/icons/icon-small@2x.png",
-      "iPad_40_1x": "./resources/ios/icons/icon-40@2x.png",
-      "iPad_40_2x": "./resources/ios/icons/icon-40@2x.png",
-      "iPad_76_1x": "./resources/ios/icons/icon-76@2x.png",
-      "iPad_76_2x": "./resources/ios/icons/icon-76@2x.png"
+      "iPhone_29_2x": "./resources/ios/icon/icon-small@2x.png",
+      "iPhone_29_3x": "./resources/ios/icon/icon-small@3x.png",
+      "iPhone_40_2x": "./resources/ios/icon/icon-40@2x.png",
+      "iPhone_60_2x": "./resources/ios/icon/icon-60@2x.png",
+      "iPhone_60_3x": "./resources/ios/icon/icon-60@3x.png",
+      "iPad_29_1x": "./resources/ios/icon/icon-small.png",
+      "iPad_29_2x": "./resources/ios/icon/icon-small@2x.png",
+      "iPad_40_1x": "./resources/ios/icon/icon-40@2x.png",
+      "iPad_40_2x": "./resources/ios/icon/icon-40@2x.png",
+      "iPad_76_1x": "./resources/ios/icon/icon-76@2x.png",
+      "iPad_76_2x": "./resources/ios/icon/icon-76@2x.png"
+    },
+     "LaunchImages": {
+      "iPhone_Portrait_1x": "./resources/ios/splash/Default~iphone.png",
+      "iPhone_Portrait_2x": "./resources/ios/splash/Default@2x~iphone.png",
+      "iPhone_Portrait_R4": "./resources/ios/splash/Default-568h@2x~iphone.png",
+      "iPhone_Portrait_R47": "./resources/ios/splash/Default-667h.png",
+      "iPhone_Portrait_R55": "./resources/ios/splash/Default-736h.png",
+      "iPhone_Landscape_R55": "./resources/ios/splash/Default-Landscape-736h.png",
+      "iPad_Portrait_1x": "./resources/ios/splash/Default-Portrait~ipad.png",
+      "iPad_Portrait_2x": "./resources/ios/splash/Default-Portrait@2x~ipad.png",
+      "iPad_Landscape_1x": "./resources/ios/splash/Default-Landscape~ipad.png",
+      "iPad_Landscape_2x": "./resources/ios/splash/Default-Landscape@2x~ipad.png"
     }
   },
   "Packages": [
-        "Fuse.Animations",
-        "Fuse.BasicTheme",
-        "Fuse.Themes",
-        "Fuse.Controls",
-        "Fuse.Designer",
-        "Fuse.Drawing",
-        "Fuse.Drawing.Primitives",
-        "Fuse.Effects",
-        "Fuse.Elements",
-        "Fuse.Entities",
-        "Fuse.Gestures",
-        "Fuse.Navigation",
-        "Fuse.Physics",
-        "Fuse.Shapes",
-        "Fuse.Triggers",
-        "Fuse.Reactive",
-        "Fuse.Android",
-        "Fuse.Desktop",
-        "Fuse.iOS",
-        "Fuse.Scripting",
-        "FuseCore",
-        "Uno.Collections",
-        "Uno.Geometry",
-        "Experimental.iOS",
-        "Fuse.UserEvents",
-        "Experimental.TextureLoader",
-        "Experimental.Http"
+        "Fuse",
+        "FuseJS",
+        "Fuse.GeoLocation",
+        "Fuse.Camera",
+        "Fuse.PushNotifications",
+        "Fuse.LocalNotifications"
   ],
   "Includes": [
-    "*"
+    "*",
+    "**.js:Bundle"
   ]
 }

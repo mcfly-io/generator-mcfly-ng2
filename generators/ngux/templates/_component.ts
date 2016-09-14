@@ -1,10 +1,10 @@
-import { Component } from 'angular2/core';
-require('./ngux/<%=componentname%>.js');
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: '<%=componentnameClass%>',
-    template: require('./<%=componentname%>.ngux')
+    selector: '<%=componentnameFile%>',
+    template: require('./<%=componentnameFile%>.component.ngux'),
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class <%=componentnameClass%> {
+export class <%=componentnameClass%>Component {
 
 }

@@ -47,16 +47,7 @@ describe(generatorShortname + ':app', function() {
                 'protractor.conf.js',
                 'protractor/browserExtension.js',
                 clientFolder,
-                'fuse/AngularBootstrap.js',
-                'fuse/AngularRenderer.js',
-                'fuse/bootstrap.ts',
-                'fuse/dom_adapter.ts',
-                'fuse/element.ts',
-                'fuse/fuse_location_strategy.ts',
-                'fuse/fuse_polyfills.ts',
-                'fuse/renderer.ts',
-                'fuse/xhr.ts',
-                'fuse/zone.ts',
+                'fuse/Angular.ux', 'fuse/collection-facade.ts', 'fuse/dom_adapter.ts', 'fuse/element.ts', 'fuse/fuse_location_strategy.ts', 'fuse/fuse_polyfills.ts', 'fuse/fuseBootstrap.js', 'fuse/fuseRenderer.js', 'fuse/lang-facade.ts', 'fuse/localStorage.js', 'fuse/parse5_adapter.ts', 'fuse/platform.ts', 'fuse/private_import_compiler.ts', 'fuse/private_import_platform-browser.ts', 'fuse/renderer.ts', 'fuse/xhr.ts', 'fuse/zone.ts',
                 'plugins/PostCompilePlugin.js',
                 'plugins/ChangeModePlugin.js',
                 'typings/fuse/fuse.d.ts'
@@ -75,8 +66,7 @@ describe(generatorShortname + ':app', function() {
             });
 
             var expectedContents = [
-                ['README.md', /# name-x/],
-                ['spec-bundle.js', new RegExp('context\\(\'./myclientfolder\',')]
+                ['README.md', /# name-x/]
             ];
             assert.fileContent(expectedContents);
 

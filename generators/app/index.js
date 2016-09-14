@@ -224,7 +224,7 @@ module.exports = generators.Base.extend({
             this.destinationPath('typings/fuse/fuse.d.ts')
         );
 
-        ['AngularBootstrap.js', 'AngularRenderer.js', 'bootstrap.ts', 'dom_adapter.ts', 'element.ts', 'fuse_location_strategy.ts', 'fuse_polyfills.ts', 'renderer.ts', 'xhr.ts', 'zone.ts']
+        ['Angular.ux', 'collection-facade.ts', 'dom_adapter.ts', 'element.ts', 'fuse_location_strategy.ts', 'fuse_polyfills.ts', 'fuseBootstrap.js', 'fuseRenderer.js', 'lang-facade.ts', 'localStorage.js', 'parse5_adapter.ts', 'platform.ts', 'private_import_compiler.ts', 'private_import_platform-browser.ts', 'renderer.ts', 'xhr.ts', 'zone.ts']
         .forEach(function(file) {
             this.fs.copyTpl(
                 this.templatePath('fuse/' + file),

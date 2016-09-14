@@ -88,10 +88,13 @@ describe(generatorShortname + ':target', function() {
             var expectedContents = [
                 ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e/],
                 [path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'), /fuse_polyfills/],
-                [path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'), /fuse\/bootstrap/],
+                //[path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'), /fuse\/bootstrap/],
                 [path.join(clientFolder, 'scripts', 'dashboard-web', 'index.unoproj'), /"ApplicationLabel": "dummyappname"/]
             ];
 
+            assert.JSONFileContent(path.join(clientFolder, 'scripts', 'dashboard-web', 'index.unoproj'), {
+                Android: { ApplicationLabel: 'dummyappname' }
+            });
             assert.fileContent(expectedContents);
 
         });

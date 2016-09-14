@@ -11,9 +11,9 @@ module.exports = generators.Base.extend({
         if (!this.basetype) {
             throw 'basetype is undefined';
         }
-        if (!this.basefolder) {
-            throw 'basefolder is undefined';
-        }
+        // if (!this.basefolder) {
+        //     throw 'basefolder is undefined';
+        // }
 
         // applying mixins
         mixinInspector.extend(this);
@@ -91,7 +91,12 @@ module.exports = generators.Base.extend({
     },
 
     writing: function() {
-        var destinationPath = path.join(this.configOptions.clientFolder, 'scripts', this.modulename, this.basefolder);
+        var destinationPath;
+        if (this.basefolder.length > 0) {
+            destinationPath = path.join(this.configOptions.clientFolder, 'scripts', this.modulename, this.basefolder);
+        } else {
+            destinationPath = path.join(this.configOptions.clientFolder, 'scripts', this.modulename);
+        }
         if (this.hasOwnFolder) {
             destinationPath = path.join(destinationPath, this[this.basetype + 'nameFile']);
         }

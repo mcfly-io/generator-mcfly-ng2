@@ -48,7 +48,7 @@ describe(generatorShortname + ':component', function() {
                 [pathdir + 'my-dummy.component.ts', /export class MyDummyComponent/],
                 [pathdir + 'my-dummy.component.ts', /selector: 'my-dummy'/],
                 [pathdir + 'my-dummy.component.spec.ts', /import { MyDummyComponent } from '\.\/my-dummy.component';/],
-                [pathdir + 'my-dummy.component.spec.ts', /createAsync\(MyDummyComponent\)/],
+                [pathdir + 'my-dummy.component.spec.ts', /TestBed\.createComponent\(MyDummyComponent\)/],
                 [pathdir + 'my-dummy.component.html', /<div>myDummy<\/div>/]
 
             ];
@@ -129,20 +129,68 @@ describe(generatorShortname + ':component', function() {
             var pathdir = clientFolder + '/scripts/dashboard/components/my-dummy/';
 
             var expectedFiles = [
-                pathdir + 'myDummy.ts',
-                pathdir + 'myDummy.ngux',
-                pathdir + 'myDummy.spec.ts'
+                pathdir + 'my-dummy.component.ts',
+                pathdir + 'my-dummy.component.ngux',
+                pathdir + 'my-dummy.component.spec.ts'
             ];
 
             assert.file(expectedFiles);
 
             var expectedContents = [
-                [pathdir + 'myDummy.ts', /export class MyDummy/],
-                [pathdir + 'myDummy.ts', /selector: 'MyDummy'/],
-                [pathdir + 'myDummy.ts', /template: require\(\'\.\/myDummy.ngux\'\)/],
-                [pathdir + 'myDummy.spec.ts', /import { MyDummy } from '\.\/myDummy\.ts';/],
-                [pathdir + 'myDummy.spec.ts', /createAsync\(MyDummy\)/],
-                [pathdir + 'myDummy.ngux', /ng:Selector=\"MyDummy\"/]
+                [pathdir + 'my-dummy.component.ts', /export class MyDummyComponent/],
+                [pathdir + 'my-dummy.component.ts', /selector: 'my-dummy'/],
+                [pathdir + 'my-dummy.component.ts', /template: require\(\'\.\/my-dummy.component.ngux\'\)/],
+                [pathdir + 'my-dummy.component.spec.ts', /import { MyDummyComponent } from '\.\/my-dummy\.component';/],
+                [pathdir + 'my-dummy.component.spec.ts', /TestBed\.createComponent\(MyDummyComponent\)/],
+                [pathdir + 'my-dummy.component.ngux', /ng:Selector=\"my-dummy\"/]
+
+            ];
+            assert.fileContent(expectedContents);
+
+        });
+    });
+
+    describe('with target type multi', function() {
+        before(function(done) {
+            var self = this;
+            testHelper.runGenerator('component')
+                .withArguments([targetname, componentname])
+                .withOptions({
+                    targettype: 'multi'
+                })
+                .inTmpDir(function(dir) {
+                    // setting up expected files
+                    testHelper.createFolderStructure(config, dir, clientFolder, targetname);
+                })
+                .on('ready', function(generator) {
+                    self.generator = generator;
+                })
+                .on('end', done);
+        });
+
+        it('creates expected files', function() {
+            var pathdir = clientFolder + '/scripts/dashboard/components/my-dummy/';
+
+            var expectedFiles = [
+                pathdir + 'my-dummy.component.ts',
+                pathdir + 'my-dummy.component.html',
+                pathdir + 'my-dummy.component.ionic.html',
+                pathdir + 'my-dummy.component.scss',
+                pathdir + 'my-dummy.component.ngux',
+                pathdir + 'my-dummy.component.spec.ts'
+            ];
+
+            assert.file(expectedFiles);
+
+            var expectedContents = [
+                [pathdir + 'my-dummy.component.ts', /export class MyDummyComponent/],
+                [pathdir + 'my-dummy.component.ts', /selector: 'my-dummy'/],
+                [pathdir + 'my-dummy.component.ts', /CONFIG_TEMPLATE_SUFFIX/],
+                [pathdir + 'my-dummy.component.spec.ts', /import { MyDummyComponent } from '\.\/my-dummy\.component';/],
+                [pathdir + 'my-dummy.component.spec.ts', /TestBed\.createComponent\(MyDummyComponent\)/],
+                [pathdir + 'my-dummy.component.ngux', /ng:Selector=\"my-dummy\"/],
+                [pathdir + 'my-dummy.component.ionic.html', /<ion-content>myDummy<\/ion-content>/],
+                [pathdir + 'my-dummy.component.html', /<div>myDummy<\/div>/]
 
             ];
             assert.fileContent(expectedContents);

@@ -5,7 +5,7 @@ var testHelper = require('./testHelper');
 //var generatorFullname = testHelper.mixins.getGeneratorFullname(); // generator-mcfly-ng2
 var generatorShortname = testHelper.mixins.getGeneratorShortname(); // mcfly-ng2
 
-describe(generatorShortname + ':pipe', function() {
+describe(generatorShortname + ':module', function() {
     var targetname = 'dashboard';
     var clientFolder = 'client';
     var componentname = 'my dummy';
@@ -16,7 +16,7 @@ describe(generatorShortname + ':pipe', function() {
 
     before(function(done) {
         var self = this;
-        testHelper.runGenerator('pipe')
+        testHelper.runGenerator('module')
             .withArguments([targetname, componentname])
             .inTmpDir(function(dir) {
                 // setting up expected files
@@ -29,20 +29,16 @@ describe(generatorShortname + ':pipe', function() {
     });
 
     it('creates expected files', function() {
-        var pathdir = clientFolder + '/scripts/dashboard/pipes/my-dummy/';
+        var pathdir = clientFolder + '/scripts/dashboard/';
 
         var expectedFiles = [
-            pathdir + 'my-dummy.pipe.ts',
-            pathdir + 'my-dummy.pipe.spec.ts'
+            pathdir + 'index.ts'
         ];
 
         assert.file(expectedFiles);
 
         var expectedContents = [
-            [pathdir + 'my-dummy.pipe.ts', /export class MyDummyPipe/],
-            [pathdir + 'my-dummy.pipe.ts', /name: 'myDummy'/],
-            [pathdir + 'my-dummy.pipe.ts', /transform\(value\: string\, \.\.\.args\: string\[\]\)/],
-            [pathdir + 'my-dummy.pipe.spec.ts', /import { MyDummyPipe } from '\.\/my-dummy.pipe';/]
+            [pathdir + 'index.ts', /export class MyDummyModule/]
         ];
 
         assert.fileContent(expectedContents);

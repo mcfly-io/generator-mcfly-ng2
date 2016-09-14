@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var PostCompilePlugin = require('./plugins/PostCompilePlugin');
+var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 var ChangeModePlugin = require('./plugins/ChangeModePlugin');
 var autoprefixer = require('autoprefixer');
 var DEFAULT_TARGET = 'app';
@@ -15,6 +15,20 @@ var host = process.env.HOST || 'localhost';
 var mode = process.env.MODE || 'dev';
 var clientFolder = require('./.yo-rc.json')['generator-mcfly-ng2'].clientFolder;
 var distFolder = path.join('dist', target, mode);
+
+var orderByList = function(list) {
+    return function(chunk1, chunk2) {
+        var index1 = list.indexOf(chunk1.names[0]);
+        var index2 = list.indexOf(chunk2.names[0]);
+        if (index2 === -1 || index1 < index2) {
+            return -1;
+        }
+        if (index1 === -1 || index1 > index2) {
+            return 1;
+        }
+        return 0;
+    };
+};
 
 var fileExistsSync = function(file) {
     try {
@@ -31,6 +45,37 @@ var isTargetFuse = function(target) {
 
 var isTargetIonic2 = function(target) {
     return fileExistsSync(path.join(clientFolder, 'scripts', target, 'ionic.config.json'));
+};
+
+var getPlatformTemplateSuffix = function(opts) {
+    opts = opts || {};
+    if (isTargetIonic2(target) && !opts.noionic) {
+        return '.ionic.html';
+    }
+    if (isTargetFuse(target) && !opts.nofuse) {
+        return '.ngux';
+    }
+    return '.html';
+};
+
+var getTargetPlatform = function() {
+
+    if (isTargetIonic2(target)) {
+        return 'IONIC';
+    }
+    if (isTargetFuse(target)) {
+        return 'FUSE';
+    }
+    return 'WEB';
+};
+
+var getPlatformStyleSuffix = function(opts) {
+    opts = opts || {};
+    if (isTargetIonic2(target) && !opts.noionic) {
+        return '.ionic.scss';
+    }
+
+    return '.scss';
 };
 
 // make sure the target exists
@@ -58,7 +103,7 @@ var pluginsProd = mode === 'prod' ? [
 ] : [];
 
 module.exports = {
-    devtool: mode === 'prod' ? 'source-map' : 'eval-source-map', //'eval-source-map',
+    devtool: mode === 'prod' ? 'source-map' : 'inline-source-map', //'eval-source-map',
     debug: true,
     cache: true,
     context: path.resolve(path.join(clientFolder, 'scripts', target)), // the base directory for resolving the entry option
@@ -99,19 +144,12 @@ module.exports = {
             // A special ts loader case for node_modules so we can ignore errors
             {
                 test: /\.ts$/,
-                loader: 'ts',
-                include: [/node_modules/],
-                query: {
-                    instance: 'node_modules',
-                    ignoreDiagnostics: [2339]
-                }
+                loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
+                include: [/node_modules/]
             }, {
                 test: /\.ts$/,
-                loader: 'ts',
-                include: [new RegExp(clientFolder), /test/, /fuse/],
-                query: {
-                    instance: 'client'
-                }
+                loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
+                include: [new RegExp(clientFolder), /test/, /fuse/]
             },
             // Support for ngux files
             {
@@ -120,7 +158,7 @@ module.exports = {
                 query: {
                     subdir: 'ngux',
                     noEmitUx: true,
-                    useOutput: true
+                    outputRoot: path.join(path.resolve(distFolder), 'ux')
                 }
             },
             // Support for *.json files.
@@ -185,30 +223,13 @@ module.exports = {
                 test: /\.gif$/,
                 loader: 'url-loader?name=images/[hash].[ext]&prefix=img/&limit=5000'
             }, {
-                test: /\.woff$/,
+                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&\-.]+)?$/,
                 loader: 'url-loader?name=fonts/[hash].[ext]&prefix=font/&limit=5000'
-            }, {
-                test: /\.woff2$/,
-                loader: 'url-loader?name=fonts/[hash].[ext]&prefix=font/&limit=5000'
-            }, {
-                test: /\.eot$/,
-                loader: 'file-loader?name=fonts/[hash].[ext]&prefix=font/'
-            }, {
-                test: /\.ttf$/,
-                loader: 'file-loader?name=fonts/[hash].[ext]&prefix=font/'
-            }, {
-                test: /\.svg$/,
-                loader: 'file-loader?name=fonts/[hash].[ext]&prefix=font/'
             }
         ],
         noParse: [
-            /zone\.js\/dist\/zone-microtask\.js/,
-            /zone\.js\/dist\/long-stack-trace-zone\.js/,
-            /zone\.js\/dist\/jasmine-patch\.js/,
-            /es6-shim/,
-            /reflect-metadata/,
-            /web-animations/,
-            /.+angular2\/bundles\/.+/
+            /zone\.js\/dist\/.+/, /es6-shim/,
+            /reflect-metadata/
         ]
     },
     sassLoader: {
@@ -229,9 +250,27 @@ module.exports = {
         stats: 'errors-only',
         // Parse host and port from env so this is easy to customize.
         host: host,
-        port: port
+        port: port,
+        watchOptions: { aggregateTimeout: 300, poll: 1000 },
+        outputPath: distFolder
     },
     plugins: [
+        new webpack.DefinePlugin({
+            CONFIG_MODE: JSON.stringify(mode),
+            CONFIG_HMR: process.argv.join('').indexOf('hot') > -1,
+            CONFIG_IS_WEB: !isTargetFuse(target) && !isTargetIonic2(target),
+            CONFIG_IS_FUSE: isTargetFuse(target),
+            CONFIG_IS_IONIC2: isTargetIonic2(target),
+            CONFIG_PLATFORM: JSON.stringify(getTargetPlatform()),
+            CONFIG_STYLE_SUFFIX: JSON.stringify(getPlatformStyleSuffix()),
+            CONFIG_TEMPLATE_SUFFIX: JSON.stringify(getPlatformTemplateSuffix()),
+            CONFIG_TEMPLATE_SUFFIX_NOIONIC: JSON.stringify(getPlatformTemplateSuffix({ noionic: true })),
+            CONFIG_TEMPLATE_SUFFIX_NOFUSE: JSON.stringify(getPlatformTemplateSuffix({ nofuse: true }))
+        }),
+
+        new ForkCheckerPlugin(),
+
+        new webpack.optimize.OccurenceOrderPlugin(true),
         // make sure we can import the chunks on node or fuse
         new webpack.BannerPlugin(
             'if (typeof window === "undefined") {window = global;}\n' +
@@ -254,8 +293,16 @@ module.exports = {
             title: 'App - ' + target,
             baseUrl: '/',
             template: 'index.html',
-            inject: 'body'
+            inject: 'body',
+            chunks: ['common', 'vendor', 'bundle'],
+            chunksSortMode: orderByList(['common', 'vendor', 'bundle'])
+
         }),
+
+        new CopyWebpackPlugin(isTargetIonic2(target) ? [{
+            from: '../../resources',
+            to: '../resources'
+        }] : []),
         // copy fuse js files
         new CopyWebpackPlugin(isTargetFuse(target) ? [{
             from: '../../../fuse',
@@ -273,6 +320,18 @@ module.exports = {
             }] : [])
             .concat(isTargetFuse(target) ? [{
                 from: './**/*.uno'
+            }] : [])
+            .concat(isTargetFuse(target) ? [{
+                from: '../../fonts',
+                to: './fonts'
+            }] : [])
+            .concat(isTargetFuse(target) ? [{
+                from: '../../styles/ux',
+                to: './styles'
+            }] : [])
+            .concat(isTargetFuse(target) ? [{
+                from: '../../uno',
+                to: './uno'
             }] : [])
             .concat(isTargetIonic2(target) ? [{
                 from: './config.xml',
@@ -292,10 +351,6 @@ module.exports = {
             }] : [])
 
         ),
-        new PostCompilePlugin({
-            filename: path.join(distFolder, 'bundle.js'),
-            isFuse: isTargetFuse(target)
-        }),
         new ChangeModePlugin(isTargetIonic2(target) ? {
             folder: '../hooks',
             mode: 33261

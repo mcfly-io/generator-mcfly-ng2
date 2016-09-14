@@ -29,6 +29,7 @@ yo mcfly-ng2 [project-name]
 
 You then have access to the following sub generators:
 * **yo mcfly-ng2:target** (Creates a new target - you can think of it as another application)
+* **yo mcfly-ng2:module** (Creates a module)
 * **yo mcfly-ng2:service** (Creates a service)
 * **yo mcfly-ng2:pipe** (Creates a pipe)
 * **yo mcfly-ng2:component** (Creates a component)
