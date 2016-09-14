@@ -4,7 +4,7 @@ import { <%=componentnameClass%>Component } from './<%=componentnameFile%>.compo
 describe('Module: <%=modulename%>', () => {
     describe('Component: <%=componentnameClass%>Component', () => {
 
-        beforeEach(() => {  
+        beforeEach(() => {
             TestBed.configureTestingModule({
                 declarations: [<%=componentnameClass%>Component],
                 providers: [],
