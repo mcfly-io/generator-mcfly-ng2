@@ -33,7 +33,7 @@ var Generator = module.exports = ComponentGenerator.extend({
                 return !self.options.targettype || self.options.targettype.length <= 0;
             },
             message: 'What type of component do you want to create?',
-            choices: ['web', 'fuse']
+            choices: ['web', 'fuse', 'multi']
         }];
         Generator.__super__.prompting.call(this, done, extraPrompts);
 
@@ -137,6 +137,55 @@ var Generator = module.exports = ComponentGenerator.extend({
                         modulename: this.modulename
                     }
                 );
+                this.fs.copyTpl(
+                    this.templatePath('_component.ngux'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ngux')), {
+                        componentnameFile: this.componentnameFile,
+                        componentname: this.componentname,
+                        componentnameClass: this.componentnameClass
+                    }
+                );
+                break;
+
+            case 'multi':
+                this.fs.copyTpl(
+                    this.templatePath('_component.multi.ts'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ts')), {
+                        componentnameFile: this.componentnameFile,
+                        componentname: this.componentname,
+                        componentnameClass: this.componentnameClass
+                    }
+                );
+
+                this.fs.copyTpl(
+                    this.templatePath('_component.web.spec.ts'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.spec.ts')), {
+                        componentnameFile: this.componentnameFile,
+                        componentname: this.componentname,
+                        componentnameClass: this.componentnameClass,
+                        modulename: this.modulename
+                    }
+                );
+                this.fs.copyTpl(
+                    this.templatePath('_component.web.html'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.html')), {
+                        componentname: this.componentname
+                    }
+                );
+                this.fs.copyTpl(
+                    this.templatePath('_component.web.scss'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.scss'))
+                );
+
+                this.fs.copyTpl(
+                    this.templatePath('_component.ionic2.html'),
+                    this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ionic.html')), {
+                        componentnameFile: this.componentnameFile,
+                        componentname: this.componentname,
+                        componentnameClass: this.componentnameClass
+                    }
+                );
+
                 this.fs.copyTpl(
                     this.templatePath('_component.ngux'),
                     this.destinationPath(path.join(destinationPath, this.componentnameFile + '.component.ngux')), {
