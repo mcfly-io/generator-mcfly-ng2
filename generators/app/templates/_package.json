@@ -76,6 +76,7 @@
     "fuse:build:ios": "COMMAND=build OPTIONS+=(--target=iOS --run) npm run fuse:cli",
     "fuse:build:android": "COMMAND=build OPTIONS+=(--target=android --run) npm run fuse:cli",
     "fuse:preview": "COMMAND=preview npm run fuse:cli",
+    "fuse:preview:debug": "cd dist/${TARGET-app}/${MODE-dev} && code . &&  fuse preview . -DDEBUG_V8",
     "fuse:preview:ios": "COMMAND=preview OPTIONS+=(--target=ios) npm run fuse:cli",
     "fuse:preview:android": "COMMAND=preview OPTIONS+=(--target=android) npm run fuse:cli",
 
