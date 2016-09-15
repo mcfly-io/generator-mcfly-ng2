@@ -1,3 +1,4 @@
+/// <reference path="../../../node_modules/zone.js/dist/zone.js.d.ts" />
 import { FuseModule, platformFuseDynamic } from '../../../fuse/platform.ts';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
