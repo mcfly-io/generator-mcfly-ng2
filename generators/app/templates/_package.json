@@ -71,7 +71,6 @@
 
     "prefuse:cli": "npm run check:target:fuse --silent && npm run check:already:built --silent",
     "fuse:clean": "(cd dist/${TARGET-app}/${MODE-dev} && uno clean)",
-    "prefuse:cli": "npm run check:target:fuse --silent && npm run check:already:built --silent",
     "fuse:cli": "(cd dist/${TARGET-app}/${MODE-dev} && fuse ${COMMAND} ${ARGS})",
     "fuse:build:ios": "COMMAND=build OPTIONS+=(--target=iOS --run) npm run fuse:cli",
     "fuse:build:android": "COMMAND=build OPTIONS+=(--target=android --run) npm run fuse:cli",
