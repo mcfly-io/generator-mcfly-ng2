@@ -60,7 +60,9 @@ You have access to the following npm scripts:
 ***Docs***
 * **npm run docs** (run typedoc using the `typedoc.json` config file)
 
->*NB: All fuse & ionic npm commands accept an optional `OPTIONS=(...)` variable to pass additional options to those clis. `OPTIONS` can either be a single plugin name or a space-separated bash/zsh list, i.e. enclosed in parens, `(...)`, or in quotation marks `"..."`*
+>*Note:*    
+> All fuse & ionic npm commands accept an optional `OPTIONS=(...)` variable to pass additional options to those clis. 
+> `OPTIONS` can either be a single plugin name or a space-separated bash/zsh list, i.e. enclosed in parens, `(...)`, or in quotation marks `"..."`*
 
 ***Fuse Commands***
 * **npm run fuse:clean** (run `uno clean` to clean up generated resources in your fuse target)
@@ -82,7 +84,10 @@ You have access to the following npm scripts:
 * **npm run ionic:serve:lab** (run an ionic2 app in the browser in lab mode)
 * **npm run ionic:emulate** (run an ionic2 app in the emulator)
 
->*N.B.: Normally, the webpack ChangeMode plugin (`plugins/ChangeModePlugin.js`) should make sure that the ionic hooks in the dist folder are executable. If however you get errors like these:`Running command: <path_to_hook_dir> <path_to_hook.js> <path_to_ionic_target_dist>` `Error: spawn EACCES`, use **npm run ionic:hooks:chmodx** to fix the hooks.*
+>*Note:*     
+> Normally, the webpack ChangeMode plugin (`plugins/ChangeModePlugin.js`) should make sure that the ionic hooks in the dist folder are executable. 
+> If however you get errors like these:`Running command: <path_to_hook_dir> <path_to_hook.js> <path_to_ionic_target_dist>` `Error: spawn EACCES`
+> use **npm run ionic:hooks:chmodx** to fix the hooks.
 
 ## Distribution
 Note that the code is distributed to the `dist` folder    
