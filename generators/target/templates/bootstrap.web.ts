@@ -1,3 +1,4 @@
+/// <reference path="../../../node_modules/zone.js/dist/zone.js.d.ts" />
 import { NgModule, enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 //import { LocationStrategy, HashLocationStrategy } from '@angular/common';

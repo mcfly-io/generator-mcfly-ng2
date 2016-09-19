@@ -1,3 +1,4 @@
+/// <reference path="../../../node_modules/zone.js/dist/zone.js.d.ts" />
 import { NgModule } from '@angular/core';
 import { enableProdMode } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
