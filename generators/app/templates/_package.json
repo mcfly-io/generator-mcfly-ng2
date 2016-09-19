@@ -123,6 +123,7 @@
     "@types/protractor": "^1.5.16",
     "@types/selenium-webdriver": "^2.44.26",
     "@types/q": "^0.0.30",
+    "@types/webpack": "^1.12.34",
     "angular2-template-loader": "^0.5.0",
     "autoprefixer": "^6.4.1",
     "awesome-typescript-loader": "^2.2.4",
