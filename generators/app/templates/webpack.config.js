@@ -286,10 +286,7 @@ module.exports = {
             title: 'App - ' + target,
             baseUrl: '/',
             template: 'index.html',
-            inject: 'body',
-            chunks: ['common', 'vendor', 'bundle'],
-            chunksSortMode: orderByList(['common', 'vendor', 'bundle'])
-
+            inject: 'body'
         }),
 
         new CopyWebpackPlugin(isTargetIonic2(target) ? [{
