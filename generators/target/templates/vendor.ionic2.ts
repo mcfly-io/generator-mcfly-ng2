@@ -1,10 +1,4 @@
-// Polyfills
-import 'angular2/bundles/angular2-polyfills';
-
-// External
-import 'rxjs';
-import 'reflect-metadata';
-
-import 'lodash';
+import 'ionic-angular';
+import 'ionic-native';
 
 require('style-loader!./main.scss');

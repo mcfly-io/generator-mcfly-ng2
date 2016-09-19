@@ -25,11 +25,11 @@ interface FuseJS {
     geoLocation: {
         location: Location,
         getLocation(timeout: number): Promise<Location>,
-        onChanged(location: Location): any
-        startListening(minimumReportInterval: number, desiredAccuracyInMeters: number): any
+        onChanged(location: Location)
+        startListening(minimumReportInterval: number, desiredAccuracyInMeters: number)
     };
     camera: {
-        takePicture(options: { targetWidth: number, targetHeight: number, correctOrientation: boolean }): any
+        takePicture(options: { targetWidth: number, targetHeight: number, correctOrientation: boolean })
     };
 }
 

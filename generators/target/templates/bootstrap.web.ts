@@ -5,14 +5,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { RouterModule } from '@angular/router';
 
-enableProdMode();
+if (CONFIG_MODE === 'prod') {
+    enableProdMode();
+}
 
 import { MainComponent } from './components/main/main.component';
 @NgModule({
-    declarations: [MainComponent],
     imports: [
         BrowserModule, FormsModule, ReactiveFormsModule
     ],
+    declarations: [MainComponent],
     providers: [],
     bootstrap: [MainComponent]
 })

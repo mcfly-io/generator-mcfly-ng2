@@ -185,11 +185,6 @@ module.exports = generators.Base.extend({
         );
 
         this.fs.copyTpl(
-            this.templatePath('tsd.json'),
-            this.destinationPath('tsd.json')
-        );
-
-        this.fs.copyTpl(
             this.templatePath('typedoc.json'),
             this.destinationPath('typedoc.json')
         );
@@ -220,11 +215,16 @@ module.exports = generators.Base.extend({
         );
 
         this.fs.copy(
-            this.templatePath('fuse/fuse.d.ts'),
-            this.destinationPath('typings/fuse/fuse.d.ts')
+            this.templatePath('typings/fuse.d.ts'),
+            this.destinationPath('typings/fuse/index.d.ts')
         );
 
-        ['Angular.ux', 'collection-facade.ts', 'dom_adapter.ts', 'element.ts', 'fuse_location_strategy.ts', 'fuse_polyfills.ts', 'fuseBootstrap.js', 'fuseRenderer.js', 'lang-facade.ts', 'localStorage.js', 'parse5_adapter.ts', 'platform.ts', 'private_import_compiler.ts', 'private_import_platform-browser.ts', 'renderer.ts', 'xhr.ts', 'zone.ts']
+        this.fs.copy(
+            this.templatePath('typings/tsd.d.ts'),
+            this.destinationPath('typings/tsd.d.ts')
+        );
+
+        ['Angular.ux', 'collection-facade.ts', 'dom_adapter.ts', 'element.ts', 'fuse_location_strategy.ts', 'fuse_polyfills.ts', 'fuseBootstrap.js', 'fuseRenderer.js', 'lang-facade.ts', 'localStorage.js', 'parse5_adapter.ts', 'platform.ts', 'private_import_compiler.ts', 'private_import_platform-browser.ts', 'renderer.ts', 'xhr.ts', 'zone.ts', 'zone-fuse.js']
         .forEach(function(file) {
             this.fs.copyTpl(
                 this.templatePath('fuse/' + file),

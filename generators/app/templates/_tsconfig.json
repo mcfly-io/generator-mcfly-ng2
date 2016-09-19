@@ -8,17 +8,28 @@
     "experimentalDecorators": true,
     "removeComments": true,
     "noEmitHelpers": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ],
+    "types": [
+      "core-js",
+      "hammerjs",
+      "jasmine",
+      "node",
+      "protractor",
+      "selenium-webdriver",
+      "lodash",
+      "q",
+      "webpack",
+      "fuse"
+    ]
   },
   "compileOnSave": false,
   "buildOnSave": false,
   "exclude": [
-    "node_modules"
-  ],
-  "filesGlob": [
-    "<%=clientFolder%>/**/*.ts",
-    "test/**/*.ts",
-    "typings/tsd.d.ts",
-    "!./node_modules/**/*.ts"
+    "node_modules",
+    "dist"
   ]
 }

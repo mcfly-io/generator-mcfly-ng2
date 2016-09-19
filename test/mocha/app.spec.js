@@ -43,27 +43,27 @@ describe(generatorShortname + ':app', function() {
                 'tslint.json',
                 'webpack.config.js',
                 'test/sanity.spec.ts',
-                'tsd.json',
                 'protractor.conf.js',
                 'protractor/browserExtension.js',
                 clientFolder,
-                'fuse/Angular.ux', 'fuse/collection-facade.ts', 'fuse/dom_adapter.ts', 'fuse/element.ts', 'fuse/fuse_location_strategy.ts', 'fuse/fuse_polyfills.ts', 'fuse/fuseBootstrap.js', 'fuse/fuseRenderer.js', 'fuse/lang-facade.ts', 'fuse/localStorage.js', 'fuse/parse5_adapter.ts', 'fuse/platform.ts', 'fuse/private_import_compiler.ts', 'fuse/private_import_platform-browser.ts', 'fuse/renderer.ts', 'fuse/xhr.ts', 'fuse/zone.ts',
+                'fuse/Angular.ux', 'fuse/collection-facade.ts', 'fuse/dom_adapter.ts', 'fuse/element.ts', 'fuse/fuse_location_strategy.ts', 'fuse/fuse_polyfills.ts', 'fuse/fuseBootstrap.js', 'fuse/fuseRenderer.js', 'fuse/lang-facade.ts', 'fuse/localStorage.js', 'fuse/parse5_adapter.ts', 'fuse/platform.ts', 'fuse/private_import_compiler.ts', 'fuse/private_import_platform-browser.ts', 'fuse/renderer.ts', 'fuse/xhr.ts', 'fuse/zone.ts', 'fuse/zone-fuse.js',
                 'plugins/PostCompilePlugin.js',
                 'plugins/ChangeModePlugin.js',
-                'typings/fuse/fuse.d.ts'
+                'typings/fuse/index.d.ts',
+                'typings/tsd.d.ts'
             ];
             assert.file(expectedFiles);
             assert.JSONFileContent('package.json', {
                 name: 'name-x'
             });
-            assert.JSONFileContent('tsconfig.json', {
-                filesGlob: [
-                    clientFolder + '/**/*.ts',
-                    'test/**/*.ts',
-                    'typings/tsd.d.ts',
-                    '!./node_modules/**/*.ts'
-                ]
-            });
+            // assert.JSONFileContent('tsconfig.json', {
+            //     filesGlob: [
+            //         clientFolder + '/**/*.ts',
+            //         'test/**/*.ts',
+            //         'typings/tsd.d.ts',
+            //         '!./node_modules/**/*.ts'
+            //     ]
+            // });
 
             var expectedContents = [
                 ['README.md', /# name-x/]
