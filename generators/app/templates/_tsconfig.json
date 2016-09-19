@@ -20,8 +20,6 @@
       "node",
       "protractor",
       "selenium-webdriver",
-      "source-map",
-      "uglify-js",
       "lodash",
       "q",
       "webpack",
