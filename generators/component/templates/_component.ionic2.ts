@@ -1,13 +1,10 @@
-import { App, Platform } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { StatusBar, Globalization } from 'ionic-native';
 
-@App({
+@Component({
     styles: [require('./<%=componentnameFile%>.component.scss').toString()],
-    template: require('./<%=componentnameFile%>.component.html'),
-    config: {
-        // http://ionicframework.com/docs/v2/api/config/Config/
-    },
-    providers: []
+    template: require('./<%=componentnameFile%>.component.html')
 })
 export class <%=componentnameClass%>Component {
 
