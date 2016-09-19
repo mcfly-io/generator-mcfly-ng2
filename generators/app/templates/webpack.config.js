@@ -16,19 +16,19 @@ var mode = process.env.MODE || 'dev';
 var clientFolder = require('./.yo-rc.json')['generator-mcfly-ng2'].clientFolder;
 var distFolder = path.join('dist', target, mode);
 
-// var orderByList = function(list) {
-//     return function(chunk1, chunk2) {
-//         var index1 = list.indexOf(chunk1.names[0]);
-//         var index2 = list.indexOf(chunk2.names[0]);
-//         if (index2 === -1 || index1 < index2) {
-//             return -1;
-//         }
-//         if (index1 === -1 || index1 > index2) {
-//             return 1;
-//         }
-//         return 0;
-//     };
-// };
+var orderByList = function(list) {
+    return function(chunk1, chunk2) {
+        var index1 = list.indexOf(chunk1.names[0]);
+        var index2 = list.indexOf(chunk2.names[0]);
+        if (index2 === -1 || index1 < index2) {
+            return -1;
+        }
+        if (index1 === -1 || index1 > index2) {
+            return 1;
+        }
+        return 0;
+    };
+};
 
 var fileExistsSync = function(file) {
     try {
@@ -286,7 +286,9 @@ module.exports = {
             title: 'App - ' + target,
             baseUrl: '/',
             template: 'index.html',
-            inject: 'body'
+            inject: 'body',
+            chunks: ['polyfills', 'vendor', 'bundle'],
+            chunksSortMode: orderByList(['polyfills', 'vendor', 'bundle'])
         }),
 
         new CopyWebpackPlugin(isTargetIonic2(target) ? [{
