@@ -67,7 +67,7 @@ module.exports = generators.Base.extend({
             name: 'targettype',
             default: 'web',
             message: 'What type of target application do you want to create?',
-            choices: ['web', 'fuse']
+            choices: ['web', 'fuse', 'ionic2']
         }];
         this.prompt(prompts, function(answers) {
             this.answers = answers;
@@ -108,6 +108,10 @@ module.exports = generators.Base.extend({
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'vendor.ts'))
                 );
                 this.fs.copyTpl(
+                    this.templatePath('polyfills.web.ts'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'polyfills.ts'))
+                );
+                this.fs.copyTpl(
                     this.templatePath('bootstrap.web.ts'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'bootstrap.ts'))
                 );
@@ -122,6 +126,10 @@ module.exports = generators.Base.extend({
                 this.fs.copyTpl(
                     this.templatePath('vendor.ionic2.ts'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'vendor.ts'))
+                );
+                this.fs.copyTpl(
+                    this.templatePath('polyfills.ionic2.ts'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'polyfills.ts'))
                 );
                 this.fs.copyTpl(
                     this.templatePath('bootstrap.ionic2.ts'),
@@ -187,6 +195,10 @@ module.exports = generators.Base.extend({
                 this.fs.copyTpl(
                     this.templatePath('vendor.fuse.ts'),
                     this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'vendor.ts'))
+                );
+                this.fs.copyTpl(
+                    this.templatePath('polyfills.fuse.ts'),
+                    this.destinationPath(path.join(this.configOptions.clientFolder, 'scripts', this.targetname, 'polyfills.ts'))
                 );
                 this.fs.copyTpl(
                     this.templatePath('bootstrap.fuse.ts'),

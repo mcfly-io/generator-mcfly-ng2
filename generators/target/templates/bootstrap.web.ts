@@ -1,18 +1,19 @@
-/// <reference path="../../../node_modules/zone.js/dist/zone.js.d.ts" />
 import { NgModule, enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 //import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { RouterModule } from '@angular/router';
 
-enableProdMode();
+if (CONFIG_MODE === 'prod') {
+    enableProdMode();
+}
 
 import { MainComponent } from './components/main/main.component';
 @NgModule({
-    declarations: [MainComponent],
     imports: [
         BrowserModule, FormsModule, ReactiveFormsModule
     ],
+    declarations: [MainComponent],
     providers: [],
     bootstrap: [MainComponent]
 })

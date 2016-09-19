@@ -1,4 +1,3 @@
-import 'es6-shim';
 // assert = function() {
 //     return true;
 // };

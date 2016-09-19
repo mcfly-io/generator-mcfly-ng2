@@ -25,7 +25,7 @@ function loadRenderer() {
 
         var AngularRendererClass = require('fuse/fuseRenderer.js');
         window.fusejs.angularRenderer = new AngularRendererClass(window.fusejs.context);
-        require('common');
+        require('polyfills');
         require('vendor');
         window.fusejs.requireCacheAfterVendor = {};
 

@@ -34,6 +34,7 @@ describe(generatorShortname + ':target', function() {
                 path.join(clientFolder, 'scripts', 'dashboard-web'),
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'index.html'),
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'),
+                path.join(clientFolder, 'scripts', 'dashboard-web', 'polyfills.ts'),
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'),
                 path.join('test', 'e2e', 'dashboard-web', 'dashboard-web.e2e.ts'),
                 path.join('test', 'e2e', 'dashboard-web', 'index.e2e.ts')
@@ -79,6 +80,7 @@ describe(generatorShortname + ':target', function() {
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'index.unoproj'),
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'index.uxl'),
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'),
+                path.join(clientFolder, 'scripts', 'dashboard-web', 'polyfills.ts'),
                 path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'),
                 path.join('test', 'e2e', 'dashboard-web', 'dashboard-web.e2e.ts'),
                 path.join('test', 'e2e', 'dashboard-web', 'index.e2e.ts')
@@ -87,7 +89,7 @@ describe(generatorShortname + ':target', function() {
 
             var expectedContents = [
                 ['test/e2e/dashboard-web/index.e2e.ts', /dashboard-web\.e2e/],
-                [path.join(clientFolder, 'scripts', 'dashboard-web', 'vendor.ts'), /fuse_polyfills/],
+                [path.join(clientFolder, 'scripts', 'dashboard-web', 'polyfills.ts'), /fuse_polyfills/],
                 //[path.join(clientFolder, 'scripts', 'dashboard-web', 'bootstrap.ts'), /fuse\/bootstrap/],
                 [path.join(clientFolder, 'scripts', 'dashboard-web', 'index.unoproj'), /"ApplicationLabel": "dummyappname"/]
             ];
@@ -132,6 +134,7 @@ describe(generatorShortname + ':target', function() {
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'ionic.config.json'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'package.json'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'vendor.ts'),
+                path.join(clientFolder, 'scripts', 'mobile-ionic', 'polyfills.ts'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'bootstrap.ts'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_platform_add', '010_install_plugins.js'),
                 path.join(clientFolder, 'scripts', 'mobile-ionic', 'hooks', 'after_plugin_add', '010_register_plugin.js'),

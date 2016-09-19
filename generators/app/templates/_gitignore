@@ -49,7 +49,7 @@ Thumbs.db
 
 # Cordova
 platforms/
-plugins/
+
 
 # Visual Studio Code
 .vscode/

@@ -108,6 +108,7 @@ module.exports = {
     cache: true,
     context: path.resolve(path.join(clientFolder, 'scripts', target)), // the base directory for resolving the entry option
     entry: {
+        'polyfills': './polyfills',
         'vendor': './vendor', // clientFolder + '/scripts/' + target  + '/vendor', // path.resolve(path.join('.', clientFolder, 'scripts', target, 'vendor')),
         'bundle': './bootstrap' //clientFolder + '/scripts/' + target  + '/bootstrap',  // path.resolve(path.join('.', clientFolder, 'scripts', target, 'bootstrap'))
     },
@@ -279,15 +280,7 @@ module.exports = {
                 entryOnly: true
             }),
         new CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.js',
-            minChunks: Infinity
-        }),
-        new CommonsChunkPlugin({
-            name: 'common',
-            filename: 'common.js',
-            minChunks: 2,
-            chunks: ['bundle', 'vendor']
+            name: ['bundle', 'vendor', 'polyfills']
         }),
         new HtmlwebpackPlugin({
             title: 'App - ' + target,
