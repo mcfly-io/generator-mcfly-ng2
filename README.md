@@ -12,6 +12,8 @@ A [Yeoman](http://yeoman.io) generator for scaffolding an app using angular2 and
 # Credits
 This generator was inspired by this amazing repo: https://github.com/AngularClass/angular2-webpack-starter
 
+[![Join the chat at https://gitter.im/mcfly-io/generator-mcfly-ng2](https://badges.gitter.im/mcfly-io/generator-mcfly-ng2.svg)](https://gitter.im/mcfly-io/generator-mcfly-ng2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-mcfly-ng2 using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
